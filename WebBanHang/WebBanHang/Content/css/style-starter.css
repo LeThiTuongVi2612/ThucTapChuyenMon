@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -9,6 +9,9 @@ Author URL: http://w3layouts.com
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.settingt {
+    padding: 5px !important;
+}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
