@@ -396,9 +396,16 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\LoginStart.cshtml" />
     <Content Include="Views\Shared\_Cart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Add_Account.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ForGotPassWord.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Home\Order.cshtml" />
     <Content Include="Views\Home\OurCoffee.cshtml" />
+    <Content Include="Views\Home\PassWord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
