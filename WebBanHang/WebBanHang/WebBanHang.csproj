@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,6 +176,46 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\css\animate.css" />
+    <Content Include="Content\Admin\css\bootstrap.css" />
+    <Content Include="Content\Admin\css\clndr.css" />
+    <Content Include="Content\Admin\css\custom.css" />
+    <Content Include="Content\Admin\css\font-awesome.css" />
+    <Content Include="Content\Admin\css\jqvmap.css" />
+    <Content Include="Content\Admin\css\style.css" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Admin\images\1.png" />
+    <Content Include="Content\Admin\images\2.png" />
+    <Content Include="Content\Admin\images\3.png" />
+    <Content Include="Content\Admin\images\a.png" />
+    <Content Include="Content\Admin\images\i1.png" />
+    <Content Include="Content\Admin\images\i2.png" />
+    <Content Include="Content\Admin\images\i3.png" />
+    <Content Include="Content\Admin\images\i4.png" />
+    <Content Include="Content\Admin\images\img1.png" />
+    <Content Include="Content\Admin\images\lock.png" />
+    <Content Include="Content\Admin\images\tick.png" />
+    <Content Include="Content\Admin\images\user.png" />
+    <Content Include="Content\Admin\js\bootstrap.js" />
+    <Content Include="Content\Admin\js\Chart.js" />
+    <Content Include="Content\Admin\js\classie.js" />
+    <Content Include="Content\Admin\js\clndr.js" />
+    <Content Include="Content\Admin\js\custom.js" />
+    <Content Include="Content\Admin\js\jquery-1.11.1.min.js" />
+    <Content Include="Content\Admin\js\jquery.circlechart.js" />
+    <Content Include="Content\Admin\js\jquery.nicescroll.js" />
+    <Content Include="Content\Admin\js\jquery.vmap.js" />
+    <Content Include="Content\Admin\js\jquery.vmap.sampledata.js" />
+    <Content Include="Content\Admin\js\jquery.vmap.world.js" />
+    <Content Include="Content\Admin\js\metisMenu.min.js" />
+    <Content Include="Content\Admin\js\modernizr.custom.js" />
+    <Content Include="Content\Admin\js\moment-2.2.1.js" />
+    <Content Include="Content\Admin\js\scripts.js" />
+    <Content Include="Content\Admin\js\site.js" />
+    <Content Include="Content\Admin\js\skycons.js" />
+    <Content Include="Content\Admin\js\underscore-min.js" />
+    <Content Include="Content\Admin\js\validator.min.js" />
+    <Content Include="Content\Admin\js\wow.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -372,6 +413,12 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Admin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Admin\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -406,6 +453,8 @@
     <Content Include="Views\Home\Order.cshtml" />
     <Content Include="Views\Home\OurCoffee.cshtml" />
     <Content Include="Views\Home\PassWord.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
