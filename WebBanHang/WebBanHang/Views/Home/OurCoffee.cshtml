@@ -1,13 +1,15 @@
-﻿
+﻿@using WebBanHang.Models;
 @{
     ViewBag.Title = "OurCoffee";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{ IEnumerable<Product> lsPRoduct = (IEnumerable<Product>)ViewBag.ListSP;
+    IEnumerable<Product> lsBreakfast = (IEnumerable<Product>)ViewBag.ListAS;}
 
 <section class="w3l-about-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container py-lg-4 py-md-3">
-            <h2 class="title">Your favourite Coffees are back</h2>
+            <h2 class="title">Your favourite Drink and Food</h2>
         </div>
     </div>
 </section>
@@ -16,31 +18,24 @@
     <div class="container py-lg-5 py-md-4 py-2">
         <ul class="nav nav-pills" id="pills-tab1" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="pills-team1-tab" data-toggle="pill" href="#pills-team1" role="tab" aria-controls="pills-team1" aria-selected="true"><img src="~/Content/images/1.png" class="img-fluid" alt="" /></a>
+                <a class="nav-link active" id="pills-team1-tab" href="#pills-team1" role="tab" aria-selected="true"><img src="~/Content/images/1.png" class="img-fluid" alt="" /></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-team2-tab" data-toggle="pill" href="#pills-team2" role="tab" aria-controls="pills-team2" aria-selected="false"><img src="~/Content/images/2.png" class="img-fluid" alt="" /></a>
+                <a class="nav-link" id="pills-team2-tab" data-toggle="pill" href="#pills-team2" role="tab" aria-controls="pills-team2" aria-selected="false"><img src="~/Content/images/huteunamvang.jpg" class="img-fluid" alt="" /></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-team3-tab" data-toggle="pill" href="#pills-team3" role="tab" aria-controls="pills-team3" aria-selected="false"><img src="~/Content/images/3.png" class="img-fluid" alt="" /></a>
+                <a class="nav-link" id="pills-team3-tab" data-toggle="pill" href="#pills-team3" role="tab" aria-controls="pills-team3" aria-selected="false"><img src="~/Content/images/antrua.jpg" class="img-fluid" alt="" /></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="pills-team4-tab" data-toggle="pill" href="#pills-team4" role="tab" aria-controls="pills-team4" aria-selected="false"><img src="~/Content/images/4.png" class="img-fluid" alt="" /></a>
+                <a class="nav-link" id="pills-team4-tab" data-toggle="pill" href="#pills-team4" role="tab" aria-controls="pills-team4" aria-selected="false"><img src="~/Content/images/anchieu.jpg" class="img-fluid" alt="" /></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team5-tab" data-toggle="pill" href="#pills-team1" role="tab" aria-controls="pills-team1" aria-selected="true"><img src="~/Content/images/1.png" class="img-fluid" alt="" /></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team6-tab" data-toggle="pill" href="#pills-team2" role="tab" aria-controls="pills-team2" aria-selected="false"><img src="~/Content/images/2.png" class="img-fluid" alt="" /></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team7-tab" data-toggle="pill" href="#pills-team3" role="tab" aria-controls="pills-team3" aria-selected="false"><img src="~/Content/images/3.png" class="img-fluid" alt="" /></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team8-tab" data-toggle="pill" href="#pills-team4" role="tab" aria-controls="pills-team4" aria-selected="false"><img src="~/Content/images/4.png" class="img-fluid" alt="" /></a>
-            </li>
+
         </ul>
-        <div class="tab-content" id="pills-tabContent1">
+
+        @Html.Partial("Partial", lsPRoduct)
+       
+        
+        @*<div class="tab-content" id="pills-tabContent1">
             <div class="tab-pane fade show active" id="pills-team1" role="tabpanel" aria-labelledby="pills-team1-tab">
                 <div class="team-grids row">
                     <div class="col-lg-6">
@@ -176,7 +171,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 </section>
 <!-- //tabs team -->
@@ -210,8 +205,8 @@
         </div>
     </div>
 </div>
- <section class="w3l-specification-6 py-5">
-     /specification-6
+<section class="w3l-specification-6 py-5">
+    /specification-6
     <div class="specification-6-mian py-lg-5 py-md-4">
         <div class="container">
             <div class="align-counter-6-inf-cols row">

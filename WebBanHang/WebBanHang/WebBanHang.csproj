@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,12 +189,24 @@
     <Content Include="Content\Admin\images\2.png" />
     <Content Include="Content\Admin\images\3.png" />
     <Content Include="Content\Admin\images\a.png" />
+    <Content Include="Content\images\anchieu.jpg" />
+    <Content Include="Content\images\antrua.jpg" />
+    <Content Include="Content\images\banhbeo.jpg" />
+    <Content Include="Content\images\banhcanh.jpg" />
+    <Content Include="Content\images\banhcuon.jpg" />
+    <Content Include="Content\images\banhmi.jpg" />
+    <Content Include="Content\images\banhmixiumai.jpg" />
+    <Content Include="Content\images\bunmoc.jpg" />
+    <Content Include="Content\images\cafeden.jpg" />
+    <Content Include="Content\images\chaodauca.jpg" />
+    <Content Include="Content\images\huteunamvang.jpg" />
     <Content Include="Content\Admin\images\i1.png" />
     <Content Include="Content\Admin\images\i2.png" />
     <Content Include="Content\Admin\images\i3.png" />
     <Content Include="Content\Admin\images\i4.png" />
     <Content Include="Content\Admin\images\img1.png" />
     <Content Include="Content\Admin\images\lock.png" />
+    <Content Include="Content\Admin\images\miquang.jpg" />
     <Content Include="Content\Admin\images\tick.png" />
     <Content Include="Content\Admin\images\user.png" />
     <Content Include="Content\Admin\js\bootstrap.js" />
@@ -263,6 +276,7 @@
     <Content Include="Content\images\team2.jpg" />
     <Content Include="Content\images\team3.jpg" />
     <Content Include="Content\images\team4.jpg" />
+    <Content Include="Content\images\trasuachanchauduongden.jpg" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-2.1.4.min.js" />
     <Content Include="Content\js\jquery-3.3.1.min.js" />
@@ -455,6 +469,11 @@
     <Content Include="Views\Home\PassWord.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Product\Product1.cshtml" />
+    <Content Include="Views\Product\ProductPartial.cshtml" />
+    <Content Include="Views\Home\Partial.cshtml" />
+    <Content Include="Views\Product\Breakfast.cshtml" />
+    <Content Include="Views\Product\BreakfastPratial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,6 +9,8 @@ Author URL: http://w3layouts.com
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+
 .settingt {
     padding: 5px !important;
 }
@@ -7138,6 +7140,7 @@ a.text-danger:hover, a.text-danger:focus {
 
 .text-light {
   color: #f8f9fa !important; }
+
 
 a.text-light:hover, a.text-light:focus {
   color: #cbd3da !important; }

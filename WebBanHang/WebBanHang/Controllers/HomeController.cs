@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
 {
     public class HomeController : Controller
     {
+        QuanLyBanHangOnlEntities db = new QuanLyBanHangOnlEntities();
         public ActionResult Index()
         {
             return View();
@@ -19,6 +21,8 @@ namespace WebBanHang.Controllers
         }
         public ActionResult OurCoffee()
         {
+            var listProduct1 = db.Product.Where(x => x.GroupProductID == 1);
+            ViewBag.ListSP = listProduct1;
             return View();
         }
         public ActionResult Contact()
@@ -46,6 +50,10 @@ namespace WebBanHang.Controllers
             return View();
         }
         public ActionResult Order()
+        {
+            return View();
+        }
+        public ActionResult Partial()
         {
             return View();
         }
