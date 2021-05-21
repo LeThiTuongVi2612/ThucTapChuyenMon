@@ -21,7 +21,7 @@ namespace WebBanHang.Controllers
         }
         public ActionResult OurCoffee()
         {
-            var listProduct1 = db.Product.Where(x => x.GroupProductID == 1);
+            var listProduct1 = (from x in db.Product select x).ToList();
             ViewBag.ListSP = listProduct1;
             return View();
         }

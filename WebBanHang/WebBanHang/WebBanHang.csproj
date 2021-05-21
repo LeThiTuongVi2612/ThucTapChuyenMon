@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomerProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -457,6 +458,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\LoginStart.cshtml" />
     <Content Include="Views\Shared\_Cart.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Product\Product1.cshtml" />
+    <Content Include="Views\Product\ProductPartial.cshtml" />
+    <Content Include="Views\Product\Breakfast.cshtml" />
+    <Content Include="Views\Customer\index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Add_Account.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
@@ -466,18 +473,22 @@
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Home\Order.cshtml" />
     <Content Include="Views\Home\OurCoffee.cshtml" />
-    <Content Include="Views\Home\PassWord.cshtml" />
-    <Content Include="Views\Shared\_Admin.cshtml" />
-    <Content Include="Views\Admin\Admin.cshtml" />
-    <Content Include="Views\Product\Product1.cshtml" />
-    <Content Include="Views\Product\ProductPartial.cshtml" />
     <Content Include="Views\Home\Partial.cshtml" />
-    <Content Include="Views\Product\Breakfast.cshtml" />
-    <Content Include="Views\Product\BreakfastPratial.cshtml" />
+    <Content Include="Views\Home\PassWord.cshtml" />
+    <Content Include="Views\Shared\_CustomerLayout.cshtml" />
+    <Content Include="Views\Customer\About.cshtml" />
+    <Content Include="Views\Customer\OurCoffee.cshtml" />
+    <Content Include="Views\Customer\Contact.cshtml" />
+    <Content Include="Views\Customer\Cart.cshtml" />
+    <Content Include="Views\CustomerProduct\ProductPartial.cshtml" />
+    <Content Include="Views\CustomerProduct\Breakfast.cshtml" />
+    <Content Include="Views\CustomerProduct\Product1.cshtml" />
+    <Content Include="Views\Product\Lunch.cshtml" />
+    <Content Include="Views\CustomerProduct\Lunch.cshtml" />
+    <Content Include="Views\Customer\Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

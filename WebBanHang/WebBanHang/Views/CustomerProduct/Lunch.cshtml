@@ -1,10 +1,13 @@
 ﻿@using WebBanHang.Models;
 @{
-    ViewBag.Title = "Breakfast";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lunch";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
-@{ IEnumerable<Product> lsBreakfast = (IEnumerable<Product>)ViewBag.ListAS;
+
+@{ IEnumerable<Product> lsLunch = (IEnumerable<Product>)ViewBag.ListAT;
 }
+
+
 <section class="w3l-about-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container py-lg-4 py-md-3">
@@ -13,5 +16,7 @@
     </div>
 </section>
 
-@Html.Partial("ProductPartial", lsBreakfast)
+@Html.Partial("ProductPartial", lsLunch)
+
+
 

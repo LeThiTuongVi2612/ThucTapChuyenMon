@@ -7,11 +7,11 @@ using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
 {
-    public class ProductController : Controller
+    public class CustomerProductController : Controller
     {
+        // GET: CustomerProduct
+        
         QuanLyBanHangOnlEntities db = new QuanLyBanHangOnlEntities();
-        // GET: Product
-
         public ActionResult Breakfast()
         {
             var listBreafast = db.Product.Where(x => x.GroupProductID == 2);
@@ -29,9 +29,10 @@ namespace WebBanHang.Controllers
 
             return View();
         }
+
         public ActionResult Product1()
         {
-            
+
 
             var listProduct1 = db.Product.Where(x => x.GroupProductID == 1);
             ViewBag.ListSP = listProduct1;
@@ -40,9 +41,12 @@ namespace WebBanHang.Controllers
         }
         public ActionResult ProductPartial()
         {
-            
+
             return ProductPartial();
         }
-        
+        public ActionResult Partial()
+        {
+            return View();
+        }
     }
 }

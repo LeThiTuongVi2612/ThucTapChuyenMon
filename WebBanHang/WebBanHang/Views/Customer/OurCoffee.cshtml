@@ -1,7 +1,7 @@
 ﻿@using WebBanHang.Models;
 @{
     ViewBag.Title = "OurCoffee";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 @{ IEnumerable<Product> lsPRoduct = (IEnumerable<Product>)ViewBag.ListSP;
     IEnumerable<Product> lsBreakfast = (IEnumerable<Product>)ViewBag.ListAS;}
@@ -34,8 +34,6 @@
 
         @Html.Partial("Partial", lsPRoduct)
 
-       
-        
         @*<div class="tab-content" id="pills-tabContent1">
             <div class="tab-pane fade show active" id="pills-team1" role="tabpanel" aria-labelledby="pills-team1-tab">
                 <div class="team-grids row">
@@ -219,7 +217,7 @@
                         obcaecati necessitatibus voluptas. Molestias, sint atque aliquid magnam magni, fuga iste fugit
                         iusto maiores vero soluta voluptates?
                     </p>
-                    <a class="btn btn-style btn-primary mt-sm-5 mt-4" href="~/Home/Order"> Start your Order</a>
+                    <a class="btn btn-style btn-primary mt-sm-5 mt-4" href="~/Customer/OurCoffee"> Start your Order</a>
                 </div>
                 <div class="counter-6-inf-left1 col-lg-6">
 

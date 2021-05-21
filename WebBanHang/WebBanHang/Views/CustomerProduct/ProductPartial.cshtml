@@ -1,6 +1,5 @@
 ﻿@using WebBanHang.Models;
 @model IEnumerable<Product>
-
 <section class="team py-5" id="team">
     <div class="container py-lg-5 py-md-4 py-2">
         <div class="tab-content" id="pills-tabContent1">
@@ -8,9 +7,6 @@
                 <div class="fea-gd-vv text-center row">
                     @foreach (var item in Model)
                     {
-
-
-
                         <div class="float-top col-lg-4 col-md-6">
                             <a href="#url"><img src="@Url.Content("~/Content/images/"+item.Anh)" class="img-responsive" alt=""></a>
                             <div class="float-lt feature-gd">
@@ -25,6 +21,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </section>
+
 

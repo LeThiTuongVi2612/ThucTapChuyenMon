@@ -1,0 +1,22 @@
+﻿@using WebBanHang.Models;
+@{
+    ViewBag.Title = "Product1";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+@{ IEnumerable<Product> lsPRoduct = (IEnumerable<Product>)ViewBag.ListSP;
+    IEnumerable<Product> lsPRoduct2 = (IEnumerable<Product>)ViewBag.ListSP2;}
+
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">Your favourite Drink and Food</h2>
+        </div>
+    </div>
+</section>
+
+    @Html.Partial("ProductPartial", lsPRoduct)
+
+
+
+
