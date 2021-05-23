@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ IEnumerable<Product> lsPRoduct = (IEnumerable<Product>)ViewBag.ListSP;
-    IEnumerable<Product> lsBreakfast = (IEnumerable<Product>)ViewBag.ListAS;}
+    IEnumerable<GroupProduct> ls = (IEnumerable<GroupProduct>)ViewBag.listGroup;}
 
 <section class="w3l-about-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
@@ -15,164 +15,17 @@
 </section>
 <!-- tabs team-->
 <section class="team py-5" id="team">
+    
     <div class="container py-lg-5 py-md-4 py-2">
-        @*<ul class="nav nav-pills" id="pills-tab1" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="pills-team1-tab" href="#pills-team1" role="tab" aria-selected="true"><img src="~/Content/images/1.png" class="img-fluid" alt="" /></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team2-tab" data-toggle="pill" href="#pills-team2" role="tab" aria-controls="pills-team2" aria-selected="false"><img src="~/Content/images/huteunamvang.jpg" class="img-fluid" alt="" /></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team3-tab" data-toggle="pill" href="#pills-team3" role="tab" aria-controls="pills-team3" aria-selected="false"><img src="~/Content/images/antrua.jpg" class="img-fluid" alt="" /></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-team4-tab" data-toggle="pill" href="#pills-team4" role="tab" aria-controls="pills-team4" aria-selected="false"><img src="~/Content/images/anchieu.jpg" class="img-fluid" alt="" /></a>
-            </li>
-
-        </ul>*@
+        
+            
+            @Html.Partial("MenuPartial", ls)
 
         @Html.Partial("Partial", lsPRoduct)
 
+
+
        
-        
-        @*<div class="tab-content" id="pills-tabContent1">
-            <div class="tab-pane fade show active" id="pills-team1" role="tabpanel" aria-labelledby="pills-team1-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/1.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>Espresso <span>Short & Intense - $19.50</span></h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-team2" role="tabpanel" aria-labelledby="pills-team2-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/2.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>Americano <span> Simple and smooth - $17.50</span></h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-team3" role="tabpanel" aria-labelledby="pills-team3-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/3.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>
-                            Latte
-                            <span>Mild & Milky - $11.90</span>
-                        </h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-team4" role="tabpanel" aria-labelledby="pills-team4-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/4.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>
-                            Cappuccino
-                            <span>Famously frothy - $9.00</span>
-                        </h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade show" id="pills-team5" role="tabpanel" aria-labelledby="pills-team1-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/1.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>
-                            Cortado
-                            <span>Small & Luxurious - $15.00</span>
-                        </h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-team2" role="tabpanel" aria-labelledby="pills-team6-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/2.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>
-                            Flat White
-                            <span>Rich & Velvety - $11.99</span>
-                        </h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-team3" role="tabpanel" aria-labelledby="pills-team7-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/3.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>Espresso <span>Short & Intense - $19.50</span></h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-team4" role="tabpanel" aria-labelledby="pills-team8-tab">
-                <div class="team-grids row">
-                    <div class="col-lg-6">
-                        <img src="~/Content/images/4.png" class="img-fluid" alt="" />
-                    </div>
-                    <div class="col-lg-6 align-self mt-lg-0 mt-md-5 mt-4">
-                        <h4>
-                            Latte
-                            <span>Mild & Milky - $08.50</span>
-                        </h4>
-                        <p class="pt-3">
-                            Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit
-                            nisi ut ipsum egestas, et velit convallis. Phasellus rhoncus tempus.
-                        </p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>*@
     </div>
 </section>
 <!-- //tabs team -->
@@ -194,7 +47,7 @@
                     </span>
                     Watch Our Video
                 </a>
-                <!-- dialog itself, mfp-hide class is required to make dialog hidden -->
+                 @*dialog itself, mfp-hide class is required to make dialog hidden*@ 
                 <div id="small-dialog1" class="zoom-anim-dialog mfp-hide">
                     <iframe src="https://www.youtube.com/embed/3zBcpK52ZSM" allow="autoplay; fullscreen"
                             allowfullscreen=""></iframe>
@@ -207,7 +60,7 @@
     </div>
 </div>
 <section class="w3l-specification-6 py-5">
-    /specification-6
+    @*/specification-6*@
     <div class="specification-6-mian py-lg-5 py-md-4">
         <div class="container">
             <div class="align-counter-6-inf-cols row">

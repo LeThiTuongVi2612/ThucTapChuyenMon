@@ -26,17 +26,14 @@ Author URL: http://w3layouts.com
                         <span class="fa fa-coffee"></span> Coffee Cafe
                     </a>
                 </h1>
-                <!-- if logo is image enable this
-    <a class="navbar-brand" href="#index.html">
-        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-    </a> -->
+                
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
                         data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
                     <span class="navbar-toggler-icon fa icon-close fa-times"></span>
                 </button>
-
+                @*@Html.Action("menuPartial", "Home")*@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav mx-lg-auto">
                         <li class="nav-item active">
@@ -48,7 +45,7 @@ Author URL: http://w3layouts.com
                         <li class="nav-item">
                             <a class="nav-link" href="~/Home/OurCoffee">Our Coffee</a>
                         </li>
-                        @*<li class="nav-item">
+                        <li class="nav-item">
 
                             <div class="dropdown show">
                                 <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,14 +53,15 @@ Author URL: http://w3layouts.com
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="~/Product/Product1">Drink</a>
-                                    <a class="dropdown-item" href="~/Product/Breakfast">Breakfast</a>
-                                    <a class="dropdown-item" href="#">Lunch</a>
-                                    <a class="dropdown-item" href="#">Dinner</a>
+                                    @*@Html.Action("MenuPartial","Home")*@
+                                    <a class="dropdown-item" href="~/Product/Breakfast"></a>
+                                    <a class="dropdown-item" href="#"></a>
+                                    <a class="dropdown-item" href="#"></a>
                                 </div>
                             </div>
-                            
-                        </li>*@
+
+
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="~/Home/Contact">Contact</a>
                         </li>
@@ -71,7 +69,7 @@ Author URL: http://w3layouts.com
                     </ul>
                     <div class="search-right">
                         <a href="#search" title="search"><span class="fa fa-search" aria-hidden="true"></span></a>
-                        <!-- search popup -->
+                         @*search popup*@ 
                         <div id="search" class="pop-overlay">
                             <div class="popup">
 
@@ -83,7 +81,7 @@ Author URL: http://w3layouts.com
                             </div>
                             <a class="close" href="#close">×</a>
                         </div>
-                        <!-- /search popup -->
+                         @*/search popup*@ 
                     </div>
                     <div class="top-quote mr-lg-3 mt-lg-0">
                         <a href="~/Home/Cart" class="btn btn-style btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
@@ -103,7 +101,7 @@ Author URL: http://w3layouts.com
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="#">Registration</a>
-                                        <a class="dropdown-item" href="~/Home/login">Sign in</a>
+                                        <a class="dropdown-item" href="#">Sign in</a>
                                     </div>
                                 </div>
                             </div>

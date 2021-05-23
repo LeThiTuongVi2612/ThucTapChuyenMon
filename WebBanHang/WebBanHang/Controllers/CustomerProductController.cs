@@ -11,7 +11,7 @@ namespace WebBanHang.Controllers
     {
         // GET: CustomerProduct
         
-        QuanLyBanHangOnlEntities db = new QuanLyBanHangOnlEntities();
+        QuanLyBanHangOnlEntities1 db = new QuanLyBanHangOnlEntities1();
         public ActionResult Breakfast()
         {
             var listBreafast = db.Product.Where(x => x.GroupProductID == 2);
@@ -24,6 +24,14 @@ namespace WebBanHang.Controllers
         public ActionResult Lunch()
         {
             var listLuch = db.Product.Where(x => x.GroupProductID == 3);
+            ViewBag.ListAT = listLuch;
+
+
+            return View();
+        }
+        public ActionResult Dinner()
+        {
+            var listLuch = db.Product.Where(x => x.GroupProductID == 4);
             ViewBag.ListAT = listLuch;
 
 

@@ -13,10 +13,10 @@ namespace WebBanHang.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLyBanHangOnlEntities : DbContext
+    public partial class QuanLyBanHangOnlEntities1 : DbContext
     {
-        public QuanLyBanHangOnlEntities()
-            : base("name=QuanLyBanHangOnlEntities")
+        public QuanLyBanHangOnlEntities1()
+            : base("name=QuanLyBanHangOnlEntities1")
         {
         }
     

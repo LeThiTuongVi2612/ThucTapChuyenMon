@@ -1,13 +1,16 @@
 ﻿@using WebBanHang.Models;
 @model IEnumerable<Product>
+
+
 <section class="team py-5" id="team">
     <div class="container py-lg-5 py-md-4 py-2">
+        <a href="~/Home/OurCoffee"><u>Exit</u></a>
         <div class="tab-content" id="pills-tabContent1">
             <div class="tab-pane fade show active" id="pills-team1" role="tabpanel" aria-labelledby="pills-team1-tab">
                 <div class="fea-gd-vv text-center row">
                     @foreach (var item in Model)
                     {
-                        <div class="float-top col-lg-4 col-md-6">
+                        <div class="float-top col-lg-4 col-md-6" id="@item.GroupProductID">
                             <a href="#url"><img src="@Url.Content("~/Content/images/"+item.Anh)" class="img-responsive" alt=""></a>
                             <div class="float-lt feature-gd">
                                 <h3><a href="#url">@item.ProductName</a> </h3>
@@ -15,13 +18,13 @@
                                 <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
                             </div>
                         </div>
-
-
                     }
                 </div>
             </div>
         </div>
+        <a href="~/Home/OurCoffee" class="thoat"><u>Exit</u></a>
+        
     </div>
-    </section>
+</section>
 
 

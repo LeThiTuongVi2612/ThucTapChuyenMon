@@ -9,7 +9,7 @@ namespace WebBanHang.Controllers
 {
     public class CustomerController : Controller
     {
-        QuanLyBanHangOnlEntities db = new QuanLyBanHangOnlEntities();
+        QuanLyBanHangOnlEntities1 db = new QuanLyBanHangOnlEntities1();
         public ActionResult Index()
         {
             return View();
@@ -21,6 +21,9 @@ namespace WebBanHang.Controllers
         }
         public ActionResult OurCoffee()
         {
+            var listSp = new QuanLyBanHangOnlEntities1().GroupProduct.ToList();
+            ViewBag.listGroup = listSp;
+
             var listProduct1 = (from x in db.Product select x).ToList();
             ViewBag.ListSP = listProduct1;
             return View();
@@ -57,7 +60,17 @@ namespace WebBanHang.Controllers
         {
             return View();
         }
-        
-        
+        public ActionResult MenuPartialGroup()
+        {
+
+            return View();
+        }
+        public ActionResult GroupProduct()
+        {
+            var listSp = new QuanLyBanHangOnlEntities1().GroupProduct.ToList();
+            ViewBag.listGroup = listSp;
+            return View();
+        }
+
     }
 }

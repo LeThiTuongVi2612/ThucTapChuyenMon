@@ -7,11 +7,11 @@
             @foreach (var item in Model)
             {
 
-                <div class="float-top col-lg-4 col-md-6">
+                <div class="float-top col-lg-4 col-md-6" id="@item.GroupProductID" >
                     <a href="#url"><img src="@Url.Content("~/Content/images/"+item.Anh)" class="img-responsive" alt=""></a>
                     <div class="float-lt feature-gd">
                         <h3><a href="#url">@item.ProductName</a> </h3>
-                        <p> Price: @item.SoLuong VND</p>
+                        <p> Price: @item.Price VND</p>
                         <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
                     </div>
                 </div>

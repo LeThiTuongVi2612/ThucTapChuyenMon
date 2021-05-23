@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="16fe1b50e5ea4d1c89ae34612c14628a" Name="Diagram1">
+      <Diagram DiagramId="5f606f95deef44019dd8ec3360d31f0d" Name="Diagram1">
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Cart" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Company" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.GroupProduct" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.GroupProduct" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Order" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.OrderDetail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Product" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Product" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Users" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Cart_Product1" ManuallyRouted="false" />

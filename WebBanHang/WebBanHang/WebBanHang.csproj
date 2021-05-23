@@ -137,43 +137,43 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GroupProduct.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QuanLyBanHangModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyBanHangModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QuanLyBanHangModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QuanLyBanHangModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyBanHangModel.edmx</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>QuanLyBanHangModel.tt</DependentUpon>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebBanHang.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBanHang.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebBanHang.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebBanHang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -306,25 +306,18 @@
     <Content Include="images\bg.jpg" />
     <Content Include="images\cart.jpg" />
     <Content Include="images\login.jpg" />
-    <Content Include="Models\QuanLyBanHangModel.Context.tt">
+    <Content Include="Models\WebBanHang.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QuanLyBanHangModel.Context.cs</LastGenOutput>
-      <DependentUpon>QuanLyBanHangModel.edmx</DependentUpon>
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+      <LastGenOutput>WebBanHang.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QuanLyBanHangModel.tt">
+    <Content Include="Models\WebBanHang.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanLyBanHangModel.edmx</DependentUpon>
-      <LastGenOutput>QuanLyBanHangModel.cs</LastGenOutput>
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+      <LastGenOutput>WebBanHang.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\QuanLyBanHangModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanLyBanHangModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\QuanLyBanHangModel.edmx.diagram">
-      <DependentUpon>QuanLyBanHangModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\Login\css\.DS_Store" />
     <Content Include="Content\Login\css\bootstrap\.DS_Store" />
     <Content Include="Content\Login\css\bootstrap\mixins\.DS_Store" />
@@ -434,6 +427,13 @@
     <Content Include="Content\Admin\fonts\FontAwesome.otf" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\WebBanHang.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WebBanHang.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\WebBanHang.edmx.diagram">
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -486,6 +486,10 @@
     <Content Include="Views\Product\Lunch.cshtml" />
     <Content Include="Views\CustomerProduct\Lunch.cshtml" />
     <Content Include="Views\Customer\Partial.cshtml" />
+    <Content Include="Views\Layout\_Layout.cshtml" />
+    <Content Include="Views\Home\MenuPartial.cshtml" />
+    <Content Include="Views\Customer\MenuPartialGroup.cshtml" />
+    <Content Include="Views\Product\GroupProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

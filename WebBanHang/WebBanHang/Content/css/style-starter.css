@@ -426,8 +426,9 @@ mark,
     content: "\2014\00A0"; }
 
 .img-fluid {
-  max-width: 100%;
-  height: auto; }
+    max-width: 100%;
+    height: auto;
+}
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -9611,7 +9612,11 @@ body a,
 button,
 .btn {
   cursor: pointer !important; }
-
+.thoat {
+    
+    float: right;
+    text-align: right;
+}
 .clear {
   clear: both; }
 
@@ -9666,6 +9671,9 @@ p {
 li {
   list-style-type: none; }
 
+li.nav-item {
+    text-align: -webkit-center;
+}
 p.white {
   color: #eee; }
 
@@ -12071,7 +12079,14 @@ h2.title.blogpost-title {
 
 @media screen and (max-width: 1080px) {
   .team .nav-link img {
-    width: 90px; } }
+    width: 90px; }
+    
+
+
+}
+.aimg-fluid {
+    height: 69px;
+}
 
 ul.social li {
   display: inline-block; }

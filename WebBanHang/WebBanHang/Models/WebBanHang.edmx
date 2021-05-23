@@ -31,6 +31,7 @@
           <Property Name="GroupProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GroupProductName" Type="nvarchar(max)" />
           <Property Name="GroupProductPic" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -62,6 +63,8 @@
           <Property Name="GroupProductID" Type="int" />
           <Property Name="CompanyID" Type="int" />
           <Property Name="Mota" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Price" Type="float" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -224,6 +227,7 @@
           <Property Name="GroupProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GroupProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GroupProductPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_GroupProduct1" FromRole="GroupProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
@@ -260,6 +264,8 @@
           <Property Name="GroupProductID" Type="Int32" />
           <Property Name="CompanyID" Type="Int32" />
           <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Price" Type="Double" />
           <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Product1" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="Company" Relationship="Self.FK_Product_Company" FromRole="Product" ToRole="Company" />
           <NavigationProperty Name="GroupProduct" Relationship="Self.FK_Product_GroupProduct1" FromRole="Product" ToRole="GroupProduct" />
@@ -360,7 +366,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QuanLyBanHangOnlEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QuanLyBanHangOnlEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cart" EntityType="Self.Cart" />
           <EntitySet Name="Company" EntityType="Self.Company" />
           <EntitySet Name="GroupProduct" EntityType="Self.GroupProduct" />
@@ -399,7 +405,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLyBanHangOnlModelStoreContainer" CdmEntityContainer="QuanLyBanHangOnlEntities">
+        <EntityContainerMapping StorageEntityContainer="QuanLyBanHangOnlModelStoreContainer" CdmEntityContainer="QuanLyBanHangOnlEntities1">
           <EntitySetMapping Name="Cart">
             <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -427,6 +433,7 @@
                 <ScalarProperty Name="GroupProductID" ColumnName="GroupProductID" />
                 <ScalarProperty Name="GroupProductName" ColumnName="GroupProductName" />
                 <ScalarProperty Name="GroupProductPic" ColumnName="GroupProductPic" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -460,6 +467,8 @@
                 <ScalarProperty Name="GroupProductID" ColumnName="GroupProductID" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="Mota" ColumnName="Mota" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
