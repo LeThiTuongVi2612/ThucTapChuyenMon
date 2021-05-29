@@ -82,6 +82,7 @@
     <Property Name="Address" Type="nvarchar(max)" />
     <Property Name="role" Type="int" />
     <Property Name="email" Type="nvarchar(max)" />
+    <Property Name="UserPic" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
     <End Role="Product" Type="Self.Product" Multiplicity="0..1" />

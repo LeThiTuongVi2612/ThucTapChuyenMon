@@ -164,3 +164,13 @@ C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHan
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CopyComplete
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\CaptchaMvc.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\CaptchaMvc.pdb
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\CaptchaMvc.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\EPPlus.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\RestSharp.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.ComponentModel.Annotations.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\EPPlus.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\RestSharp.xml

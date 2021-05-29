@@ -1,7 +1,11 @@
 ﻿@using WebBanHang.Models;
 @model IEnumerable<GroupProduct>
 
+<ul>
+    <li><h1 class="name-product">Our Product Group</h1></li>
+</ul>
 <ul class="nav nav-pills" id="pills-tab1" role="tablist">
+   
     @foreach (var item in Model)
     {
         <li class="nav-item">

@@ -1,6 +1,7 @@
 ﻿@using WebBanHang.Models;
 @model IEnumerable<Product>
 
+<h1 class="name-product">Our Product</h1>
 <div class="tab-content" id="pills-tabContent1">
     <div class="tab-pane fade show active" id="pills-team1" role="tabpanel" aria-labelledby="pills-team1-tab">
         <div class="fea-gd-vv text-center row">
@@ -12,11 +13,9 @@
                     <div class="float-lt feature-gd">
                         <h3><a href="#url">@item.ProductName</a> </h3>
                         <p> Price: @item.Price VND</p>
-                        <a href="#buy" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
+                        <a href="@Url.Action("ThemGioHang","Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString() })" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
                     </div>
                 </div>
-
-
             }
         </div>
     </div>

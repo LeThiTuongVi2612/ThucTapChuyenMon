@@ -81,6 +81,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserPic" ColumnName="UserPic" />
           <ScalarProperty Name="userID" ColumnName="userID" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="passWord" ColumnName="passWord" />

@@ -1,0 +1,135 @@
+﻿@using WebBanHang.Models;
+@model List<ItemCart>
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Shared/LoginStart.cshtml";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <h5 style="color:white">Giỏ hàng rỗng</h5>
+}
+else
+{
+    <h1 style="text-align: center; color:white">MY CART</h1>
+    <table class="table">
+
+        <tr>
+            <td class="giohang">Mã SP</td>
+            <td class="giohang">Tên SP</td>
+            <td class="giohang">Hình Ảnh</td>
+            <td class="giohang">Số lượng</td>
+            <td class="giohang">Đơn giá</td>
+            <td class="giohang">Thành tiền</td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="giohang">@item.productID</td>
+                <td class="giohang">@item.productName</td>
+                <td class="giohang"><img src="@Url.Content("~/Content/images/" + item.anh)" width="50" height="50" /></td>
+
+                <td class="giohang">@item.soLuong</td>
+                <td class="giohang">@item.Gia.ToString("#,##") VNĐ</td>
+                <td class="giohang">@item.thanhTien.ToString("#,##") VNĐ</td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaGioHang", new { @productID = item.productID })
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @productID = item.productID })
+                </td>
+            </tr>
+        }
+    </table>
+
+
+    <div class="divDatHang" style="text-align: right; margin-right:50px;">
+        @using (Html.BeginForm("DatHang", "Cart"))
+        {
+            if (Session["loginSession"] == null)
+            {
+
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="login-wrap p-0">
+                            <h3 class="mb-4 text-center">Thông tin đăng nhập!</h3>
+                            <form action="#" class="signin-form">
+                                <table>
+                                    <tr style="margin:50px;">
+                                        <td>UserName: </td>
+                                        <td>@Html.TextBox("userName")</td>
+                                        <p style="color:red;" id="TB_TenKH"></p>
+                                    </tr>
+                                    <tr style="margin:50px;">
+                                        <td>Phone: </td>
+                                        <td>@Html.TextBox("Phone")</td>
+                                        <p style="color:red;" id="TB_Phone"></p>
+                                    </tr>
+                                    <tr style="margin:50px;">
+                                        <td>Address: </td>
+                                        <td>@Html.TextBox("Address")</td>
+                                        <p style="color:red;" id="TB_Address"></p>
+                                    </tr>
+                                    <tr style="margin:50px;">
+                                        <td>Email: </td>
+                                        <td>@Html.TextBox("email")</td>
+                                        <p style="color:red;" id="TB_Email"></p>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+            <input type="submit" value="Đặt hàng" onclick="btnFunction()" id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
+            @Html.ActionLink("Mua tiếp", "index", "Home", new { @class = "" })
+        }
+
+    </div>
+}
+@*Kiểm tra validate thông qua jquery*@
+
+
+<script>
+    $(function () {
+        $("#btnDatHang").click( function () {
+            var loi = 0;
+            if ($("userName").val() == "") {
+                $("#TB_TenKH").text("Tên tài khoản không được bỏ trống");
+                loi++;
+            }
+            else {
+                $("#TB_TenKH").text("");
+            }
+
+            if ($("Phone").val() == "") {
+                $("#TB_Phone").text("Số điện thoại không được bỏ trống");
+                loi++;
+            }
+            else {
+                $("#TB_Phone").text("");
+            }
+
+            if ($("Address").val() == "") {
+                $("#TB_Address").text("Số điện thoại không được bỏ trống");
+                loi++;
+            }
+            else {
+                $("#TB_Address").text("");
+            }
+
+            dinhang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
+            KTemail = dinhang.text($("email").val());
+            if (!KTemail) {
+                $("#TB_Email").text("Email không hợp lệ");
+                loi++;
+            }
+            if (loi != 0) {
+                //Ngăn sự kiện submit đến server
+                return false
+            }
+        });
+    });
+    
+</script>
+

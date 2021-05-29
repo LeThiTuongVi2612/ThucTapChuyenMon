@@ -22,8 +22,14 @@ namespace WebBanHang.Models
     
         public int OrderID { get; set; }
         public Nullable<int> userID { get; set; }
-        public Nullable<double> TongTien { get; set; }
-        public Nullable<System.DateTime> NgayLap { get; set; }
+        public Nullable<decimal> TongTien { get; set; }
+        public Nullable<System.DateTime> NgayDat { get; set; }
+        public Nullable<bool> TinhTrangGiaoHang { get; set; }
+        public Nullable<System.DateTime> NgayGiao { get; set; }
+        public Nullable<bool> DaThanhToan { get; set; }
+        public Nullable<bool> DaHuy { get; set; }
+        public Nullable<bool> DaXoa { get; set; }
+        public Nullable<int> UuDai { get; set; }
     
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

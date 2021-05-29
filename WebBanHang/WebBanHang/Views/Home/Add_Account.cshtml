@@ -1,4 +1,7 @@
-﻿
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc
+@using WebBanHang.Models
+@model Users
 @{
     ViewBag.Title = "Add_Account";
     Layout = "~/Views/Shared/LoginStart.cshtml";
@@ -9,27 +12,41 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
+                    <h4 style="color:red">@ViewBag.ThongBao</h4>
                     <h3 class="mb-4 text-center">CREATE ACCOUNT</h3>
-                    <form action="#" class="signin-form">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, null, new { @class = "signin-form" })
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username" required>
+                            @Html.TextBoxFor(model => model.userName, new { @class = "form-control", @placeholder = "Username", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.userName)
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Phone" required>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Phone", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.Phone)
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Address" required>
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Address", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.Address)
+
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email" required>
+                            @Html.TextBoxFor(model => model.email, new { @class = "form-control", @placeholder = "Email", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.email)
                         </div>
                         <div class="form-group">
-                            <input id="password-field" type="password" class="form-control" placeholder="Password" required>
+                            @Html.PasswordFor(model => model.passWord, new { @class = "form-control", @placeholder = "PassWord", @id = "password-field", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.passWord)
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
-                            <input id="password-field" type="password" class="form-control" placeholder="Repeat your password" required>
-                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            @Html.PasswordFor(model => model.passWord, new { @class = "form-control", @placeholder = "PassWord", @id = "password-fields", @required = "required" })
+                            <span toggle="#password-fields" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
+                        </div>
+                        <div class="form-group">
+                            @Html.MathCaptcha()
                         </div>
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
@@ -44,12 +61,14 @@
 
                             </div>
                         </div>
-                    </form>
-                    
-                    
+                    }
+
+
                 </div>
             </div>
+
         </div>
+        
     </div>
 </section>
 

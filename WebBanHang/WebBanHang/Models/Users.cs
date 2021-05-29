@@ -27,6 +27,7 @@ namespace WebBanHang.Models
         public string Address { get; set; }
         public Nullable<int> role { get; set; }
         public string email { get; set; }
+        public string UserPic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

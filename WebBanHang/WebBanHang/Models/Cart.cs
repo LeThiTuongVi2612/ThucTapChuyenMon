@@ -17,8 +17,10 @@ namespace WebBanHang.Models
         public int cartID { get; set; }
         public Nullable<int> ProductID { get; set; }
         public Nullable<int> SoLuong { get; set; }
-        public Nullable<double> Gia { get; set; }
-        public Nullable<double> ThanhTien { get; set; }
+        public Nullable<decimal> Gia { get; set; }
+        public Nullable<decimal> ThanhTien { get; set; }
+        public string ProductName { get; set; }
+        public string Anh { get; set; }
     
         public virtual Product Product { get; set; }
     }

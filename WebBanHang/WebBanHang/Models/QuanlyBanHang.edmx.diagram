@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b684a0fefaa24ca384cc059c6c9d237a" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Cart" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Company" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Customer" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.GroupProduct" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Order" Width="1.5" PointX="6" PointY="9.125" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.OrderDetail" Width="1.5" PointX="8.25" PointY="3.5" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Product" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="7.5" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Users" Width="1.5" PointX="3.75" PointY="9.375" />
+        <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Cart_Product1" />
+        <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Product_Company" />
+        <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" />
+        <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Order_Users" />
+        <AssociationConnector Association="QuanLyBanHangOnlModel.FK_OrderDetail_Order" />
+        <AssociationConnector Association="QuanLyBanHangOnlModel.FK_OrderDetail_Product" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

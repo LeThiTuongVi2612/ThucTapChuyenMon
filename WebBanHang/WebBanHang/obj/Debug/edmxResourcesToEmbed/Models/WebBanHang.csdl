@@ -94,6 +94,7 @@
     <Property Name="role" Type="Int32" />
     <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Order" Relationship="Self.FK_Order_Users" FromRole="Users" ToRole="Order" />
+    <Property Name="UserPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
     <End Role="Product" Type="Self.Product" Multiplicity="0..1" />

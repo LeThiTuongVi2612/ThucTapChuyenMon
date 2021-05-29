@@ -45,18 +45,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=5.6.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.6.4\lib\net45\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,55 +142,63 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="code\SessionHelper.cs" />
+    <Compile Include="code\UserSession.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
-    <Compile Include="Controllers\CustomerProductController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GroupProduct.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemCart.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Metadata\Users.cs" />
     <Compile Include="Models\Order.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanlyBanHang.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanlyBanHang.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanlyBanHang.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanlyBanHang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>WebBanHang.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebBanHang.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebBanHang.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebBanHang.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebBanHang.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebBanHang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebBanHang.edmx</DependentUpon>
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -306,15 +331,15 @@
     <Content Include="images\bg.jpg" />
     <Content Include="images\cart.jpg" />
     <Content Include="images\login.jpg" />
-    <Content Include="Models\WebBanHang.Context.tt">
+    <Content Include="Models\QuanlyBanHang.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebBanHang.edmx</DependentUpon>
-      <LastGenOutput>WebBanHang.Context.cs</LastGenOutput>
+      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
+      <LastGenOutput>QuanlyBanHang.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\WebBanHang.tt">
+    <Content Include="Models\QuanlyBanHang.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebBanHang.edmx</DependentUpon>
-      <LastGenOutput>WebBanHang.cs</LastGenOutput>
+      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
+      <LastGenOutput>QuanlyBanHang.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -427,12 +452,12 @@
     <Content Include="Content\Admin\fonts\FontAwesome.otf" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Models\WebBanHang.edmx">
+    <EntityDeploy Include="Models\QuanlyBanHang.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WebBanHang.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuanlyBanHang.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\WebBanHang.edmx.diagram">
-      <DependentUpon>WebBanHang.edmx</DependentUpon>
+    <Content Include="Models\QuanlyBanHang.edmx.diagram">
+      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -460,10 +485,7 @@
     <Content Include="Views\Shared\_Cart.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
-    <Content Include="Views\Product\Product1.cshtml" />
     <Content Include="Views\Product\ProductPartial.cshtml" />
-    <Content Include="Views\Product\Breakfast.cshtml" />
-    <Content Include="Views\Customer\index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Add_Account.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
@@ -476,20 +498,13 @@
     <Content Include="Views\Home\Partial.cshtml" />
     <Content Include="Views\Home\PassWord.cshtml" />
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
-    <Content Include="Views\Customer\About.cshtml" />
-    <Content Include="Views\Customer\OurCoffee.cshtml" />
-    <Content Include="Views\Customer\Contact.cshtml" />
-    <Content Include="Views\Customer\Cart.cshtml" />
-    <Content Include="Views\CustomerProduct\ProductPartial.cshtml" />
-    <Content Include="Views\CustomerProduct\Breakfast.cshtml" />
-    <Content Include="Views\CustomerProduct\Product1.cshtml" />
-    <Content Include="Views\Product\Lunch.cshtml" />
-    <Content Include="Views\CustomerProduct\Lunch.cshtml" />
-    <Content Include="Views\Customer\Partial.cshtml" />
-    <Content Include="Views\Layout\_Layout.cshtml" />
     <Content Include="Views\Home\MenuPartial.cshtml" />
-    <Content Include="Views\Customer\MenuPartialGroup.cshtml" />
     <Content Include="Views\Product\GroupProduct.cshtml" />
+    <Content Include="Views\Home\DangKy.cshtml" />
+    <Content Include="Views\Cart\XemGioHang.cshtml" />
+    <Content Include="Views\Cart\XemGioHangPartial.cshtml" />
+    <Content Include="Views\Cart\ThongBao.cshtml" />
+    <Content Include="Views\Cart\SuaGioHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
