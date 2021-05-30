@@ -15,7 +15,7 @@
                         <p> Price: @item.Price VND</p>
                         @if (Session["userName"] == null)
                         {
-                            @Html.ActionLink("Giỏ hàng", "login", "Home", new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
+                            @Html.ActionLink("Mua ngay", "login", "Home", new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
                         }
                         else
                         {

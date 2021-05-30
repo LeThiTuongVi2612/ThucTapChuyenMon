@@ -73,7 +73,7 @@ Author URL: http://w3layouts.com
                         {
 
 
-                            @Html.ActionLink("Log out", "DangXuat", "Home", new { @class = "nav-link" })
+                            @Html.ActionLink("Log out", "DangXuat", "Home",null, new { @class = "nav-link" })
                         }
                         else
                         {
@@ -94,12 +94,16 @@ Author URL: http://w3layouts.com
                         <!-- search popup -->
                         <div id="search" class="pop-overlay">
                             <div class="popup">
+                                @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, null, new { @class = "search-box", @method = "GET", @action = "error.html" })
+                                                                    
+                                    <input type = "search" placeholder = "Enter Keyword" name = "sTuKhoa" required = "required" autofocus = "" >
 
-                                <form action="error.html" method="GET" class="search-box">
-                                    <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
-                                    <button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
-                                </form>
+                                    <button type = "submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
 
+                                 }
                             </div>
                             <a class="close" href="#close">×</a>
                         </div>
@@ -107,7 +111,7 @@ Author URL: http://w3layouts.com
                     </div>
                     @if (Session["userName"] == null)
                     {
-                        @Html.ActionLink("Giỏ hàng", "login", "Home", new { @class = "btn btn-style btn-primary" })
+                        @Html.ActionLink("Giỏ hàng", "login", "Home",null, new { @class = "btn btn-style btn-primary" })
                     }
                     else
                     {
