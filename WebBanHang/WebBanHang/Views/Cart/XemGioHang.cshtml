@@ -2,16 +2,25 @@
 @model List<ItemCart>
 @{
     ViewBag.Title = "XemGioHang";
-    Layout = "~/Views/Shared/LoginStart.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">MY CART</h2>
+        </div>
+    </div>
+</section>
 @if (Model == null || Model.Count == 0)
 {
-    <h5 style="color:white">Giỏ hàng rỗng</h5>
+    <h3 style="text-align:center">Giỏ hàng rỗng......</h3>
+    <a href="@Url.Content("~/Home/index")" style="background-color:orangered;color:black;"><img src="https://img.icons8.com/small/16/000000/exit-sign.png" />Tiếp tục mua sắm!!!</a>
+
 }
 else
 {
-    <h1 style="text-align: center; color:white">MY CART</h1>
+    
     <table class="table">
 
         <tr>
@@ -21,6 +30,7 @@ else
             <td class="giohang">Số lượng</td>
             <td class="giohang">Đơn giá</td>
             <td class="giohang">Thành tiền</td>
+            <td></td>
             <td></td>
         </tr>
         @foreach (var item in Model)
@@ -35,9 +45,13 @@ else
                 <td class="giohang">@item.thanhTien.ToString("#,##") VNĐ</td>
                 <td>
                     @Html.ActionLink("Sửa", "SuaGioHang", new { @productID = item.productID })
+
+                </td>
+                <td>
                     @Html.ActionLink("Xóa", "XoaGioHang", new { @productID = item.productID })
                 </td>
             </tr>
+            
         }
     </table>
 
@@ -47,33 +61,33 @@ else
     {
 
         @*<div>
-            <table style="color:white;">
-                <tr>
-                    <td colspan="2" style="text-align:center;">Thông tin khách hàng</td>
-                    
-                </tr>
-                <tr>
-                    <td>Họ tên:</td>
-                    <td>@Html.TextBox("HoTen")</td>
-                </tr>
-                <tr>
-                    <td>Số điện thoại:</td>
-                    <td>@Html.TextBox("SoDienThoai")</td>
-                </tr>
-                <tr>
-                    <td>Địa chỉ:</td>
-                    <td>@Html.TextBox("DiaChi")</td>
-                </tr>
-                <tr>
-                    <td>Họ tên:</td>
-                    <td>@Html.TextBox("Email")</td>
-                </tr>
+                <table style="color:white;">
+                    <tr>
+                        <td colspan="2" style="text-align:center;">Thông tin khách hàng</td>
 
-            </table>
-        </div>*@
-        <div class="divDatHang" style="text-align: right; margin-right:50px;">
-            <input type="submit" value="Đặt hàng" onclick="btnFunction()" id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
-            @Html.ActionLink("Mua tiếp", "index", "Home", new { @class = "" })
+                    </tr>
+                    <tr>
+                        <td>Họ tên:</td>
+                        <td>@Html.TextBox("HoTen")</td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td>@Html.TextBox("SoDienThoai")</td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td>@Html.TextBox("DiaChi")</td>
+                    </tr>
+                    <tr>
+                        <td>Họ tên:</td>
+                        <td>@Html.TextBox("Email")</td>
+                    </tr>
+
+                </table>
+            </div>*@
+        <div class="divDatHang" style="text-align: right; margin-right:50px; margin-bottom:10px;">
+            <input type="submit" value="Đặt hàng"  id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
+            @Html.ActionLink("Mua tiếp", "index", "Home")
         </div>
     }
 

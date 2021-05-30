@@ -136,7 +136,7 @@ namespace WebBanHang.Controllers
         }
         public ActionResult DangXuat()
         {
-            Session["loginSession"] = null;
+            Session["userName"] = null;
             return RedirectToAction("index");
         }
 
