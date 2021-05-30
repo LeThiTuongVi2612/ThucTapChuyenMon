@@ -40,37 +40,41 @@ namespace WebBanHang.Controllers
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult login(LoginModel login)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult login(LoginModel login)
+        //{
+        //    var result = new AccountModel().Login(login.userName, login.passWord);
+        //    if(result && ModelState.IsValid)
+        //    {
+        //        SessionHelper.SetSession(new UserSession() { userName = login.userName });
+        //        return RedirectToAction("index", "Home");
+        //    }
+            //else
+            //{
+            //    ModelState.AddModelError("", "Tên tài khoản hoặc mật khẩu không đúng!");
+
+            //}
+            //return View(login);
+    //}
+    [HttpPost]
+        public ActionResult DangNhap(FormCollection f)
         {
-            var result = new AccountModel().Login(login.userName, login.passWord);
-            if(result && ModelState.IsValid)
+            string sUserName = f["txtUserName"].ToString();
+            string sPassWord = f["txtPassWord"].ToString();
+
+            Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
+            if (user != null)
             {
-                SessionHelper.SetSession(new UserSession() { userName = login.userName });
+                Session["userName"] = user;
                 return RedirectToAction("index", "Home");
             }
-            else
-            {
-                ModelState.AddModelError("", "Tên tài khoản hoặc mật khẩu không đúng!");
-
-            }
-            return View(login);
+            
+            
+            
+            
+            return Content("Tài khoản hoặc mật khẩu không đúng");
         }
-        //[HttpPost]
-        //public ActionResult DangNhap(FormCollection f)
-        //{
-        //    string sUserName = f["txtUserName"].ToString();
-        //    string sPassWord = f["txtPassWord"].ToString();
-
-        //    Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
-        //    if(user != null)
-        //    {
-        //        Session["userName"] = user;
-        //        return Content("<script>window.location.reload();</script>");
-        //    }
-        //    return Content("Tài khoản hoặc mật khẩu không đúng");
-        //}
         [HttpGet]
         public ActionResult Add_Account()
         {
@@ -85,6 +89,7 @@ namespace WebBanHang.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.ThongBao = "Thêm thành công";
+
                     db.Users.Add(user);
                     db.SaveChanges();
                     

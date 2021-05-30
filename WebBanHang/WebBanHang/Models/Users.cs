@@ -17,7 +17,7 @@ namespace WebBanHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.Order = new HashSet<Order>();
+            this.Customer = new HashSet<Customer>();
         }
     
         public int userID { get; set; }
@@ -30,6 +30,6 @@ namespace WebBanHang.Models
         public string UserPic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<Customer> Customer { get; set; }
     }
 }

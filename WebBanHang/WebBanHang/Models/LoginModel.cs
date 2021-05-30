@@ -13,5 +13,11 @@ namespace WebBanHang.Models
         { set; get; }
 
         public string passWord { set; get; }
+
+        public string Phone { get; set; }
+
+        public string Address { get; set; }
+
+        public string email { get; set; }
     }
 }

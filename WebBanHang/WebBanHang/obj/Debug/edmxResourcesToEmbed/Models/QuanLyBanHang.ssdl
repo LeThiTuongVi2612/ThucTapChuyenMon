@@ -26,10 +26,11 @@
       <PropertyRef Name="CustomerID" />
     </Key>
     <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CustomerName" Type="nvarchar(max)" />
+    <Property Name="HoTen" Type="nvarchar(max)" />
     <Property Name="Phone" Type="nchar" MaxLength="10" />
     <Property Name="email" Type="nvarchar(max)" />
     <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="userID" Type="int" />
   </EntityType>
   <EntityType Name="GroupProduct">
     <Key>
@@ -45,7 +46,7 @@
       <PropertyRef Name="OrderID" />
     </Key>
     <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="userID" Type="int" />
+    <Property Name="CustomerID" Type="int" />
     <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" />
     <Property Name="NgayDat" Type="datetime" />
     <Property Name="TinhTrangGiaoHang" Type="bit" />
@@ -54,6 +55,10 @@
     <Property Name="DaHuy" Type="bit" />
     <Property Name="DaXoa" Type="bit" />
     <Property Name="UuDai" Type="int" />
+    <Property Name="HoTen" Type="nvarchar(max)" />
+    <Property Name="DiaChi" Type="nvarchar(max)" />
+    <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
@@ -115,15 +120,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Order_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+  <Association Name="FK_Customer_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
         <PropertyRef Name="userID" />
       </Principal>
-      <Dependent Role="Order">
+      <Dependent Role="Customer">
         <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -189,8 +210,12 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK_Order_Users" Association="Self.FK_Order_Users">
+    <AssociationSet Name="FK_Customer_Users" Association="Self.FK_Customer_Users">
       <End Role="Users" EntitySet="Users" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">

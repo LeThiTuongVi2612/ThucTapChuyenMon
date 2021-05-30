@@ -27,10 +27,11 @@
     <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="userID" ColumnName="userID" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -48,6 +49,10 @@
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Order">
         <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
           <ScalarProperty Name="UuDai" ColumnName="UuDai" />
           <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
           <ScalarProperty Name="DaHuy" ColumnName="DaHuy" />
@@ -56,7 +61,7 @@
           <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
           <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
           <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
         </MappingFragment>
       </EntityTypeMapping>

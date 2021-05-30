@@ -196,36 +196,37 @@ namespace WebBanHang.Controllers
             {
                 return RedirectToAction("index", "Home");
             }
+            Users users = Session["userName"] as Users;
             Customer khach = new Customer();
-            if (Session["loginSession"] == null)
+            if (Session["userName"] == null)
             {
                 //Thêm khách hàng vào bản khách hàng(khách vãng lai)
-                khach = new Customer();
-                khach = kh;
-                db.Customer.Add(khach);
-                db.SaveChanges();
+                return RedirectToAction("login", "Home");
             }
-            else
+            else if (Session["userName"] != null)
             {
                 //Với khách hàng là thành viên
-                Customer tv = Session["loginSession"] as Customer;
-                khach.CustomerName = tv.CustomerName;
-                khach.Address = tv.Address;
-                khach.email = tv.email;
-                khach.Phone = tv.Phone;
+                Users user = Session["userName"] as Users;
+                khach.HoTen = users.userName;
+                khach.Address = users.Address;
+                khach.email = users.email;
+                khach.Phone = users.Phone;
+                khach.userID = users.userID;
                 db.Customer.Add(khach);
                 db.SaveChanges();
 
             }
             //Thêm đơn hàng
             Order ddh = new Order();
-            ddh.userID = khach.CustomerID;
+            
+            ddh.CustomerID = users.userID;
             ddh.NgayDat = DateTime.Now;
             ddh.TinhTrangGiaoHang = false;
             ddh.DaThanhToan = false;
             ddh.UuDai = 0;
             ddh.DaHuy = false;
             ddh.DaXoa = false;
+            
             db.Order.Add(ddh);
             db.SaveChanges();
 
@@ -244,6 +245,10 @@ namespace WebBanHang.Controllers
             db.SaveChanges();
             Session["GioHang"] = null;
             return RedirectToAction("XemGioHang");
+        }
+       public ActionResult ThongBaoGioHang()
+        {
+            return View();
         }
     }
 }

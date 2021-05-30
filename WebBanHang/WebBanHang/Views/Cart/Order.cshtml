@@ -1,0 +1,42 @@
+﻿@using WebBanHang.Models
+@model Order
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/LoginStart.cshtml";
+}
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, null, new { @class = "signin-form" })
+        <table>
+            <tr style="color:white; text-align:center;">
+                <td colspan="2"><h6><b>Thông tin đặt hàng</b></h6></td>
+            </tr>
+            <tr style="color:white;">
+                <td>Họ tên:</td>
+                <td>@Html.TextBox("HoTen")</td>
+                @Html.ValidationMessageFor(model => model.HoTen)
+
+            </tr>
+            <tr>
+                <td style="color:white;">Số điện thoại:</td>
+                <td>@Html.TextBox("SoDienThoai")</td>
+                @Html.ValidationMessageFor(model => model.SoDienThoai)
+            </tr>
+            <tr>
+                <td style="color:white;">Địa chỉ:</td>
+                <td>@Html.TextBox("DiaChi")</td>
+                @Html.ValidationMessageFor(model => model.DiaChi)
+            </tr>
+            <tr>
+                <td style="color:white;">Email:</td>
+                <td>@Html.TextBox("Email")</td>
+                @Html.ValidationMessageFor(model => model.Email)
+            </tr>
+        </table>
+    }
+    </div>
+    
+

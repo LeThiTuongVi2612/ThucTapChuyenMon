@@ -14,10 +14,21 @@ namespace WebBanHang.Models
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.Order = new HashSet<Order>();
+        }
+    
         public int CustomerID { get; set; }
-        public string CustomerName { get; set; }
+        public string HoTen { get; set; }
         public string Phone { get; set; }
         public string email { get; set; }
         public string Address { get; set; }
+        public Nullable<int> userID { get; set; }
+    
+        public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
     }
 }

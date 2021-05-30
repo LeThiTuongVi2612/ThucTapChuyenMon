@@ -42,57 +42,49 @@ else
     </table>
 
 
-    <div class="divDatHang" style="text-align: right; margin-right:50px;">
-        @using (Html.BeginForm("DatHang", "Cart"))
-        {
-            if (Session["loginSession"] == null)
-            {
 
+    using (Html.BeginForm("DatHang", "Cart"))
+    {
 
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="login-wrap p-0">
-                            <h3 class="mb-4 text-center">Thông tin đăng nhập!</h3>
-                            <form action="#" class="signin-form">
-                                <table>
-                                    <tr style="margin:50px;">
-                                        <td>UserName: </td>
-                                        <td>@Html.TextBox("userName")</td>
-                                        <p style="color:red;" id="TB_TenKH"></p>
-                                    </tr>
-                                    <tr style="margin:50px;">
-                                        <td>Phone: </td>
-                                        <td>@Html.TextBox("Phone")</td>
-                                        <p style="color:red;" id="TB_Phone"></p>
-                                    </tr>
-                                    <tr style="margin:50px;">
-                                        <td>Address: </td>
-                                        <td>@Html.TextBox("Address")</td>
-                                        <p style="color:red;" id="TB_Address"></p>
-                                    </tr>
-                                    <tr style="margin:50px;">
-                                        <td>Email: </td>
-                                        <td>@Html.TextBox("email")</td>
-                                        <p style="color:red;" id="TB_Email"></p>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            }
+        @*<div>
+            <table style="color:white;">
+                <tr>
+                    <td colspan="2" style="text-align:center;">Thông tin khách hàng</td>
+                    
+                </tr>
+                <tr>
+                    <td>Họ tên:</td>
+                    <td>@Html.TextBox("HoTen")</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td>@Html.TextBox("SoDienThoai")</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>@Html.TextBox("DiaChi")</td>
+                </tr>
+                <tr>
+                    <td>Họ tên:</td>
+                    <td>@Html.TextBox("Email")</td>
+                </tr>
+
+            </table>
+        </div>*@
+        <div class="divDatHang" style="text-align: right; margin-right:50px;">
             <input type="submit" value="Đặt hàng" onclick="btnFunction()" id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
             @Html.ActionLink("Mua tiếp", "index", "Home", new { @class = "" })
-        }
+        </div>
+    }
 
-    </div>
+
 }
 @*Kiểm tra validate thông qua jquery*@
 
 
-<script>
+@*<script>
     $(function () {
-        $("#btnDatHang").click( function () {
+        $("#btnDatHang").click(function () {
             var loi = 0;
             if ($("userName").val() == "") {
                 $("#TB_TenKH").text("Tên tài khoản không được bỏ trống");
@@ -118,18 +110,18 @@ else
                 $("#TB_Address").text("");
             }
 
-            dinhang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@[\w\d.]+\.\w{2,4}$/;
-            KTemail = dinhang.text($("email").val());
-            if (!KTemail) {
-                $("#TB_Email").text("Email không hợp lệ");
-                loi++;
-            }
-            if (loi != 0) {
-                //Ngăn sự kiện submit đến server
-                return false
-            }
+            dinhang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@*@[\w\d.]+\.\w{2,4}$/;
+                KTemail = dinhang.text($("email").val());
+                if (!KTemail) {
+                    $("#TB_Email").text("Email không hợp lệ");
+                    loi++;
+                }
+                if (loi != 0) {
+                    //Ngăn sự kiện submit đến server
+                    return false
+                }
+            });
         });
-    });
-    
-</script>
+
+    </script>*@
 

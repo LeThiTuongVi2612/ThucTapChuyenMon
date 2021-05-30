@@ -7,27 +7,32 @@
 
 <section class="ftco-section">
     <div class="container">
-        
+
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
                     <h3 class="mb-4 text-center">Login</h3>
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("DangNhap", "Home"))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, null, new {@class="signin-form" })
+                        @Html.ValidationSummary(true, null, new { @class = "signin-form" })
                         <div class="form-group">
-                            @Html.TextBoxFor(model => model.userName, new { @class = "form-control", @placeholder = "Username", @required = "required" })
-                            
+                            <input type="text" class="form-control" name="txtUserName" placeholder="Username" required>
+
+                            @*@Html.TextBoxFor(model => model.userName, new { @class = "form-control", @placeholder = "Username", @required = "required", @name = "txtUserName" })*@
+
                         </div>
                         <div class="form-group">
-                            @Html.PasswordFor(model => model.passWord, new { @class = "form-control", @placeholder = "PassWord",@id= "password-field", @required = "required" })
+                            <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Password" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            @*@Html.PasswordFor(model => model.passWord, new { @class = "form-control", @name = "txtPassWord", @placeholder = "PassWord", @id = "password-field", @required = "required" })
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
                         </div>
+                        
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                         </div>
-                        
+
                         <div class="form-group d-md-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary">
@@ -42,7 +47,7 @@
                     <p class="w-100 text-center">&mdash; Or &mdash;</p>
                     <div class="social d-flex text-center">
                         <a href="~/Home/Add_Account" class="px-2 py-2 mr-md-1 rounded">Create New Account</a>
-                            
+
                     </div>
                 </div>
             </div>
