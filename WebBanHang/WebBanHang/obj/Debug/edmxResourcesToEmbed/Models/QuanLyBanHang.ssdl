@@ -84,7 +84,7 @@
     <Property Name="Mota" Type="nvarchar(max)" />
     <Property Name="Status" Type="bit" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="NgayCapNhat" Type="date" />
+    <Property Name="NgayCapNhat" Type="datetime" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

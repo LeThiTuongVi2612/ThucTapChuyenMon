@@ -89,7 +89,7 @@
           <Property Name="Mota" Type="nvarchar(max)" />
           <Property Name="Status" Type="bit" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="NgayCapNhat" Type="date" />
+          <Property Name="NgayCapNhat" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -377,7 +377,7 @@
           <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="NgayCapNhat" Type="DateTime" Precision="0" />
+          <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Cart" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_Product_Company" FromRole="Product" ToRole="Company" />
           <NavigationProperty Name="GroupProduct" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="Product" ToRole="GroupProduct" />

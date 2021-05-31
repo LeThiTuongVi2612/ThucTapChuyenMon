@@ -53,6 +53,7 @@ namespace WebBanHang.Controllers
                     sp.Anh = fileName;
                 }
             }
+            sp.NgayCapNhat = DateTime.Now;
             db.Product.Add(sp);
             db.SaveChanges();
             return RedirectToAction("Admin");
