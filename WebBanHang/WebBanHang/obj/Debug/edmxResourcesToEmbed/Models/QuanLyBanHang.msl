@@ -81,6 +81,7 @@
     <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Mota" ColumnName="Mota" />

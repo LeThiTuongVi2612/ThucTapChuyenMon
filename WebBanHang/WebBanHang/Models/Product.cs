@@ -28,8 +28,9 @@ namespace WebBanHang.Models
         public Nullable<int> GroupProductID { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public string Mota { get; set; }
-        public Nullable<int> Status { get; set; }
+        public Nullable<bool> Status { get; set; }
         public Nullable<decimal> Price { get; set; }
+        public Nullable<System.DateTime> NgayCapNhat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Cart { get; set; }

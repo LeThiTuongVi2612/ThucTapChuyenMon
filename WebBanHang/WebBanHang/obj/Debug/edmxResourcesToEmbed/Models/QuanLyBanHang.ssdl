@@ -82,8 +82,9 @@
     <Property Name="GroupProductID" Type="int" />
     <Property Name="CompanyID" Type="int" />
     <Property Name="Mota" Type="nvarchar(max)" />
-    <Property Name="Status" Type="int" />
+    <Property Name="Status" Type="bit" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="NgayCapNhat" Type="date" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
