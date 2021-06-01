@@ -17,9 +17,11 @@
     <EntitySetMapping Name="Company">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Company">
         <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="diachi" ColumnName="diachi" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="TenCongTy" ColumnName="TenCongTy" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -39,9 +41,10 @@
     <EntitySetMapping Name="GroupProduct">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.GroupProduct">
         <MappingFragment StoreEntitySet="GroupProduct">
+          <ScalarProperty Name="NgayCapNhat" ColumnName="NgayCapNhat" />
           <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="GroupProductPic" ColumnName="GroupProductPic" />
-          <ScalarProperty Name="GroupProductName" ColumnName="GroupProductName" />
+          <ScalarProperty Name="Pic" ColumnName="Pic" />
+          <ScalarProperty Name="TenDanhMuc" ColumnName="TenDanhMuc" />
           <ScalarProperty Name="GroupProductID" ColumnName="GroupProductID" />
         </MappingFragment>
       </EntityTypeMapping>

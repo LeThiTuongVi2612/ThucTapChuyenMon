@@ -1,0 +1,209 @@
+﻿
+
+@model WebBanHang.Models.Product
+
+@{
+    ViewBag.Title = "ChinhSua";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Chỉnh sửa sản phẩm</h2>
+
+<script src="~/Content/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+
+<script>
+    var table = '<p>This table uses features of the non-editable plugin to make the text in the<br /><strong>top row</strong> and <strong>left column</strong> uneditable.</p>' +
+        '    <table style="width: 60%; border-collapse: collapse;" border="1"> ' +
+        '        <caption class="mceNonEditable">Ephox Sales Analysis</caption> ' +
+        '       <tbody> ' +
+        '          <tr class="mceNonEditable"> ' +
+        '                <th style="width: 40%;">&nbsp;</th><th style="width: 15%;">Q1</th> ' +
+        '                <th style="width: 15%;">Q2</th><th style="width: 15%;">Q3</th> ' +
+        '                <th style="width: 15%;">Q4</th> ' +
+        '            </tr> ' +
+        '            <tr> ' +
+        '                <td class="mceNonEditable">East Region</td> ' +
+        '                <td>100</td> <td>110</td> <td>115</td> <td>130</td> ' +
+        '            </tr> ' +
+        '            <tr> ' +
+        '                <td class="mceNonEditable">Central Region</td> ' +
+        '                <td>100</td> <td>110</td> <td>115</td> <td>130</td> ' +
+        '            </tr> ' +
+        '            <tr> ' +
+        '                <td class="mceNonEditable">West Region</td> ' +
+        '                <td>100</td> <td>110</td> <td>115</td> <td>130</td> ' +
+        '            </tr> ' +
+        '        </tbody> ' +
+        '    </table>';
+
+    var table2 = '<div> ' +
+        '        <p>' +
+        '            Templates are a great way to help content authors get started creating content.  You can define the HTML for the template and ' +
+        '            then when the author inserts the template they have a great start towards creating content! ' +
+        '        </p> ' +
+        '        <p> ' +
+        '            In this example we create a simple table for providing product details for a product page on your web site.  The headings are ' +
+        '            made non-editable by loading the non-editable plugin and placing the correct class on the appropriate table cells. ' +
+        '        </p> ' +
+        '        <table style="width:90%; border-collapse: collapse;" border="1"> ' +
+        '        <tbody> ' +
+        '        <tr style="height: 30px;"> ' +
+        '            <th class="mceNonEditable" style="width:40%; text-align: left;">Product Name:</td><td style="width:60%;">{insert name here}</td> ' +
+        '        </tr> ' +
+        '        <tr style="height: 30px;"> ' +
+        '            <th class="mceNonEditable" style="width:40%; text-align: left;">Product Description:</td><td style="width:60%;">{insert description here}</td> ' +
+        '        </tr> ' +
+        '        <tr style="height: 30px;"> ' +
+        '            <th class="mceNonEditable" style="width:40%; text-align: left;">Product Price:</td><td style="width:60%;">{insert price here}</td> ' +
+        '        </tr> ' +
+        '        </tbody> ' +
+        '        </table> ' +
+        '    </div> ';
+
+    var demoBaseConfig = {
+        selector: '.textarea',
+        width: 755,
+        height: 200,
+        resize: false,
+        autosave_ask_before_unload: false,
+        powerpaste_allow_local_images: true,
+        plugins: [
+            'a11ychecker advcode advlist anchor autolink codesample fullscreen help image imagetools tinydrive',
+            ' lists link media noneditable powerpaste preview',
+            ' searchreplace table template tinymcespellchecker visualblocks wordcount'
+        ],
+        templates: [
+            {
+                title: 'Non-editable Example',
+                description: 'Non-editable example.',
+                content: table
+            },
+            {
+                title: 'Simple Table Example',
+                description: 'Simple Table example.',
+                content: table2
+            }
+        ],
+        toolbar:
+            'insertfile a11ycheck undo redo | bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist | link image tinydrive',
+        spellchecker_dialog: true,
+        spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
+        tinydrive_demo_files_url: '/docs/demo/tiny-drive-demo/demo_files.json',
+        tinydrive_token_provider: function (success, failure) {
+            success({ token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb2huZG9lIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.Ks_BdfH4CWilyzLNk8S2gDARFhuxIauLa8PwhdEQhEo' });
+        },
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    };
+
+    tinymce.init(demoBaseConfig);
+
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+@using (Html.BeginForm("ChinhSua", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("ProductID", Model.ProductID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoLuongTon, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="Anh" type="file" />
+                <span style="color:red;">@ViewBag.upload</span>
+                <br />
+                <img src="@Url.Content("~/Content/images/" + Model.Anh )" width="250" height="100" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GroupProductID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("GroupProductID", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("CompanyID", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="Mota" class="textarea">@Model.Mota</textarea>
+                @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayCapNhat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @if (Model.NgayCapNhat != null)
+                {
+                    @Html.TextBox("NgayCapNhat", Model.NgayCapNhat.Value.ToString("dd/MM/yyy"), new { id = "datepicker" })
+                    @Html.ValidationMessageFor(model => model.NgayCapNhat, "", new { @class = "text-danger" })
+                }
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Admin")
+</div>
+
+

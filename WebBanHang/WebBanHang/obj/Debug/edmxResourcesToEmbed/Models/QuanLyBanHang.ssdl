@@ -17,9 +17,11 @@
       <PropertyRef Name="CompanyID" />
     </Key>
     <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CompanyName" Type="nvarchar(max)" />
+    <Property Name="TenCongTy" Type="nvarchar(max)" />
     <Property Name="diachi" Type="nvarchar(max)" />
     <Property Name="SDT" Type="nchar" MaxLength="10" />
+    <Property Name="NgayCapNhat" Type="date" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="Customer">
     <Key>
@@ -37,9 +39,10 @@
       <PropertyRef Name="GroupProductID" />
     </Key>
     <Property Name="GroupProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="GroupProductName" Type="nvarchar(max)" />
-    <Property Name="GroupProductPic" Type="nvarchar(max)" />
-    <Property Name="Status" Type="int" />
+    <Property Name="TenDanhMuc" Type="nvarchar(max)" />
+    <Property Name="Pic" Type="nvarchar(max)" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="NgayCapNhat" Type="date" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -110,7 +113,9 @@
     <Property Name="UserPic" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
-    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
@@ -150,7 +155,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
@@ -162,7 +169,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
@@ -174,7 +183,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Company">
-    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Company">
@@ -186,7 +197,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_GroupProduct1">
-    <End Role="GroupProduct" Type="Self.GroupProduct" Multiplicity="0..1" />
+    <End Role="GroupProduct" Type="Self.GroupProduct" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="GroupProduct">

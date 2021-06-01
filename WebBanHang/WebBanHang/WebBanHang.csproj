@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -135,6 +137,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -152,6 +157,8 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\QuanLyDanhMucSanPhamController.cs" />
+    <Compile Include="Controllers\QuanLyNCCController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -170,6 +177,9 @@
     </Compile>
     <Compile Include="Models\ItemCart.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Metadata\Company.cs" />
+    <Compile Include="Models\Metadata\GroupProduct.cs" />
+    <Compile Include="Models\Metadata\Product.cs" />
     <Compile Include="Models\Metadata\Users.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>QuanlyBanHang.tt</DependentUpon>
@@ -1970,6 +1980,76 @@
     <Content Include="Content\Login\js\jquery.min.js" />
     <Content Include="Content\Login\js\main.js" />
     <Content Include="Content\Login\js\popper.js" />
+    <Content Include="Content\tinymce\js\tinymce\icons\default\icons.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\license.txt" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\js\emojiimages.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\js\emojiimages.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\js\emojis.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\js\emojis.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\help\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\quickbars\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\skins\content\dark\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\content\default\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\content\document\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\content\writer\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\content.inline.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\content.mobile.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\skin.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\skin.mobile.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\skin.shadowdom.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\content.inline.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\content.mobile.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\skin.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\skin.mobile.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\skin.shadowdom.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\themes\mobile\theme.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\themes\silver\theme.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2160,6 +2240,10 @@
     <Content Include="Content\Icon\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\Icon\webfonts\fa-solid-900.woff" />
     <Content Include="Content\Icon\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\tinymce\CHANGELOG.md" />
+    <Content Include="Content\tinymce\js\tinymce\langs\README.md" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
+    <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2209,6 +2293,16 @@
     <Content Include="Views\Cart\Order.cshtml" />
     <Content Include="Views\TimKiem\KQTimKiem.cshtml" />
     <Content Include="Views\Admin\TaoMoi.cshtml" />
+    <Content Include="Views\Admin\ChinhSua.cshtml" />
+    <Content Include="Views\Admin\Xoa.cshtml" />
+    <Content Include="Views\QuanLyDanhMucSanPham\Index.cshtml" />
+    <Content Include="Views\QuanLyDanhMucSanPham\TaoMoi.cshtml" />
+    <Content Include="Views\QuanLyDanhMucSanPham\ChinhSua.cshtml" />
+    <Content Include="Views\QuanLyDanhMucSanPham\Xoa.cshtml" />
+    <Content Include="Views\QuanLyNCC\Index.cshtml" />
+    <Content Include="Views\QuanLyNCC\TaoMoi.cshtml" />
+    <Content Include="Views\QuanLyNCC\ChinhSua.cshtml" />
+    <Content Include="Views\QuanLyNCC\Xoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2227,13 +2321,18 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Content\tinymce\js\tinymce\tinymce.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

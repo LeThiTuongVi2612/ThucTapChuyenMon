@@ -8,7 +8,7 @@
             @foreach (var item in Model)
             {
                
-                <div class="float-top col-lg-4 col-md-6" id="@item.GroupProductID" >
+                <div class="float-top col-lg-4 col-md-6" id="@item.GroupProductID" style="padding:5px;" >
                     <a href="#url"><img src="@Url.Content("~/Content/images/"+item.Anh)" class="img-responsive" alt=""></a>
                     <div class="float-lt feature-gd">
                         <h3><a href="#url">@item.ProductName</a> </h3>

@@ -267,3 +267,5 @@ C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CoreCompileInputs.cache
 C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CopyComplete
 C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
 C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\xunit.abstractions.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\xunit.abstractions.xml

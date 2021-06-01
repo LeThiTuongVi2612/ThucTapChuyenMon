@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b684a0fefaa24ca384cc059c6c9d237a" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Cart" Width="1.5" PointX="5.25" PointY="3.5" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Cart" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Company" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Customer" Width="1.5" PointX="3.75" PointY="9.5" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.GroupProduct" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Order" Width="1.5" PointX="6" PointY="8.75" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.OrderDetail" Width="1.5" PointX="8.25" PointY="3.5" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Product" Width="1.5" PointX="3" PointY="2.875" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="7.5" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Users" Width="1.5" PointX="1.5" PointY="9.375" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Customer" Width="1.5" PointX="3.75" PointY="10.625" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.GroupProduct" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Order" Width="1.5" PointX="6" PointY="9.875" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.OrderDetail" Width="1.5" PointX="8.25" PointY="4.625" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Product" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="8.625" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Users" Width="1.5" PointX="1.5" PointY="10.5" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Cart_Product1" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Product_Company" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Customer_Users" />

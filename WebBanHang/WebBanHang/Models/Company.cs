@@ -21,9 +21,11 @@ namespace WebBanHang.Models
         }
     
         public int CompanyID { get; set; }
-        public string CompanyName { get; set; }
+        public string TenCongTy { get; set; }
         public string diachi { get; set; }
         public string SDT { get; set; }
+        public Nullable<System.DateTime> NgayCapNhat { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }

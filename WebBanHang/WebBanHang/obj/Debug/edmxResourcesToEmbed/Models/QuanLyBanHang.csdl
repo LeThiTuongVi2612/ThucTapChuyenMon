@@ -57,9 +57,11 @@
       <PropertyRef Name="CompanyID" />
     </Key>
     <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TenCongTy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="diachi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Boolean" />
     <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_Product_Company" FromRole="Company" ToRole="Product" />
   </EntityType>
   <EntityType Name="Customer">
@@ -80,9 +82,10 @@
       <PropertyRef Name="GroupProductID" />
     </Key>
     <Property Name="GroupProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="GroupProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="GroupProductPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Status" Type="Int32" />
+    <Property Name="TenDanhMuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="NgayCapNhat" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="GroupProduct" ToRole="Product" />
   </EntityType>
   <EntityType Name="Order">
@@ -163,7 +166,9 @@
     <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Users" ToRole="Customer" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.Cart" Role="Cart" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
@@ -175,7 +180,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Company">
-    <End Type="QuanLyBanHangOnlModel.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="QuanLyBanHangOnlModel.Company" Role="Company" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Company">
@@ -215,7 +222,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_GroupProduct1">
-    <End Type="QuanLyBanHangOnlModel.GroupProduct" Role="GroupProduct" Multiplicity="0..1" />
+    <End Type="QuanLyBanHangOnlModel.GroupProduct" Role="GroupProduct" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="GroupProduct">
@@ -227,7 +236,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Order">
-    <End Type="QuanLyBanHangOnlModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="QuanLyBanHangOnlModel.Order" Role="Order" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
@@ -239,7 +250,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Product">
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">

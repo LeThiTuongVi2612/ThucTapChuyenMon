@@ -7,7 +7,10 @@
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
 }
 
-<h1>Trang chủ</h1>
+<div style="padding: 10px;">
+    <a href="@Url.Content("~/Admin/TaoMoi")" class="btn btn-success">Thêm mới sản phẩm</a>
+
+</div>
 @*Thể hiện dữ liệu thông qua control webGrid *@
 @grid.GetHtml(
 tableStyle: "gridTable",
@@ -18,19 +21,23 @@ alternatingRowStyle: "gridAltRow",
 columns: grid.Columns(
    grid.Column("ProductID", "Mã sản phảm"),
    grid.Column("ProductName", "Tên sản phảm"),
-   grid.Column("Anh", "Hình ảnh", format: p => Html.Raw("<img width=\"150\" height = \"150\" src =\"../Content/images/" + p.Anh + "\">")),
-   grid.Column("Price", "Giá bán")
+   grid.Column("Anh", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height = \"150\" src =\"../Content/images/" + p.Anh + "\">")),
+   grid.Column("Price", "Giá bán"),
+   grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { id = p.ProductID })),
+   grid.Column(format: p => @Html.ActionLink("Xóa", "Xoa", new { id = p.ProductID }))
    )
    )
 <style>
     .gridTable {
-        width: 900px;
+        width: 100%;
         border: 1px solid #999999;
     }
-
-    .gridHear {
-        background-color: forestgreen;
-    }
+        .gridTable td {
+            
+        }
+        .gridHear {
+            background-color: forestgreen;
+        }
 
         .gridHear > th > a {
             color: #fff;
@@ -51,5 +58,12 @@ columns: grid.Columns(
     }
 </style>
 
-
+<style>
+    .charts{
+        display: none;
+    }
+    .widget-shadow {
+        display: none;
+    }
+</style>
 

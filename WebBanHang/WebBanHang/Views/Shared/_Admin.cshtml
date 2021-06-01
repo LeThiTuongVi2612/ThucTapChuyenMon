@@ -58,9 +58,16 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-collapse">
                 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
                     <ul class="nav" id="side-menu">
+
                         <li>
-                            
-                            <a href="index.html" class="active"><i class="fa fa-dropbox nav_icon" aria-hidden="true"></i></i>Quản lý sản phẩm</a>
+
+                            <a href="~/Admin/Admin" ><i class="fa fa-dropbox nav_icon"></i>Quản lý sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="~/QuanLyDanhMucSanPham/Index"><i class="fa fa-book nav_icon"></i>Quản lý danh mục sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="~/QuanLyNCC/Index"><i class="fa fa-book nav_icon"></i>Quản lý nhà cung cấp</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-cogs nav_icon"></i>Components <span class="nav-badge">12</span> <span class="fa arrow"></span></a>
@@ -148,7 +155,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <!--toggle button end-->
                 <!--logo -->
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="@Url.Content("~/Admin/Admin")">
                         <h1>COFFEE</h1>
                         <span>CAFE</span>
                     </a>
@@ -388,6 +395,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="clearfix"> </div>
                 </div>
+                
                 
                @RenderBody()
                 <div class="charts">
