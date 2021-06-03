@@ -28,10 +28,12 @@ namespace WebBanHang.Models
         public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<ChiTietDonDangHang> ChiTietDonDangHang { get; set; }
         public virtual DbSet<GroupProduct> GroupProduct { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderDetail> OrderDetail { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<PhieuNhapHang> PhieuNhapHang { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }

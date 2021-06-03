@@ -1,0 +1,21 @@
+﻿@using WebBanHang.Models;
+@model PhieuNhapHang
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <input name="MaPN" />
+    <input name="CompanyID" />
+    for (int i = 0; i < 10; i++)
+    {
+        <h2>Thông tin sản phẩm</h2>
+        <input name="@Url.Content("["+ i+"].ProductID")" value="@i" /> <br />
+        <input name="@Url.Content("["+ i+"].DonGiaNhap")" value="100" /> <br />
+        <input name="@Url.Content("["+ i+"].SoLuongNhap")" value="100" /> <br />
+    }
+    <input type="submit" value="Đồng ý" />
+}
+

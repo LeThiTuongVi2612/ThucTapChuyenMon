@@ -34,6 +34,16 @@
     <Property Name="Address" Type="nvarchar(max)" />
     <Property Name="userID" Type="int" />
   </EntityType>
+  <EntityType Name="ChiTietDonDangHang">
+    <Key>
+      <PropertyRef Name="MaChiTietPN" />
+    </Key>
+    <Property Name="MaChiTietPN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaPN" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="DonGiaNhap" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="SoLuongNhap" Type="int" />
+  </EntityType>
   <EntityType Name="GroupProduct">
     <Key>
       <PropertyRef Name="GroupProductID" />
@@ -89,6 +99,15 @@
     <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
     <Property Name="NgayCapNhat" Type="datetime" />
   </EntityType>
+  <EntityType Name="PhieuNhapHang">
+    <Key>
+      <PropertyRef Name="MaPN" />
+    </Key>
+    <Property Name="MaPN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyID" Type="int" />
+    <Property Name="NgayNhap" Type="datetime" />
+    <Property Name="DaXoa" Type="bit" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -127,9 +146,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Customer_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -140,10 +157,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ChiTietDonDangHang_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="ChiTietDonDangHang" Type="Self.ChiTietDonDangHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="ChiTietDonDangHang">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTietDonDangHang_PhieuNhapHang">
+    <End Role="PhieuNhapHang" Type="Self.PhieuNhapHang" Multiplicity="0..1" />
+    <End Role="ChiTietDonDangHang" Type="Self.ChiTietDonDangHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuNhapHang">
+        <PropertyRef Name="MaPN" />
+      </Principal>
+      <Dependent Role="ChiTietDonDangHang">
+        <PropertyRef Name="MaPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Order_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
@@ -169,9 +208,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Product">
-    <End Role="Product" Type="Self.Product" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
@@ -182,10 +219,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Product_Company">
-    <End Role="Company" Type="Self.Company" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+  <Association Name="FK_Product_Company1">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Company">
@@ -210,14 +245,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PhieuNhapHang_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="PhieuNhapHang" Type="Self.PhieuNhapHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyID" />
+      </Principal>
+      <Dependent Role="PhieuNhapHang">
+        <PropertyRef Name="CompanyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QuanLyBanHangOnlModelStoreContainer">
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietDonDangHang" EntityType="Self.ChiTietDonDangHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GroupProduct" EntityType="Self.GroupProduct" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuNhapHang" EntityType="Self.PhieuNhapHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Cart_Product1" Association="Self.FK_Cart_Product1">
@@ -227,6 +276,14 @@
     <AssociationSet Name="FK_Customer_Users" Association="Self.FK_Customer_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDonDangHang_Product" Association="Self.FK_ChiTietDonDangHang_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ChiTietDonDangHang" EntitySet="ChiTietDonDangHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTietDonDangHang_PhieuNhapHang" Association="Self.FK_ChiTietDonDangHang_PhieuNhapHang">
+      <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
+      <End Role="ChiTietDonDangHang" EntitySet="ChiTietDonDangHang" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
       <End Role="Customer" EntitySet="Customer" />
@@ -240,13 +297,17 @@
       <End Role="Product" EntitySet="Product" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK_Product_Company" Association="Self.FK_Product_Company">
+    <AssociationSet Name="FK_Product_Company1" Association="Self.FK_Product_Company1">
       <End Role="Company" EntitySet="Company" />
       <End Role="Product" EntitySet="Product" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_GroupProduct1" Association="Self.FK_Product_GroupProduct1">
       <End Role="GroupProduct" EntitySet="GroupProduct" />
       <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuNhapHang_Company" Association="Self.FK_PhieuNhapHang_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

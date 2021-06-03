@@ -31,7 +31,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <link href="~/Content/Admin/css/animate.css" rel="stylesheet" type="text/css" media="all">
     <script src="~/Content/Admin/js/wow.min.js"></script>
     <script>
-		 new WOW().init();
+        new WOW().init();
     </script>
     <!--//end-animate-->
     <!-- chart -->
@@ -49,7 +49,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <script src="~/Content/Admin/js/custom.js"></script>
     <link href="~/Content/Admin/css/custom.css" rel="stylesheet">
     <!--//Metis Menu -->
-<link href="~/Content/Icon/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/Content/Icon/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Icon/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body class="cbp-spmenu-push">
     <div class="main-content">
@@ -61,22 +62,26 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                         <li>
 
-                            <a href="~/Admin/Admin" ><i class="fa fa-dropbox nav_icon"></i>Quản lý sản phẩm</a>
+                            <a href="~/Admin/Admin"><i class="fa fa-dropbox nav_icon"></i>Quản lý sản phẩm</a>
                         </li>
                         <li>
                             <a href="~/QuanLyDanhMucSanPham/Index"><i class="fa fa-book nav_icon"></i>Quản lý danh mục sản phẩm</a>
                         </li>
                         <li>
-                            <a href="~/QuanLyNCC/Index"><i class="fa fa-book nav_icon"></i>Quản lý nhà cung cấp</a>
+                            <a href="~/QuanLyNCC/Index"><i class="fa fa-building nav_icon"></i>Quản lý nhà cung cấp</a>
                         </li>
+                        @*<li>
+                            <a href="~/QuanLyPhieuNhap/NhapHang"><i class="fa fa-book nav_icon"></i>Nhập hàng</a>
+                        </li>*@
+
                         <li>
-                            <a href="#"><i class="fa fa-cogs nav_icon"></i>Components <span class="nav-badge">12</span> <span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-pencil-square-o nav_icon"></i>Quản lý nhập hàng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a href="grids.html">Grid System</a>
+                                    <a href="~/QuanLyPhieuNhap/NhapHang">Nhập hàng</a>
                                 </li>
                                 <li>
-                                    <a href="media.html">Media Objects</a>
+                                    <a href="~/QuanLyPhieuNhap/DSSPHetHang">SP sắp hết hàng</a>
                                 </li>
                             </ul>
                             <!-- /nav-second-level -->
@@ -395,9 +400,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                
-                
-               @RenderBody()
+
+
+                @RenderBody()
                 <div class="charts">
                     <div class="col-md-4 charts-grids widget">
                         <h4 class="title">Bar Chart Example</h4>
@@ -505,23 +510,23 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!-- Classie -->
     <script src="~/Content/Admin/js/classie.js"></script>
     <script>
-			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeftPush = document.getElementById( 'showLeftPush' ),
-				body = document.body;
+        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+            showLeftPush = document.getElementById('showLeftPush'),
+            body = document.body;
 
-			showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
+        showLeftPush.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+            disableOther('showLeftPush');
+        };
 
 
-			function disableOther( button ) {
-				if( button !== 'showLeftPush' ) {
-					classie.toggle( showLeftPush, 'disabled' );
-				}
-			}
+        function disableOther(button) {
+            if (button !== 'showLeftPush') {
+                classie.toggle(showLeftPush, 'disabled');
+            }
+        }
     </script>
     <!--scrolling js-->
     <script src="~/Content/Admin/js/jquery.nicescroll.js"></script>
@@ -529,6 +534,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--//scrolling js-->
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Content/Admin/js/bootstrap.js"></script>
+    @RenderSection("jsFooter", required: false)
 </body>
 </html>
 

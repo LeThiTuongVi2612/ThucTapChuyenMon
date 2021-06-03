@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -31,7 +32,11 @@ namespace WebBanHang.Controllers
 
             sp.NgayCapNhat = DateTime.Now;
             db.Company.Add(sp);
-            db.SaveChanges();
+
+           
+                db.SaveChanges();
+            
+
             return RedirectToAction("index");
         }
 

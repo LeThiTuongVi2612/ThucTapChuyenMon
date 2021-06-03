@@ -38,6 +38,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietDonDangHang">
+      <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.ChiTietDonDangHang">
+        <MappingFragment StoreEntitySet="ChiTietDonDangHang">
+          <ScalarProperty Name="SoLuongNhap" ColumnName="SoLuongNhap" />
+          <ScalarProperty Name="DonGiaNhap" ColumnName="DonGiaNhap" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="MaPN" ColumnName="MaPN" />
+          <ScalarProperty Name="MaChiTietPN" ColumnName="MaChiTietPN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GroupProduct">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.GroupProduct">
         <MappingFragment StoreEntitySet="GroupProduct">
@@ -94,6 +105,16 @@
           <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuNhapHang">
+      <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.PhieuNhapHang">
+        <MappingFragment StoreEntitySet="PhieuNhapHang">
+          <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="MaPN" ColumnName="MaPN" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

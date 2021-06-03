@@ -13,12 +13,13 @@ namespace WebBanHang.Models
         internal sealed class GroupProductMetadata
         {
             public int GroupProductID { get; set; }
+
             [Display(Name = "Tên danh mục:")]
             [Required(ErrorMessage = "{0} Tên danh mục không được để trống")]
             public string TenDanhMuc { get; set; }
 
             [Display(Name = "Hình ảnh:")]
-            [Required(ErrorMessage = "{0} Hình ảnh không được để trống")]
+            
             public string Pic { get; set; }
 
             [Display(Name = "Trạng thái:")]
