@@ -1,6 +1,6 @@
 ﻿
 @using WebBanHang.Models;
-@model IEnumerable<Product>
+@model IEnumerable<SanPham>
 @{
     ViewBag.Title = "DSSPHetHang";
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -8,10 +8,7 @@
     WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
 }
 
-<div style="padding: 10px;">
-    <a href="@Url.Content("~/Admin/TaoMoi")" class="btn btn-success">Thêm mới sản phẩm</a>
 
-</div>
 @*Thể hiện dữ liệu thông qua control webGrid *@
 @grid.GetHtml(
 tableStyle: "gridTable",
@@ -24,7 +21,7 @@ columns: grid.Columns(
    grid.Column("ProductName", "Tên sản phảm"),
    grid.Column("Anh", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height = \"150\" src =\"../Content/images/" + p.Anh + "\">")),
    grid.Column("Price", "Giá bán"),
-   grid.Column(format: p => @Html.ActionLink("Nhập hàng", "NhapHangDon", new { id = p.ProductID }, new {@target ="_blank" }))
+   grid.Column(format: p => @Html.ActionLink("Nhập hàng", "NhapHangDon", new { id = p.ProductID }, new { @target = "_blank" }))
    )
    )
 <style>

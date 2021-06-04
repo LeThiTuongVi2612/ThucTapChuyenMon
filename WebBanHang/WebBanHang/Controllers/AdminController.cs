@@ -14,7 +14,7 @@ namespace WebBanHang.Controllers
         // GET: Admin
         public ActionResult Admin()
         {
-            return View(db.Product.Where(n => n.Status == false).OrderByDescending(n => n.ProductID));
+            return View(db.SanPham.Where(n => n.Status == false).OrderByDescending(n => n.ProductID));
         }
 
         [HttpGet]
@@ -29,7 +29,7 @@ namespace WebBanHang.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult TaoMoi(Product sp, HttpPostedFileBase[] Anh)
+        public ActionResult TaoMoi(SanPham sp, HttpPostedFileBase[] Anh)
         {
             //Load dropdownlist nhà cung cấp
             ViewBag.CompanyID = new SelectList(db.Company.OrderBy(n => n.TenCongTy), "CompanyID", "TenCongTy");
@@ -54,7 +54,7 @@ namespace WebBanHang.Controllers
                 }
             }
             //sp.NgayCapNhat = DateTime.Now;
-            db.Product.Add(sp);
+            db.SanPham.Add(sp);
             db.SaveChanges();
             return RedirectToAction("Admin");
         }
@@ -68,7 +68,7 @@ namespace WebBanHang.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            Product sp = db.Product.SingleOrDefault(n => n.ProductID == id);
+            SanPham sp = db.SanPham.SingleOrDefault(n => n.ProductID == id);
             if (sp == null)
             {
                 return HttpNotFound();
@@ -83,7 +83,7 @@ namespace WebBanHang.Controllers
 
         [ValidateInput(false)]
         [HttpPost]
-        public ActionResult ChinhSua(Product model, HttpPostedFileBase[] Anh)
+        public ActionResult ChinhSua(SanPham model, HttpPostedFileBase[] Anh)
         {
             //Load dropdownlist nhà cung cấp
             ViewBag.CompanyID = new SelectList(db.Company.OrderBy(n => n.TenCongTy), "CompanyID", "TenCongTy", model.CompanyID);
@@ -108,7 +108,7 @@ namespace WebBanHang.Controllers
                 }
             }
             //sp.NgayCapNhat = DateTime.Now;
-            db.Product.Add(model);
+            db.SanPham.Add(model);
             db.Entry(model).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Admin");
@@ -125,7 +125,7 @@ namespace WebBanHang.Controllers
                 Response.StatusCode = 404;
                 return null;
             }
-            Product sp = db.Product.SingleOrDefault(n => n.ProductID == id);
+            SanPham sp = db.SanPham.SingleOrDefault(n => n.ProductID == id);
             if (sp == null)
             {
                 return HttpNotFound();
@@ -146,16 +146,16 @@ namespace WebBanHang.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-            Product model = db.Product.SingleOrDefault(n => n.ProductID == id);
+            SanPham model = db.SanPham.SingleOrDefault(n => n.ProductID == id);
             if(model == null)
             {
                 return HttpNotFound();
             }
-            db.Product.Remove(model);
+            db.SanPham.Remove(model);
             db.SaveChanges();
             return RedirectToAction("Admin");
         }
     }
 
-    //https://www.tiny.cloud/docs/demo/basic-example/
+    
 }

@@ -1,5 +1,5 @@
-﻿@using WebBanHang.Models;
-@model IEnumerable<Product>
+﻿@using WebBanHang.Models
+@model IEnumerable<SanPham>
 @{
     ViewBag.Title = "KQTimKiem";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,7 +34,7 @@
                                 @if (Session["userName"] == null)
                                 {
                                     @*<a href="@Url.Content("~/Home/login")" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>*@
-                                    @Html.ActionLink("Mua ngay", "login", "Home",null, new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
+                                    @Html.ActionLink("Mua ngay", "login", "Home", null, new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
                                 }
                                 else
                                 {

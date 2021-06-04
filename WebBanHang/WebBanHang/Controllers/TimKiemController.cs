@@ -15,7 +15,7 @@ namespace WebBanHang.Controllers
         public ActionResult KQTimKiem(string sTuKhoa)
         {
             //Tìm kiếm theo tên
-            var lstSP = db.Product.Where(n => n.ProductName.Contains(sTuKhoa));
+            var lstSP = db.SanPham.Where(n => n.ProductName.Contains(sTuKhoa));
             return View(lstSP.OrderBy(n => n.ProductName));
         }
         [HttpPost]

@@ -17,7 +17,7 @@ namespace WebBanHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GroupProduct()
         {
-            this.Product = new HashSet<Product>();
+            this.SanPham = new HashSet<SanPham>();
         }
     
         public int GroupProductID { get; set; }
@@ -27,6 +27,6 @@ namespace WebBanHang.Models
         public Nullable<System.DateTime> NgayCapNhat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<SanPham> SanPham { get; set; }
     }
 }

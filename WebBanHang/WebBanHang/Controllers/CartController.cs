@@ -29,7 +29,7 @@ namespace WebBanHang.Controllers
         public ActionResult ThemGioHang(int productID, string strURL)
         {
             //Kiểm tr ẩn phẩm có tồn tại trong CSDL hay không 
-            Product product = db.Product.SingleOrDefault(n => n.ProductID == productID);
+            SanPham product = db.SanPham.SingleOrDefault(n => n.ProductID == productID);
             if(product == null)
             {
                 //trang đường dẫn không hợp lệ
@@ -116,7 +116,7 @@ namespace WebBanHang.Controllers
             }
 
             //Kiểm tra sản phẩm có tồn tại trong CSDL hay không
-            Product product = db.Product.SingleOrDefault(n => n.ProductID == productID);
+            SanPham product = db.SanPham.SingleOrDefault(n => n.ProductID == productID);
             if (product == null)
             {
                 //trang đường dẫn không hợp lệ
@@ -143,7 +143,7 @@ namespace WebBanHang.Controllers
         public ActionResult CapNhatGioHang(ItemCart itemGH)
         {
             //Kiểm tra số lượng tồn 
-            Product spCheck = db.Product.Single(n => n.ProductID == itemGH.productID);
+            SanPham spCheck = db.SanPham.Single(n => n.ProductID == itemGH.productID);
             if(spCheck.SoLuongTon < itemGH.soLuong)
             {
                 return View("ThongBao");
@@ -168,7 +168,7 @@ namespace WebBanHang.Controllers
             }
 
             //Kiểm tra sản phẩm có tồn tại trong CSDL hay không
-            Product product = db.Product.SingleOrDefault(n => n.ProductID == productID);
+            SanPham product = db.SanPham.SingleOrDefault(n => n.ProductID == productID);
             if (product == null)
             {
                 //trang đường dẫn không hợp lệ
@@ -219,7 +219,7 @@ namespace WebBanHang.Controllers
             //Thêm đơn hàng
             Order ddh = new Order();
             
-            ddh.CustomerID = users.userID;
+            ddh.CustomerID = khach.CustomerID;
             ddh.NgayDat = DateTime.Now;
             ddh.TinhTrangGiaoHang = false;
             ddh.DaThanhToan = false;

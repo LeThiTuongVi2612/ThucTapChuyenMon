@@ -14,7 +14,7 @@ namespace WebBanHang.Controllers
 
         public ActionResult Breakfast()
         {
-            var listBreafast = db.Product.Where(x => x.GroupProductID == 2);
+            var listBreafast = db.SanPham.Where(x => x.GroupProductID == 2);
             ViewBag.ListAS = listBreafast;
             var listSp = new QuanLyBanHang().GroupProduct.ToList();
             ViewBag.listGroup = listSp;
@@ -24,7 +24,7 @@ namespace WebBanHang.Controllers
 
         public ActionResult Lunch()
         {
-            var listLuch = db.Product.Where(x => x.GroupProductID == 3);
+            var listLuch = db.SanPham.Where(x => x.GroupProductID == 3);
             ViewBag.ListAT = listLuch;
             var listSp = new QuanLyBanHang().GroupProduct.ToList();
             ViewBag.listGroup = listSp;
@@ -37,7 +37,7 @@ namespace WebBanHang.Controllers
             var listSp = new QuanLyBanHang().GroupProduct.ToList();
             ViewBag.listGroup = listSp;
 
-            var listProduct1 = db.Product.Where(x => x.GroupProductID == 1);
+            var listProduct1 = db.SanPham.Where(x => x.GroupProductID == 1);
             ViewBag.ListSP = listProduct1;
 
             return View();
@@ -45,7 +45,7 @@ namespace WebBanHang.Controllers
         public ActionResult ProductPartial(int id)
         {
 
-            var listSp = (from c in db.Product where c.GroupProductID == id select c).ToList();
+            var listSp = (from c in db.SanPham where c.GroupProductID == id select c).ToList();
 
             return View(listSp);
         }

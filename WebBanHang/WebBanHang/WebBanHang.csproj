@@ -159,9 +159,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuanLyDanhMucSanPhamController.cs" />
+    <Compile Include="Controllers\QuanLyDonHangController.cs" />
     <Compile Include="Controllers\QuanLyNCCController.cs" />
     <Compile Include="Controllers\QuanLyPhieuNhapController.cs" />
-    <Compile Include="Controllers\SubmitListModelController.cs" />
     <Compile Include="Controllers\TimKiemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,9 +196,6 @@
     <Compile Include="Models\PhieuNhapHang.cs">
       <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\QuanlyBanHang.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -213,6 +210,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SanPham.cs">
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>QuanlyBanHang.tt</DependentUpon>
@@ -648,9 +648,13 @@
     <Content Include="Views\QuanLyNCC\TaoMoi.cshtml" />
     <Content Include="Views\QuanLyNCC\ChinhSua.cshtml" />
     <Content Include="Views\QuanLyNCC\Xoa.cshtml" />
-    <Content Include="Views\SubmitListModel\Index.cshtml" />
     <Content Include="Views\QuanLyPhieuNhap\NhapHang.cshtml" />
     <Content Include="Views\QuanLyPhieuNhap\DSSPHetHang.cshtml" />
+    <Content Include="Views\QuanLyPhieuNhap\NhaphangDon.cshtml" />
+    <Content Include="Views\QuanLyDonHang\ChuaThanhToan.cshtml" />
+    <Content Include="Views\QuanLyDonHang\ChuaGiao.cshtml" />
+    <Content Include="Views\QuanLyDonHang\DaGiaoDaThanhToan.cshtml" />
+    <Content Include="Views\QuanLyDonHang\DuyetDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,58 @@
+﻿@using WebBanHang.Models
+@model  Order
+@{
+    ViewBag.Title = "DuyetDonHang";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    <div class="ChiTietDonHang table">
+        @{ IEnumerable<OrderDetail> lstChiTiet = (IEnumerable<OrderDetail>)ViewBag.ListCTHD;}
+        <table class="table" id="table">
+            @*Phần thông tin đơn hàng*@
+            <tr>
+                <td colspan="4">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>Mã đơn hàng: <b style="color:red;">@Model.OrderID @Html.Hidden("OrderID", Model.OrderID)</b></td>
+                            <td>Mã khách hàng: <b style="color:red;">@Model.Customer.CustomerID</b></td>
+                            <td>Tên khách hàng: <b style="color:red;">@Model.Customer.HoTen</b></td>
+                            <td>Ngày đặt: @Model.NgayDat.Value.ToString("dd/MM/yyy")</td>
+                            <td>@Html.EditorFor(model => model.DaThanhToan)</td>
+                            <td>@Html.EditorFor(model => model.TinhTrangGiaoHang)</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            @*Thông tin chi tiết đơn hàng*@
+            <tr>
+                <td>Sản phẩm</td>
+                <td>Hình ảnh</td>
+                <td>Số lượng đặt</td>
+                <td>Đơn giá đặt</td>
+            </tr>
+            @foreach (var item in lstChiTiet)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td><img width="150" height="50" src="@Url.Content("~/Content/images/" + item.SanPham.Anh)" /></td>
+                    <td>@item.soLuong</td>
+                    <td>@item.Gia</td>
+                </tr>
+            }
+            <tr>
+                <td align="right" colspan="4">Tổng số lượng: @Model.OrderDetail.Sum(n => n.soLuong)</td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4">Tổng tiền: @Model.OrderDetail.Sum(n => n.SanPham.Price)</td>
+            </tr>
+        </table>
+        <input value="In đơn hàng" type="button" id="btnInDonHang" />
+        <input value="Lưu đơn hàng" type="submit" id="btnInDonHang" />
+    </div>
+            }
+

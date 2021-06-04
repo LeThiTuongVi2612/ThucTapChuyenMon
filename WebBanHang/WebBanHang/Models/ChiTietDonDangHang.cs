@@ -20,7 +20,7 @@ namespace WebBanHang.Models
         public Nullable<decimal> DonGiaNhap { get; set; }
         public Nullable<int> SoLuongNhap { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual SanPham SanPham { get; set; }
         public virtual PhieuNhapHang PhieuNhapHang { get; set; }
     }
 }

@@ -1,0 +1,90 @@
+﻿@using WebBanHang.Models
+@model SanPham
+@{
+    ViewBag.Title = "NhaphangDon";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<legend>Nhập hàng cho sản phẩm: <b style="color:red;">@Model.ProductName</b></legend>
+<div class="row">
+    <div class="col-md-3">
+        <div>
+            <img src="@Url.Content("~/Content/images/" + Model.Anh)" style="width:200px; height:150px;" />
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="ttSP">
+            <h3>Tên sản phẩm: @Model.ProductName</h3>
+            <h3>Hãng sản xuất: @Model.Company.TenCongTy</h3>
+            <h3>Loại sản phẩm: @Model.GroupProduct.TenDanhMuc</h3>
+            <h3>Số lượng tồn: @Model.SoLuongTon</h3>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<h3 style="text-align:center;">Thông tin nhập hàng</h3>
+
+@using (Html.BeginForm("NhapHangDon", "QuanLyPhieuNhap"))
+{
+    @Html.Hidden("ProductID", Model.ProductID)
+    <div class="row">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    Nhà cung cấp
+                </td>
+                <td>
+                    Số lượng nhập
+                </td>
+                <td>
+                    Đơn giá nhập
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @{ var lstNCC = (SelectList)ViewBag.CompanyID;}
+                    @Html.DropDownList("CompanyID", lstNCC, new { @class = "CompanyID" })
+                </td>
+                <td>
+                    @Html.TextBox("SoLuongNhap")
+                    <span class="TB_SL"></span>
+                </td>
+                <td>
+                    @Html.TextBox("DonGiaNhap")
+                    <span class="TB_DG"></span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="clear right" style="padding-top:10px;">
+        <input type="submit" value="Đặt hàng" class="btn btn-success" id="btnOk">
+    </div>
+}
+<script>
+    $("#btnOK").click(function () {
+        var bl = true;
+        //duyệt vòng lập each
+        $(".TB_SL").each(function () {
+            var giatri = $(this).val();
+            if (isNaN(giatri) == true || giatri < 0) {
+                alert("Số lượng không hợp lệ!");
+                bl = false;
+                return bl;
+            }
+
+        });
+        $(".txtTB_DG").each(function () {
+            var giatri = $(this).val();
+            if (isNaN(giatri) == true || giatri < 0) {
+                alert("Đơn giá không hợp lệ!");
+                bl = false;
+                return bl;
+            }
+
+        });
+        return bl;
+</script>
+
+

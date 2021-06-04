@@ -27,7 +27,7 @@ namespace WebBanHang.Controllers
         {
             var listSp = new QuanLyBanHang().GroupProduct.ToList();
             ViewBag.listGroup = listSp; 
-            var listProduct1 = (from x in db.Product.Where(x=> x.Status==false) select x).ToList();
+            var listProduct1 = (from x in db.SanPham.Where(x=> x.Status==false) select x).ToList();
             ViewBag.ListSP = listProduct1;
             return View();
         }

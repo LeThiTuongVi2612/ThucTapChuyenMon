@@ -20,7 +20,7 @@ namespace WebBanHang.Models
             using(QuanLyBanHang db = new QuanLyBanHang())
             {
                 this.productID = iProductID;
-                Product product = db.Product.Single(n => n.ProductID == iProductID);
+                SanPham product = db.SanPham.Single(n => n.ProductID == iProductID);
                 this.productName = product.ProductName;
                 this.anh = product.Anh;
                 this.Gia = product.Price.Value;
@@ -33,7 +33,7 @@ namespace WebBanHang.Models
             using (QuanLyBanHang db = new QuanLyBanHang ())
             {
                 this.productID = iProductID;
-                Product product = db.Product.Single(n => n.ProductID == iProductID);
+                SanPham product = db.SanPham.Single(n => n.ProductID == iProductID);
                 this.productName = product.ProductName;
                 this.anh = product.Anh;
                 this.Gia = product.Price.Value;

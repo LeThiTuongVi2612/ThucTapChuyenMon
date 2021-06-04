@@ -22,17 +22,17 @@
 @using (Html.BeginForm("NhapHang", "QuanLyPhieuNhap"))
 {
 
-<div class="row">
-    <div class="ThongTinPhieuNhap col-md-12" style="padding:10px;">
-        @*Nhà cung cấp*@
-        <div class="col-md-2">
-            Nhà cung cấp:
-        </div>
-        <div class="col-md-5">
-            @Html.DropDownList("CompanyID", null, new { @class = "form-control" })
+    <div class="row">
+        <div class="ThongTinPhieuNhap col-md-12" style="padding:10px;">
+            @*Nhà cung cấp*@
+            <div class="col-md-2">
+                Nhà cung cấp:
+            </div>
+            <div class="col-md-5">
+                @Html.DropDownList("CompanyID", null, new { @class = "form-control" })
+            </div>
         </div>
     </div>
-</div>
     <div class="clearfix"></div>
 
     <div class="col-md-12">
@@ -41,7 +41,7 @@
             Ngày nhập:
         </div>
         <div class="col-md-5">
-            <input name="NgayNhap"  class="date" />
+            <input name="NgayNhap" class="date" />
         </div>
     </div>
     <div class="clearfix"></div>
@@ -49,37 +49,37 @@
     <br />
     <br />
     @*Phân chi tiết nhập hàng*@
-<table class="table tblChiTietPhieuNhap">
-    @{IEnumerable<Product> lstSanPham = ViewBag.ListSanPham as IEnumerable<Product>;}
+    <table class="table tblChiTietPhieuNhap">
+        @{IEnumerable<SanPham> lstSanPham = ViewBag.ListSanPham as IEnumerable<SanPham>;}
 
-    <tr class="trAppent" style="display:none;">
-        <td>
-            <select class="ddlSanPham" name="">
-                @foreach (var item in lstSanPham)
-                {
-                    <option value="@item.ProductID">@item.ProductName</option>
-                }
-            </select>
-        </td>
-        <td>
-            <input name="" class="txtDonGia" value="0" />
-            <span class="TB_ThongBao"></span>
-        </td>
-        <td>
-            <input name="" class="txtSoLuong" value="0" />
-        </td>
-        <td>
-            <input class="btnDelete btn btn-danger" value="-" style="width:30px;" />
-        </td>
-    </tr>
-    <tr class="trFirstChild" data-id="-1">
-        <td>Sản phẩm</td>
-        <td>Đơn giá nhập</td>
-        <td>Số lượng nhập</td>
-        <td></td>
-    </tr>
+        <tr class="trAppent" style="display:none;">
+            <td>
+                <select class="ddlSanPham" name="">
+                    @foreach (var item in lstSanPham)
+                    {
+                        <option value="@item.ProductID">@item.ProductName</option>
+                    }
+                </select>
+            </td>
+            <td>
+                <input name="" class="txtDonGia" value="0" />
+                <span class="TB_ThongBao"></span>
+            </td>
+            <td>
+                <input name="" class="txtSoLuong" value="0" />
+            </td>
+            <td>
+                <input class="btnDelete btn btn-danger" value="-" style="width:30px;" />
+            </td>
+        </tr>
+        <tr class="trFirstChild" data-id="-1">
+            <td>Sản phẩm</td>
+            <td>Đơn giá nhập</td>
+            <td>Số lượng nhập</td>
+            <td></td>
+        </tr>
 
-</table>
+    </table>
 
     @*Nút button thêm*@
     <input type="button" value="+" class="btn btn-success" id="btnAdd" />
@@ -103,7 +103,7 @@
     //Phương thức xử lý lấy thuộc tính attr từ thẻ tr gán xuống phần tử trong thuộc tính name của thẻ input
     function LoadIDLENTHE() {
         $(".trAppented").each(function () {
-            //Lấy thuộc tính data-id của thẻ tr 
+            //Lấy thuộc tính data-id của thẻ tr
             var id = $(this).attr("data-id");
             //Tạo ra mã sản phẩm
             var nameMaSanPham = "[" + id + "].ProductID";
@@ -148,7 +148,7 @@
 
     $("#btnNhapHang").click(function () {
         var bl = true;
-        //duyệt vòng lập each 
+        //duyệt vòng lập each
         $(".txtSoLuong").each(function () {
             var giatri = $(this).val();
             if (isNaN(giatri) == true || giatri < 0) {

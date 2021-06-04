@@ -8,17 +8,17 @@
     <EntitySet Name="GroupProduct" EntityType="QuanLyBanHangOnlModel.GroupProduct" />
     <EntitySet Name="Order" EntityType="QuanLyBanHangOnlModel.Order" />
     <EntitySet Name="OrderDetail" EntityType="QuanLyBanHangOnlModel.OrderDetail" />
-    <EntitySet Name="Product" EntityType="QuanLyBanHangOnlModel.Product" />
     <EntitySet Name="PhieuNhapHang" EntityType="QuanLyBanHangOnlModel.PhieuNhapHang" />
+    <EntitySet Name="SanPham" EntityType="QuanLyBanHangOnlModel.SanPham" />
     <EntitySet Name="sysdiagrams" EntityType="QuanLyBanHangOnlModel.sysdiagrams" />
     <EntitySet Name="Users" EntityType="QuanLyBanHangOnlModel.Users" />
     <AssociationSet Name="FK_Cart_Product1" Association="QuanLyBanHangOnlModel.FK_Cart_Product1">
-      <End Role="Product" EntitySet="Product" />
+      <End Role="SanPham" EntitySet="SanPham" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
     <AssociationSet Name="FK_Product_Company1" Association="QuanLyBanHangOnlModel.FK_Product_Company1">
       <End Role="Company" EntitySet="Company" />
-      <End Role="Product" EntitySet="Product" />
+      <End Role="SanPham" EntitySet="SanPham" />
     </AssociationSet>
     <AssociationSet Name="FK_PhieuNhapHang_Company" Association="QuanLyBanHangOnlModel.FK_PhieuNhapHang_Company">
       <End Role="Company" EntitySet="Company" />
@@ -33,7 +33,7 @@
       <End Role="Order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_ChiTietDonDangHang_Product" Association="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product">
-      <End Role="Product" EntitySet="Product" />
+      <End Role="SanPham" EntitySet="SanPham" />
       <End Role="ChiTietDonDangHang" EntitySet="ChiTietDonDangHang" />
     </AssociationSet>
     <AssociationSet Name="FK_ChiTietDonDangHang_PhieuNhapHang" Association="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_PhieuNhapHang">
@@ -42,14 +42,14 @@
     </AssociationSet>
     <AssociationSet Name="FK_Product_GroupProduct1" Association="QuanLyBanHangOnlModel.FK_Product_GroupProduct1">
       <End Role="GroupProduct" EntitySet="GroupProduct" />
-      <End Role="Product" EntitySet="Product" />
+      <End Role="SanPham" EntitySet="SanPham" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Order" Association="QuanLyBanHangOnlModel.FK_OrderDetail_Order">
       <End Role="Order" EntitySet="Order" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetail_Product" Association="QuanLyBanHangOnlModel.FK_OrderDetail_Product">
-      <End Role="Product" EntitySet="Product" />
+      <End Role="SanPham" EntitySet="SanPham" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
   </EntityContainer>
@@ -64,7 +64,7 @@
     <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="Cart" ToRole="Product" />
+    <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="Cart" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="Company">
     <Key>
@@ -76,7 +76,7 @@
     <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="NgayCapNhat" Type="DateTime" Precision="0" />
     <Property Name="Status" Type="Boolean" />
-    <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_Product_Company1" FromRole="Company" ToRole="Product" />
+    <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_Product_Company1" FromRole="Company" ToRole="SanPham" />
     <NavigationProperty Name="PhieuNhapHang" Relationship="QuanLyBanHangOnlModel.FK_PhieuNhapHang_Company" FromRole="Company" ToRole="PhieuNhapHang" />
   </EntityType>
   <EntityType Name="Customer">
@@ -101,7 +101,7 @@
     <Property Name="ProductID" Type="Int32" />
     <Property Name="DonGiaNhap" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="SoLuongNhap" Type="Int32" />
-    <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product" FromRole="ChiTietDonDangHang" ToRole="Product" />
+    <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product" FromRole="ChiTietDonDangHang" ToRole="SanPham" />
     <NavigationProperty Name="PhieuNhapHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_PhieuNhapHang" FromRole="ChiTietDonDangHang" ToRole="PhieuNhapHang" />
   </EntityType>
   <EntityType Name="GroupProduct">
@@ -113,7 +113,7 @@
     <Property Name="Pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Boolean" />
     <Property Name="NgayCapNhat" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="GroupProduct" ToRole="Product" />
+    <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="GroupProduct" ToRole="SanPham" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -147,9 +147,20 @@
     <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Order" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
-    <NavigationProperty Name="Product" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+    <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="SanPham" />
   </EntityType>
-  <EntityType Name="Product">
+  <EntityType Name="PhieuNhapHang">
+    <Key>
+      <PropertyRef Name="MaPN" />
+    </Key>
+    <Property Name="MaPN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyID" Type="Int32" />
+    <Property Name="NgayNhap" Type="DateTime" Precision="3" />
+    <Property Name="DaXoa" Type="Boolean" />
+    <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_PhieuNhapHang_Company" FromRole="PhieuNhapHang" ToRole="Company" />
+    <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_PhieuNhapHang" FromRole="PhieuNhapHang" ToRole="ChiTietDonDangHang" />
+  </EntityType>
+  <EntityType Name="SanPham">
     <Key>
       <PropertyRef Name="ProductID" />
     </Key>
@@ -163,22 +174,11 @@
     <Property Name="Status" Type="Boolean" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Cart" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="Product" ToRole="Cart" />
-    <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_Product_Company1" FromRole="Product" ToRole="Company" />
-    <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product" FromRole="Product" ToRole="ChiTietDonDangHang" />
-    <NavigationProperty Name="GroupProduct" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="Product" ToRole="GroupProduct" />
-    <NavigationProperty Name="OrderDetail" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
-  </EntityType>
-  <EntityType Name="PhieuNhapHang">
-    <Key>
-      <PropertyRef Name="MaPN" />
-    </Key>
-    <Property Name="MaPN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CompanyID" Type="Int32" />
-    <Property Name="NgayNhap" Type="DateTime" Precision="3" />
-    <Property Name="DaXoa" Type="Boolean" />
-    <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_PhieuNhapHang_Company" FromRole="PhieuNhapHang" ToRole="Company" />
-    <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_PhieuNhapHang" FromRole="PhieuNhapHang" ToRole="ChiTietDonDangHang" />
+    <NavigationProperty Name="Cart" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="SanPham" ToRole="Cart" />
+    <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_Product_Company1" FromRole="SanPham" ToRole="Company" />
+    <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product" FromRole="SanPham" ToRole="ChiTietDonDangHang" />
+    <NavigationProperty Name="GroupProduct" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="SanPham" ToRole="GroupProduct" />
+    <NavigationProperty Name="OrderDetail" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Product" FromRole="SanPham" ToRole="OrderDetail" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -205,12 +205,12 @@
     <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Users" ToRole="Customer" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="0..1">
+    <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
     <End Type="QuanLyBanHangOnlModel.Cart" Role="Cart" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="SanPham">
         <PropertyRef Name="ProductID" />
       </Principal>
       <Dependent Role="Cart">
@@ -220,12 +220,12 @@
   </Association>
   <Association Name="FK_Product_Company1">
     <End Type="QuanLyBanHangOnlModel.Company" Role="Company" Multiplicity="0..1" />
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="*" />
+    <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Company">
         <PropertyRef Name="CompanyID" />
       </Principal>
-      <Dependent Role="Product">
+      <Dependent Role="SanPham">
         <PropertyRef Name="CompanyID" />
       </Dependent>
     </ReferentialConstraint>
@@ -267,10 +267,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ChiTietDonDangHang_Product">
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="0..1" />
     <End Type="QuanLyBanHangOnlModel.ChiTietDonDangHang" Role="ChiTietDonDangHang" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="SanPham">
         <PropertyRef Name="ProductID" />
       </Principal>
       <Dependent Role="ChiTietDonDangHang">
@@ -294,12 +294,12 @@
     <End Type="QuanLyBanHangOnlModel.GroupProduct" Role="GroupProduct" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="*" />
+    <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="GroupProduct">
         <PropertyRef Name="GroupProductID" />
       </Principal>
-      <Dependent Role="Product">
+      <Dependent Role="SanPham">
         <PropertyRef Name="GroupProductID" />
       </Dependent>
     </ReferentialConstraint>
@@ -319,10 +319,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OrderDetail_Product">
-    <End Type="QuanLyBanHangOnlModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="1" />
     <End Type="QuanLyBanHangOnlModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Product">
+      <Principal Role="SanPham">
         <PropertyRef Name="ProductID" />
       </Principal>
       <Dependent Role="OrderDetail">
