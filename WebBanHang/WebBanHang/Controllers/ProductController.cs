@@ -54,5 +54,17 @@ namespace WebBanHang.Controllers
             
             return View();
         }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                }
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

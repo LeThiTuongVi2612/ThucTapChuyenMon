@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-
+<h2>Thông tin đơn hàng: <span style="color:red;">@Model.Customer.HoTen</span></h2>
 <br />
 <br />
-@using (Html.BeginForm())
+@using (Html.BeginForm("DuyetDonHang", "QuanLyDonHang", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     <div class="ChiTietDonHang table">
-        @{ IEnumerable<OrderDetail> lstChiTiet = (IEnumerable<OrderDetail>)ViewBag.ListCTHD;}
+
         <table class="table" id="table">
             @*Phần thông tin đơn hàng*@
             <tr>
@@ -22,8 +22,8 @@
                             <td>Mã khách hàng: <b style="color:red;">@Model.Customer.CustomerID</b></td>
                             <td>Tên khách hàng: <b style="color:red;">@Model.Customer.HoTen</b></td>
                             <td>Ngày đặt: @Model.NgayDat.Value.ToString("dd/MM/yyy")</td>
-                            <td>@Html.EditorFor(model => model.DaThanhToan)</td>
-                            <td>@Html.EditorFor(model => model.TinhTrangGiaoHang)</td>
+                            <td>Thanh toán:@Html.EditorFor(model => model.DaThanhToan)</td>
+                            <td>Giao hàng:@Html.EditorFor(model => model.TinhTrangGiaoHang)</td>
                         </tr>
                     </table>
                 </td>
@@ -35,15 +35,18 @@
                 <td>Số lượng đặt</td>
                 <td>Đơn giá đặt</td>
             </tr>
+
+            @{ IEnumerable<OrderDetail> lstChiTiet = (IEnumerable<OrderDetail>)ViewBag.ListCTHD;}
             @foreach (var item in lstChiTiet)
             {
                 <tr>
-                    <td>@item.ProductName</td>
+                    <td>@item.SanPham.ProductName</td>
                     <td><img width="150" height="50" src="@Url.Content("~/Content/images/" + item.SanPham.Anh)" /></td>
                     <td>@item.soLuong</td>
                     <td>@item.Gia</td>
                 </tr>
             }
+
             <tr>
                 <td align="right" colspan="4">Tổng số lượng: @Model.OrderDetail.Sum(n => n.soLuong)</td>
             </tr>
@@ -54,5 +57,23 @@
         <input value="In đơn hàng" type="button" id="btnInDonHang" />
         <input value="Lưu đơn hàng" type="submit" id="btnInDonHang" />
     </div>
-            }
+}
 
+<script>
+    $("#btnInDonHang").click(function () {
+        var content ='<table>'+ $("#table").html() + '</table>';
+        InDonHang(content);
+    });
+
+    //Phương thức in
+    function InDonHang(content) {
+        var printWindow = window.open('', '', 'height = 400, width = 800');
+        printWindow.document.write('<html><head><title>Đơn hàng</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+
+    }
+</script>
