@@ -22,7 +22,6 @@ namespace WebBanHang.Models
     
         public int OrderID { get; set; }
         public Nullable<int> CustomerID { get; set; }
-        public Nullable<decimal> TongTien { get; set; }
         public Nullable<System.DateTime> NgayDat { get; set; }
         public Nullable<bool> TinhTrangGiaoHang { get; set; }
         public Nullable<System.DateTime> NgayGiao { get; set; }

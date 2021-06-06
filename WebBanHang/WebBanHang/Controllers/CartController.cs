@@ -207,7 +207,7 @@ namespace WebBanHang.Controllers
             {
                 //Với khách hàng là thành viên
                 Users user = Session["userName"] as Users;
-                khach.HoTen = users.userName;
+                khach.HoTen = users.HoTen;
                 khach.Address = users.Address;
                 khach.email = users.email;
                 khach.Phone = users.Phone;

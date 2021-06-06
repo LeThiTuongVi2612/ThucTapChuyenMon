@@ -73,12 +73,12 @@ Author URL: http://w3layouts.com
                         {
 
 
-                            @Html.ActionLink("Log out", "DangXuat", "Home",null, new { @class = "nav-link" })
+                            @Html.ActionLink("Log out", "DangXuat", "Home", null, new { @class = "nav-link" })
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link" href="~/Home/login">Sign in</a>
+                                <a class="nav-link" href="#" id="btnDangNhap">Sign in</a>
                             </li>
 
                             <li class="nav-item">
@@ -98,25 +98,25 @@ Author URL: http://w3layouts.com
                                 {
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true, null, new { @class = "search-box", @method = "GET", @action = "error.html" })
-                                                                    
-                                    <input type = "search" placeholder = "Enter Keyword" name = "sTuKhoa" required = "required" autofocus = "" >
 
-                                    <button type = "submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
+                                    <input type="search" placeholder="Enter Keyword" name="sTuKhoa" required="required" autofocus="">
 
-                                 }
+                                    <button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
+
+                                }
                             </div>
                             <a class="close" href="#close">×</a>
                         </div>
                         <!-- /search popup -->
                     </div>
-                    @if (Session["userName"] == null)
+                    @*@if (Session["userName"] == null)
                     {
-                        @Html.ActionLink("Giỏ hàng", "login", "Home",null, new { @class = "btn btn-style btn-primary" })
+                        @Html.ActionLink("Giỏ hàng", "login", "Home", null, new { @class = "btn btn-style btn-primary" })
                     }
                     else
-                    {
+                    {*@
                         @Html.Action("XemGioHangPartial", "Cart")
-                    }
+                    @*}*@
 
                     @*<div class="top-quote mr-lg-3 mt-lg-0">
                                                 <a href="~/Home/login" class="btn btn-style btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
@@ -153,7 +153,73 @@ Author URL: http://w3layouts.com
     </header>
     <!--/header-->
     <!-- main-slider -->
+
+
     @RenderBody()
+    <div class="container">
+        
+        <div class="row justify-content-center">
+
+            <div class="col-md-6 col-lg-4" style=" background-image: url(../../images/login.jpg);" id="popup_login">
+                <div class="login-wrap p-0">
+                    <div class="form-group" style="width:10%; float:right; padding-bottom:5px;" id="close">
+                        <input type="submit" class="form-control btn btn-primary submit px-3" value="x" />
+                    </div>
+                    <h3 class="mb-4 text-center">Login</h3>
+                    @using (Ajax.BeginForm("DangNhap", "Home", new AjaxOptions { InsertionMode =InsertionMode.Replace,
+                    UpdateTargetId = "ThongBao"}))
+                    {
+                       
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="txtUserName" placeholder="Tài khoản" required>
+
+                            @*@Html.TextBoxFor(model => model.userName, new { @class = "form-control", @placeholder = "Username", @required = "required", @name = "txtUserName" })*@
+
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Mật khẩu" required>
+                            <span toggle="#password-field"></span>
+                            @*@Html.PasswordFor(model => model.passWord, new { @class = "form-control", @name = "txtPassWord", @placeholder = "PassWord", @id = "password-field", @required = "required" })
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Đăng nhập</button>
+                        </div>
+                        <h4 id="ThongBao" style="color:red;"></h4>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">
+
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="~/Home/ForGotPassWord" style="color: #666;">Quên mật khẩu?</a>
+                            </div>
+                        </div>
+                    }
+                    <p class="w-100 text-center">&mdash; Hoặc &mdash;</p>
+                    <div class="form-group" style="width:70%; margin:auto; padding-bottom:5px;">
+                        <a href="~/Home/Add_Account" class="form-control btn btn-primary submit px-3">Đăng kí</a>
+                    </div>
+                    @*<div class="social d-flex text-center" style="width: 100%;height: 50px;text-align: center;">
+                            <a href="~/Home/Add_Account" class="px-2 py-2 mr-md-1 rounded">Create New Account</a>
+
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #popup_login {
+            position: fixed;
+            top: 100px;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 99;
+            display: none;
+        }
+    </style>
     <section class="w3l-footer-29-main">
         <div class="footer-29 py-5">
             <div class="container py-lg-4 py-sm-3">
@@ -230,7 +296,7 @@ Author URL: http://w3layouts.com
     </section>
 
     <!-- Template JavaScript -->
-    
+
     <script src="~/Content/js/jquery-3.3.1.min.js"></script>
 
     <script src="~/Content/js/theme-change.js"></script>
@@ -422,7 +488,16 @@ Author URL: http://w3layouts.com
         });
     </script>
     <!--//MENU-JS-->
+    <script>
+        $('#btnDangNhap').on('click', function () {
+            $('#popup_login').show();
+        });
 
+        $('#close').click(AnForm);
+        function AnForm() {
+            $('#popup_login').hide();
+        }
+    </script>
     <script src="~/Content/js/bootstrap.min.js"></script>
     @RenderSection("jsFooter", required: false)
 </body>

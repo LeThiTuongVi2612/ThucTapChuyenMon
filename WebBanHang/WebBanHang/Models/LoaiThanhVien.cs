@@ -12,27 +12,22 @@ namespace WebBanHang.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class LoaiThanhVien
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public LoaiThanhVien()
         {
-            this.Customer = new HashSet<Customer>();
+            this.LoaiTV_Quyen = new HashSet<LoaiTV_Quyen>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int userID { get; set; }
-        public string userName { get; set; }
-        public string passWord { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public Nullable<int> role { get; set; }
-        public string email { get; set; }
-        public string UserPic { get; set; }
-        public string HoTen { get; set; }
-        public Nullable<int> MaLoaiTV { get; set; }
+        public int MaLoaiTV { get; set; }
+        public string TenLoaiTV { get; set; }
+        public Nullable<decimal> UuDai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customer { get; set; }
-        public virtual LoaiThanhVien LoaiThanhVien { get; set; }
+        public virtual ICollection<LoaiTV_Quyen> LoaiTV_Quyen { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

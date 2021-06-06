@@ -59,13 +59,29 @@
           <Property Name="Status" Type="bit" />
           <Property Name="NgayCapNhat" Type="date" />
         </EntityType>
+        <EntityType Name="LoaiTV_Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+            <PropertyRef Name="MaLoaiTV" />
+          </Key>
+          <Property Name="MaQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaLoaiTV" Type="int" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LoaiThanhVien">
+          <Key>
+            <PropertyRef Name="MaLoaiTV" />
+          </Key>
+          <Property Name="MaLoaiTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiTV" Type="nvarchar(max)" />
+          <Property Name="UuDai" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerID" Type="int" />
-          <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" />
           <Property Name="NgayDat" Type="datetime" />
           <Property Name="TinhTrangGiaoHang" Type="bit" />
           <Property Name="NgayGiao" Type="datetime" />
@@ -97,6 +113,13 @@
           <Property Name="CompanyID" Type="int" />
           <Property Name="NgayNhap" Type="datetime" />
           <Property Name="DaXoa" Type="bit" />
+        </EntityType>
+        <EntityType Name="Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenQuyen" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -135,6 +158,8 @@
           <Property Name="role" Type="int" />
           <Property Name="email" Type="nvarchar(max)" />
           <Property Name="UserPic" Type="nvarchar(max)" />
+          <Property Name="HoTen" Type="nvarchar(max)" />
+          <Property Name="MaLoaiTV" Type="int" />
         </EntityType>
         <Association Name="FK_Cart_Product1">
           <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
@@ -183,6 +208,30 @@
             </Principal>
             <Dependent Role="ChiTietDonDangHang">
               <PropertyRef Name="MaPN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiTV_Quyen_LoaiThanhVien">
+          <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="1" />
+          <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThanhVien">
+              <PropertyRef Name="MaLoaiTV" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaLoaiTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiTV_Quyen_Quyen">
+          <End Role="Quyen" Type="Self.Quyen" Multiplicity="1" />
+          <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaQuyen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,15 +311,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_LoaiThanhVien">
+          <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThanhVien">
+              <PropertyRef Name="MaLoaiTV" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="MaLoaiTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QuanLyBanHangOnlModelStoreContainer">
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonDangHang" EntityType="Self.ChiTietDonDangHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupProduct" EntityType="Self.GroupProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiTV_Quyen" EntityType="Self.LoaiTV_Quyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiThanhVien" EntityType="Self.LoaiThanhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuNhapHang" EntityType="Self.PhieuNhapHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quyen" EntityType="Self.Quyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -289,6 +353,14 @@
           <AssociationSet Name="FK_ChiTietDonDangHang_PhieuNhapHang" Association="Self.FK_ChiTietDonDangHang_PhieuNhapHang">
             <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
             <End Role="ChiTietDonDangHang" EntitySet="ChiTietDonDangHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_LoaiThanhVien" Association="Self.FK_LoaiTV_Quyen_LoaiThanhVien">
+            <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_Quyen" Association="Self.FK_LoaiTV_Quyen_Quyen">
+            <End Role="Quyen" EntitySet="Quyen" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -314,6 +386,10 @@
             <End Role="Company" EntitySet="Company" />
             <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_LoaiThanhVien" Association="Self.FK_Users_LoaiThanhVien">
+            <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -325,9 +401,12 @@
           <EntitySet Name="Customer" EntityType="QuanLyBanHangOnlModel.Customer" />
           <EntitySet Name="ChiTietDonDangHang" EntityType="QuanLyBanHangOnlModel.ChiTietDonDangHang" />
           <EntitySet Name="GroupProduct" EntityType="QuanLyBanHangOnlModel.GroupProduct" />
+          <EntitySet Name="LoaiTV_Quyen" EntityType="QuanLyBanHangOnlModel.LoaiTV_Quyen" />
+          <EntitySet Name="LoaiThanhVien" EntityType="QuanLyBanHangOnlModel.LoaiThanhVien" />
           <EntitySet Name="Order" EntityType="QuanLyBanHangOnlModel.Order" />
           <EntitySet Name="OrderDetail" EntityType="QuanLyBanHangOnlModel.OrderDetail" />
           <EntitySet Name="PhieuNhapHang" EntityType="QuanLyBanHangOnlModel.PhieuNhapHang" />
+          <EntitySet Name="Quyen" EntityType="QuanLyBanHangOnlModel.Quyen" />
           <EntitySet Name="SanPham" EntityType="QuanLyBanHangOnlModel.SanPham" />
           <EntitySet Name="sysdiagrams" EntityType="QuanLyBanHangOnlModel.sysdiagrams" />
           <EntitySet Name="Users" EntityType="QuanLyBanHangOnlModel.Users" />
@@ -362,6 +441,18 @@
           <AssociationSet Name="FK_Product_GroupProduct1" Association="QuanLyBanHangOnlModel.FK_Product_GroupProduct1">
             <End Role="GroupProduct" EntitySet="GroupProduct" />
             <End Role="SanPham" EntitySet="SanPham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_LoaiThanhVien" Association="QuanLyBanHangOnlModel.FK_LoaiTV_Quyen_LoaiThanhVien">
+            <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LoaiTV_Quyen_Quyen" Association="QuanLyBanHangOnlModel.FK_LoaiTV_Quyen_Quyen">
+            <End Role="Quyen" EntitySet="Quyen" />
+            <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_LoaiThanhVien" Association="QuanLyBanHangOnlModel.FK_Users_LoaiThanhVien">
+            <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetail_Order" Association="QuanLyBanHangOnlModel.FK_OrderDetail_Order">
             <End Role="Order" EntitySet="Order" />
@@ -434,13 +525,33 @@
           <Property Name="NgayCapNhat" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="GroupProduct" ToRole="SanPham" />
         </EntityType>
+        <EntityType Name="LoaiTV_Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+            <PropertyRef Name="MaLoaiTV" />
+          </Key>
+          <Property Name="MaQuyen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoaiTV" Type="Int32" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiThanhVien" Relationship="QuanLyBanHangOnlModel.FK_LoaiTV_Quyen_LoaiThanhVien" FromRole="LoaiTV_Quyen" ToRole="LoaiThanhVien" />
+          <NavigationProperty Name="Quyen" Relationship="QuanLyBanHangOnlModel.FK_LoaiTV_Quyen_Quyen" FromRole="LoaiTV_Quyen" ToRole="Quyen" />
+        </EntityType>
+        <EntityType Name="LoaiThanhVien">
+          <Key>
+            <PropertyRef Name="MaLoaiTV" />
+          </Key>
+          <Property Name="MaLoaiTV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiTV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UuDai" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="LoaiTV_Quyen" Relationship="QuanLyBanHangOnlModel.FK_LoaiTV_Quyen_LoaiThanhVien" FromRole="LoaiThanhVien" ToRole="LoaiTV_Quyen" />
+          <NavigationProperty Name="Users" Relationship="QuanLyBanHangOnlModel.FK_Users_LoaiThanhVien" FromRole="LoaiThanhVien" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerID" Type="Int32" />
-          <Property Name="TongTien" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="NgayDat" Type="DateTime" Precision="3" />
           <Property Name="TinhTrangGiaoHang" Type="Boolean" />
           <Property Name="NgayGiao" Type="DateTime" Precision="3" />
@@ -478,6 +589,14 @@
           <Property Name="DaXoa" Type="Boolean" />
           <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_PhieuNhapHang_Company" FromRole="PhieuNhapHang" ToRole="Company" />
           <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_PhieuNhapHang" FromRole="PhieuNhapHang" ToRole="ChiTietDonDangHang" />
+        </EntityType>
+        <EntityType Name="Quyen">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaQuyen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenQuyen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoaiTV_Quyen" Relationship="QuanLyBanHangOnlModel.FK_LoaiTV_Quyen_Quyen" FromRole="Quyen" ToRole="LoaiTV_Quyen" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -521,7 +640,10 @@
           <Property Name="role" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoaiTV" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Users" ToRole="Customer" />
+          <NavigationProperty Name="LoaiThanhVien" Relationship="QuanLyBanHangOnlModel.FK_Users_LoaiThanhVien" FromRole="Users" ToRole="LoaiThanhVien" />
         </EntityType>
         <Association Name="FK_Cart_Product1">
           <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="0..1">
@@ -623,6 +745,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LoaiTV_Quyen_LoaiThanhVien">
+          <End Type="QuanLyBanHangOnlModel.LoaiThanhVien" Role="LoaiThanhVien" Multiplicity="1" />
+          <End Type="QuanLyBanHangOnlModel.LoaiTV_Quyen" Role="LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThanhVien">
+              <PropertyRef Name="MaLoaiTV" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaLoaiTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LoaiTV_Quyen_Quyen">
+          <End Type="QuanLyBanHangOnlModel.Quyen" Role="Quyen" Multiplicity="1" />
+          <End Type="QuanLyBanHangOnlModel.LoaiTV_Quyen" Role="LoaiTV_Quyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Principal>
+            <Dependent Role="LoaiTV_Quyen">
+              <PropertyRef Name="MaQuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_LoaiThanhVien">
+          <End Type="QuanLyBanHangOnlModel.LoaiThanhVien" Role="LoaiThanhVien" Multiplicity="0..1" />
+          <End Type="QuanLyBanHangOnlModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThanhVien">
+              <PropertyRef Name="MaLoaiTV" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="MaLoaiTV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderDetail_Order">
           <End Type="QuanLyBanHangOnlModel.Order" Role="Order" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -714,6 +872,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="LoaiTV_Quyen">
+            <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.LoaiTV_Quyen">
+              <MappingFragment StoreEntitySet="LoaiTV_Quyen">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+                <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiThanhVien">
+            <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.LoaiThanhVien">
+              <MappingFragment StoreEntitySet="LoaiThanhVien">
+                <ScalarProperty Name="UuDai" ColumnName="UuDai" />
+                <ScalarProperty Name="TenLoaiTV" ColumnName="TenLoaiTV" />
+                <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Order">
               <MappingFragment StoreEntitySet="Order">
@@ -728,7 +904,6 @@
                 <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
                 <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
                 <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
-                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
@@ -753,6 +928,14 @@
                 <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="MaPN" ColumnName="MaPN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quyen">
+            <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Quyen">
+              <MappingFragment StoreEntitySet="Quyen">
+                <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+                <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -786,6 +969,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="UserPic" ColumnName="UserPic" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="role" ColumnName="role" />

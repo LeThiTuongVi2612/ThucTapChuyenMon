@@ -54,13 +54,29 @@
     <Property Name="Status" Type="bit" />
     <Property Name="NgayCapNhat" Type="date" />
   </EntityType>
+  <EntityType Name="LoaiTV_Quyen">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+      <PropertyRef Name="MaLoaiTV" />
+    </Key>
+    <Property Name="MaQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MaLoaiTV" Type="int" Nullable="false" />
+    <Property Name="GhiChu" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LoaiThanhVien">
+    <Key>
+      <PropertyRef Name="MaLoaiTV" />
+    </Key>
+    <Property Name="MaLoaiTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiTV" Type="nvarchar(max)" />
+    <Property Name="UuDai" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
   <EntityType Name="Order">
     <Key>
       <PropertyRef Name="OrderID" />
     </Key>
     <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CustomerID" Type="int" />
-    <Property Name="TongTien" Type="decimal" Precision="18" Scale="0" />
     <Property Name="NgayDat" Type="datetime" />
     <Property Name="TinhTrangGiaoHang" Type="bit" />
     <Property Name="NgayGiao" Type="datetime" />
@@ -92,6 +108,13 @@
     <Property Name="CompanyID" Type="int" />
     <Property Name="NgayNhap" Type="datetime" />
     <Property Name="DaXoa" Type="bit" />
+  </EntityType>
+  <EntityType Name="Quyen">
+    <Key>
+      <PropertyRef Name="MaQuyen" />
+    </Key>
+    <Property Name="MaQuyen" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenQuyen" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="SanPham">
     <Key>
@@ -130,6 +153,8 @@
     <Property Name="role" Type="int" />
     <Property Name="email" Type="nvarchar(max)" />
     <Property Name="UserPic" Type="nvarchar(max)" />
+    <Property Name="HoTen" Type="nvarchar(max)" />
+    <Property Name="MaLoaiTV" Type="int" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
     <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
@@ -178,6 +203,30 @@
       </Principal>
       <Dependent Role="ChiTietDonDangHang">
         <PropertyRef Name="MaPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoaiTV_Quyen_LoaiThanhVien">
+    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="1" />
+    <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThanhVien">
+        <PropertyRef Name="MaLoaiTV" />
+      </Principal>
+      <Dependent Role="LoaiTV_Quyen">
+        <PropertyRef Name="MaLoaiTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoaiTV_Quyen_Quyen">
+    <End Role="Quyen" Type="Self.Quyen" Multiplicity="1" />
+    <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quyen">
+        <PropertyRef Name="MaQuyen" />
+      </Principal>
+      <Dependent Role="LoaiTV_Quyen">
+        <PropertyRef Name="MaQuyen" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -257,15 +306,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Users_LoaiThanhVien">
+    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThanhVien">
+        <PropertyRef Name="MaLoaiTV" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="MaLoaiTV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QuanLyBanHangOnlModelStoreContainer">
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietDonDangHang" EntityType="Self.ChiTietDonDangHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GroupProduct" EntityType="Self.GroupProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiTV_Quyen" EntityType="Self.LoaiTV_Quyen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiThanhVien" EntityType="Self.LoaiThanhVien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhieuNhapHang" EntityType="Self.PhieuNhapHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quyen" EntityType="Self.Quyen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -284,6 +348,14 @@
     <AssociationSet Name="FK_ChiTietDonDangHang_PhieuNhapHang" Association="Self.FK_ChiTietDonDangHang_PhieuNhapHang">
       <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
       <End Role="ChiTietDonDangHang" EntitySet="ChiTietDonDangHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoaiTV_Quyen_LoaiThanhVien" Association="Self.FK_LoaiTV_Quyen_LoaiThanhVien">
+      <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+      <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoaiTV_Quyen_Quyen" Association="Self.FK_LoaiTV_Quyen_Quyen">
+      <End Role="Quyen" EntitySet="Quyen" />
+      <End Role="LoaiTV_Quyen" EntitySet="LoaiTV_Quyen" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
       <End Role="Customer" EntitySet="Customer" />
@@ -308,6 +380,10 @@
     <AssociationSet Name="FK_PhieuNhapHang_Company" Association="Self.FK_PhieuNhapHang_Company">
       <End Role="Company" EntitySet="Company" />
       <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_LoaiThanhVien" Association="Self.FK_Users_LoaiThanhVien">
+      <End Role="LoaiThanhVien" EntitySet="LoaiThanhVien" />
+      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

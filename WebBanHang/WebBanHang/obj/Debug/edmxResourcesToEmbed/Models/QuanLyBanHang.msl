@@ -60,6 +60,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LoaiTV_Quyen">
+      <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.LoaiTV_Quyen">
+        <MappingFragment StoreEntitySet="LoaiTV_Quyen">
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+          <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoaiThanhVien">
+      <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.LoaiThanhVien">
+        <MappingFragment StoreEntitySet="LoaiThanhVien">
+          <ScalarProperty Name="UuDai" ColumnName="UuDai" />
+          <ScalarProperty Name="TenLoaiTV" ColumnName="TenLoaiTV" />
+          <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Order">
         <MappingFragment StoreEntitySet="Order">
@@ -74,7 +92,6 @@
           <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
           <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
           <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
-          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
         </MappingFragment>
@@ -99,6 +116,14 @@
           <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
           <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
           <ScalarProperty Name="MaPN" ColumnName="MaPN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quyen">
+      <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Quyen">
+        <MappingFragment StoreEntitySet="Quyen">
+          <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+          <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +157,8 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
           <ScalarProperty Name="UserPic" ColumnName="UserPic" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="role" ColumnName="role" />

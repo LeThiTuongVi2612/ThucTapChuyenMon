@@ -12,6 +12,15 @@
                 return false;
             }
         });
+
+        $('#btnDangNhap').on('click', function () {
+            $('#popup_login').show();
+        });
+
+        $('#close').click(AnForm);
+        function AnForm() {
+            $('#popup_login').hide();
+        }
     }
 
 }

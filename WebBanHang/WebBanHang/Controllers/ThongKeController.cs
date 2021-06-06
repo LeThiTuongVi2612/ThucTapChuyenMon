@@ -23,15 +23,10 @@ namespace WebBanHang.Controllers
             ViewBag.NCC = ThongKeNCC();
             ViewBag.NguoiDung = ThongKeNguoiDung();
             ViewBag.PhieuNhap = ThongKeNhapHang();
+            ViewBag.NhoomSanPham = ThongKeNhomSP();
             return View();
         }
-        public ActionResult ThongKePartial()
-        {
-            ViewBag.TongDanhThu = ThongKeTongDT();
-            ViewBag.DonHang = ThongKeDonHang();
-            ViewBag.SanPhamTK = ThongKeSanPham();
-            return View();
-        }
+        
 
             public decimal ThongKeTongDT()
         {
@@ -63,6 +58,11 @@ namespace WebBanHang.Controllers
             return ncc;
         }
         public double ThongKeNguoiDung()
+        {
+            double nd = db.Users.Count();
+            return nd;
+        }
+        public double ThongKeNhomSP()
         {
             double nd = db.Users.Count();
             return nd;

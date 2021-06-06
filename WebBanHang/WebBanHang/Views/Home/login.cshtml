@@ -7,12 +7,16 @@
 
 <section class="ftco-section">
     <div class="container">
-
+        
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
                     <h3 class="mb-4 text-center">Login</h3>
-                    @using (Html.BeginForm("DangNhap", "Home"))
+                    @using (Ajax.BeginForm("DangNhap", "Home", new AjaxOptions
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "ThongBao"
+                    }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, null, new { @class = "signin-form" })
@@ -26,13 +30,13 @@
                             <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Password" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @*@Html.PasswordFor(model => model.passWord, new { @class = "form-control", @name = "txtPassWord", @placeholder = "PassWord", @id = "password-field", @required = "required" })
-                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
                         </div>
-                        
+
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
                         </div>
-
+                        <h4 id="ThongBao" style="color:red;"></h4>
                         <div class="form-group d-md-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary">

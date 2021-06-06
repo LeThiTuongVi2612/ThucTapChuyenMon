@@ -19,6 +19,10 @@
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, null, new { @class = "signin-form" })
                         <div class="form-group">
+                            @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control", @placeholder = "HoTen", @required = "required" })
+                            @Html.ValidationMessageFor(model => model.HoTen)
+                        </div>
+                        <div class="form-group">
                             @Html.TextBoxFor(model => model.userName, new { @class = "form-control", @placeholder = "Username", @required = "required" })
                             @Html.ValidationMessageFor(model => model.userName)
                         </div>

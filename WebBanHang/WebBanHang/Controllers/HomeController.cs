@@ -8,6 +8,7 @@ using CaptchaMvc.HtmlHelpers;
 using CaptchaMvc;
 
 using WebBanHang.code;
+using System.Web.Security;
 
 namespace WebBanHang.Controllers
 {
@@ -40,6 +41,10 @@ namespace WebBanHang.Controllers
         {
             return View();
         }
+        public ActionResult DN()
+        {
+            return View();
+        }
         //[HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult login(LoginModel login)
@@ -50,31 +55,58 @@ namespace WebBanHang.Controllers
         //        SessionHelper.SetSession(new UserSession() { userName = login.userName });
         //        return RedirectToAction("index", "Home");
         //    }
-            //else
-            //{
-            //    ModelState.AddModelError("", "Tên tài khoản hoặc mật khẩu không đúng!");
+        //else
+        //{
+        //    ModelState.AddModelError("", "Tên tài khoản hoặc mật khẩu không đúng!");
 
-            //}
-            //return View(login);
-    //}
-    [HttpPost]
+        //}
+        //return View(login);
+        //}
+        [HttpPost]
         public ActionResult DangNhap(FormCollection f)
         {
             string sUserName = f["txtUserName"].ToString();
             string sPassWord = f["txtPassWord"].ToString();
 
-            Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
-            if (user != null)
+            //Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
+            //if (user != null)
+            //{
+            //    Session["userName"] = user;
+            //    return RedirectToAction("index");
+            //} 
+            //return Content("Tài khoản hoặc mật khẩu không đúng");
+            Users tv = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
+            if(tv != null)
             {
-                Session["userName"] = user;
+                //Truy cập lấy ra tất cả các quyền của thành viên đó
+                var lstQuyen = db.LoaiTV_Quyen.Where(n => n.MaLoaiTV == tv.MaLoaiTV);
+                string Quyen = "";
+                foreach(var item in lstQuyen)
+                {
+                    Quyen += item.Quyen.TenQuyen + ",";
+                    //lấy quyền trong bảng chi tiết quyền và loại thành viên
+                }
+                Quyen = Quyen.Substring(0, Quyen.Length - 1);//cắt đi dấu phẩy cuối cùng của chuỗi
+                PhanQuyen(tv.userName.ToString(), Quyen);
                 return RedirectToAction("index", "Home");
             }
-            
-            
-            
-            
             return Content("Tài khoản hoặc mật khẩu không đúng");
         }
+
+        public void PhanQuyen(string TaiKhoan, string Quyen)
+        {
+            FormsAuthentication.Initialize();
+            var ticket = new FormsAuthenticationTicket(1,
+                TaiKhoan//users
+                , DateTime.Now//begin
+                , DateTime.Now.AddHours(1)//timeout
+                , false//remember
+                , Quyen, FormsAuthentication.FormsCookiePath);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+            if (ticket.IsPersistent) cookie.Expires = ticket.Expiration;
+            Response.Cookies.Add(cookie);
+        }
+
         [HttpGet]
         public ActionResult Add_Account()
         {
@@ -137,7 +169,13 @@ namespace WebBanHang.Controllers
         public ActionResult DangXuat()
         {
             Session["userName"] = null;
+            FormsAuthentication.SignOut();
             return RedirectToAction("index");
+        }
+
+        public ActionResult LoiPhanQuyen()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

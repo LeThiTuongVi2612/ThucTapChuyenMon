@@ -183,6 +183,12 @@
       <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemCart.cs" />
+    <Compile Include="Models\LoaiThanhVien.cs">
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoaiTV_Quyen.cs">
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Metadata\Company.cs" />
     <Compile Include="Models\Metadata\GroupProduct.cs" />
@@ -211,6 +217,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Quyen.cs">
+      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>QuanlyBanHang.tt</DependentUpon>
@@ -657,7 +666,8 @@
     <Content Include="Views\QuanLyDonHang\DaGiaoDaThanhToan.cshtml" />
     <Content Include="Views\QuanLyDonHang\DuyetDonHang.cshtml" />
     <Content Include="Views\ThongKe\Index.cshtml" />
-    <Content Include="Views\ThongKe\ThongKePartial.cshtml" />
+    <Content Include="Views\Home\DN.cshtml" />
+    <Content Include="Views\Home\LoiPhanQuyen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
