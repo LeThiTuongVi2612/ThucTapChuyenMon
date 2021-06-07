@@ -1,9 +1,9 @@
 # THỰC TẬP CHUYÊN MÔN NĂM HỌC 2020-2021
-Họ và tên:
+Họ và tên: Lê Thị Tường Vi - 59591071119
      
 * Lớp: Công nghệ thông tin-K59
 
-## Đề tài: 
+## Đề tài: Quản lý web bán hàng.
 Giảng viên: Thầy Nguyễn Lê Minh. 
 
 ## Phần 1: Công nghệ sử dụng:
