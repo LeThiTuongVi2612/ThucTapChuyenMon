@@ -29,10 +29,10 @@
     </Key>
     <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HoTen" Type="nvarchar(max)" />
-    <Property Name="Phone" Type="nchar" MaxLength="10" />
-    <Property Name="email" Type="nvarchar(max)" />
-    <Property Name="Address" Type="nvarchar(max)" />
     <Property Name="userID" Type="int" />
+    <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
+    <Property Name="DiaChi" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ChiTietDonDangHang">
     <Key>
@@ -83,11 +83,7 @@
     <Property Name="DaThanhToan" Type="bit" />
     <Property Name="DaHuy" Type="bit" />
     <Property Name="DaXoa" Type="bit" />
-    <Property Name="UuDai" Type="int" />
-    <Property Name="HoTen" Type="nvarchar(max)" />
-    <Property Name="DiaChi" Type="nvarchar(max)" />
-    <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
-    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Daduyet" Type="bit" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>

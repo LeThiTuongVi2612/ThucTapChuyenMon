@@ -88,6 +88,7 @@ namespace WebBanHang.Controllers
                 }
                 Quyen = Quyen.Substring(0, Quyen.Length - 1);//cắt đi dấu phẩy cuối cùng của chuỗi
                 PhanQuyen(tv.userName.ToString(), Quyen);
+                Session["userName"] = tv;
                 return RedirectToAction("index", "Home");
             }
             return Content("Tài khoản hoặc mật khẩu không đúng");
@@ -121,7 +122,8 @@ namespace WebBanHang.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.ThongBao = "Thêm thành công";
-
+                    
+                    user.MaLoaiTV = 3;
                     db.Users.Add(user);
                     db.SaveChanges();
                     

@@ -205,12 +205,11 @@ namespace WebBanHang.Controllers
             }
             else if (Session["userName"] != null)
             {
+
                 //Với khách hàng là thành viên
                 Users user = Session["userName"] as Users;
+                khach = kh;
                 khach.HoTen = users.HoTen;
-                khach.Address = users.Address;
-                khach.email = users.email;
-                khach.Phone = users.Phone;
                 khach.userID = users.userID;
                 db.Customer.Add(khach);
                 db.SaveChanges();
@@ -223,7 +222,7 @@ namespace WebBanHang.Controllers
             ddh.NgayDat = DateTime.Now;
             ddh.TinhTrangGiaoHang = false;
             ddh.DaThanhToan = false;
-            ddh.UuDai = 0;
+            ddh.Daduyet = false;
             ddh.DaHuy = false;
             ddh.DaXoa = false;
             

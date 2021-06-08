@@ -60,16 +60,13 @@ else
     using (Html.BeginForm("DatHang", "Cart"))
     {
 
-        @*<div>
+        <div>
                 <table style="color:white;">
                     <tr>
                         <td colspan="2" style="text-align:center;">Thông tin khách hàng</td>
 
                     </tr>
-                    <tr>
-                        <td>Họ tên:</td>
-                        <td>@Html.TextBox("HoTen")</td>
-                    </tr>
+                    
                     <tr>
                         <td>Số điện thoại:</td>
                         <td>@Html.TextBox("SoDienThoai")</td>
@@ -79,12 +76,12 @@ else
                         <td>@Html.TextBox("DiaChi")</td>
                     </tr>
                     <tr>
-                        <td>Họ tên:</td>
+                        <td>Email:</td>
                         <td>@Html.TextBox("Email")</td>
                     </tr>
 
                 </table>
-            </div>*@
+            </div>
         <div class="divDatHang" style="text-align: right; margin-right:50px; margin-bottom:10px;">
             <input type="submit" value="Đặt hàng"  id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
             @Html.ActionLink("Mua tiếp", "index", "Home")

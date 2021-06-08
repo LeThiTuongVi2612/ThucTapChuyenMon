@@ -5,20 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b684a0fefaa24ca384cc059c6c9d237a" Name="Diagram1">
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Cart" Width="1.5" PointX="5.25" PointY="9.375" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Cart" Width="1.5" PointX="5.25" PointY="12.5" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Company" Width="1.5" PointX="0.75" PointY="6.125" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Customer" Width="1.5" PointX="0.75" PointY="15.125" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.ChiTietDonDangHang" Width="1.5" PointX="8.25" PointY="8.125" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.GroupProduct" Width="1.5" PointX="0.75" PointY="2.25" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.LoaiTV_Quyen" Width="1.5" PointX="3.75" PointY="24.375" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.LoaiThanhVien" Width="1.5" PointX="1.5" PointY="24.375" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Order" Width="1.5" PointX="3" PointY="14.375" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.LoaiTV_Quyen" Width="1.5" PointX="3.75" PointY="23.375" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.LoaiThanhVien" Width="1.5" PointX="1.5" PointY="23.375" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Order" Width="1.5" PointX="3" PointY="14.75" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.OrderDetail" Width="1.5" PointX="5.25" PointY="6.125" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.PhieuNhapHang" Width="1.5" PointX="3" PointY="11" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Quyen" Width="1.5" PointX="1.5" PointY="27.625" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Quyen" Width="1.5" PointX="1.5" PointY="26.625" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.SanPham" Width="1.5" PointX="3" PointY="5.375" />
         <EntityTypeShape EntityType="QuanLyBanHangOnlModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Users" Width="1.5" PointX="1.5" PointY="19.75" />
+        <EntityTypeShape EntityType="QuanLyBanHangOnlModel.Users" Width="1.5" PointX="1.5" PointY="18.75" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Cart_Product1" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_Product_Company1" />
         <AssociationConnector Association="QuanLyBanHangOnlModel.FK_PhieuNhapHang_Company" />

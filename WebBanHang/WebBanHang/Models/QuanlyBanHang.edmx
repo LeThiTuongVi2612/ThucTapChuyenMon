@@ -34,10 +34,10 @@
           </Key>
           <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nchar" MaxLength="10" />
-          <Property Name="email" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="userID" Type="int" />
+          <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ChiTietDonDangHang">
           <Key>
@@ -88,11 +88,7 @@
           <Property Name="DaThanhToan" Type="bit" />
           <Property Name="DaHuy" Type="bit" />
           <Property Name="DaXoa" Type="bit" />
-          <Property Name="UuDai" Type="int" />
-          <Property Name="HoTen" Type="nvarchar(max)" />
-          <Property Name="DiaChi" Type="nvarchar(max)" />
-          <Property Name="SoDienThoai" Type="nchar" MaxLength="10" />
-          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Daduyet" Type="bit" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -495,10 +491,10 @@
           </Key>
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="userID" Type="Int32" />
+          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Customer" ToRole="Users" />
           <NavigationProperty Name="Order" Relationship="QuanLyBanHangOnlModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
         </EntityType>
@@ -558,11 +554,7 @@
           <Property Name="DaThanhToan" Type="Boolean" />
           <Property Name="DaHuy" Type="Boolean" />
           <Property Name="DaXoa" Type="Boolean" />
-          <Property Name="UuDai" Type="Int32" />
-          <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Daduyet" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="OrderDetail" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
         </EntityType>
@@ -841,10 +833,10 @@
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
                 <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
@@ -893,11 +885,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="UuDai" ColumnName="UuDai" />
+                <ScalarProperty Name="Daduyet" ColumnName="Daduyet" />
                 <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
                 <ScalarProperty Name="DaHuy" ColumnName="DaHuy" />
                 <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />

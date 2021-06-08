@@ -100,10 +100,10 @@
     </Key>
     <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="userID" Type="Int32" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Users" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Customer" ToRole="Users" />
     <NavigationProperty Name="Order" Relationship="QuanLyBanHangOnlModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
   </EntityType>
@@ -163,11 +163,7 @@
     <Property Name="DaThanhToan" Type="Boolean" />
     <Property Name="DaHuy" Type="Boolean" />
     <Property Name="DaXoa" Type="Boolean" />
-    <Property Name="UuDai" Type="Int32" />
-    <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Daduyet" Type="Boolean" />
     <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
     <NavigationProperty Name="OrderDetail" Relationship="QuanLyBanHangOnlModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
   </EntityType>

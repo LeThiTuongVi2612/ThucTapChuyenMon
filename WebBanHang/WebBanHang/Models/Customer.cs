@@ -22,10 +22,10 @@ namespace WebBanHang.Models
     
         public int CustomerID { get; set; }
         public string HoTen { get; set; }
-        public string Phone { get; set; }
-        public string email { get; set; }
-        public string Address { get; set; }
         public Nullable<int> userID { get; set; }
+        public string SoDienThoai { get; set; }
+        public string DiaChi { get; set; }
+        public string Email { get; set; }
     
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

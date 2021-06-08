@@ -29,10 +29,10 @@
     <EntitySetMapping Name="Customer">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Customer">
         <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
           <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="HoTen" ColumnName="HoTen" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
         </MappingFragment>
@@ -81,11 +81,7 @@
     <EntitySetMapping Name="Order">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="UuDai" ColumnName="UuDai" />
+          <ScalarProperty Name="Daduyet" ColumnName="Daduyet" />
           <ScalarProperty Name="DaXoa" ColumnName="DaXoa" />
           <ScalarProperty Name="DaHuy" ColumnName="DaHuy" />
           <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />

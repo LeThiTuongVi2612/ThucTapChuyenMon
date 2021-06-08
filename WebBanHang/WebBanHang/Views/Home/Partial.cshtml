@@ -13,14 +13,14 @@
                     <div class="float-lt feature-gd">
                         <h3><a href="#url">@item.ProductName</a> </h3>
                         <p> Price: @item.Price VND</p>
-                        @*@if (Session["userName"] == null)
+                        @if (Session["userName"] == null)
                         {
                             @Html.ActionLink("Mua ngay", "login", "Home", new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
                         }
                         else
-                        {*@
+                        {
                             <a href="@Url.Action("ThemGioHang","Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString() })" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
-                        @*}*@
+                        }
 
                     </div>
                 </div>

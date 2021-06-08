@@ -109,14 +109,14 @@ Author URL: http://w3layouts.com
                         </div>
                         <!-- /search popup -->
                     </div>
-                    @*@if (Session["userName"] == null)
+                    @if (Session["userName"] == null)
                     {
                         @Html.ActionLink("Giỏ hàng", "login", "Home", null, new { @class = "btn btn-style btn-primary" })
                     }
                     else
-                    {*@
+                    {
                         @Html.Action("XemGioHangPartial", "Cart")
-                    @*}*@
+                    }
 
                     @*<div class="top-quote mr-lg-3 mt-lg-0">
                                                 <a href="~/Home/login" class="btn btn-style btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
