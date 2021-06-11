@@ -1,6 +1,13 @@
 ﻿@using WebBanHang.Models;
 @model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ajaxFooter{
 
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
 <section class="w3l-about-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container py-lg-4 py-md-3">
@@ -23,7 +30,10 @@
                             <div class="float-lt feature-gd">
                                 <h3><a href="#url">@item.ProductName</a> </h3>
                                 <p> Price: @item.Price VND</p>
-                                <a href="@Url.Action("ThemGioHang","Cart", new { @productID = item.ProductID, @strURl = Request.Url.ToString() })" class="btn btn-style btn-primary mt-md-5 mt-4">Buy Now</a>
+                                <div class="btn btn-style btn-primary mt-md-5 mt-4" style="background-color:aquamarine;">
+                                    @Ajax.ActionLink("Thêm giỏ hàng", "ThemGioHangAjax", "Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString(), @class = "btn btn-style btn-primary mt-md-5 mt-4" }, new AjaxOptions
+                              { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                                </div>
                             </div>
                         </div>
                     }

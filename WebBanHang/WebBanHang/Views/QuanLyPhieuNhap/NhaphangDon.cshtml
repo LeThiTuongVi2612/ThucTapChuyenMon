@@ -4,7 +4,26 @@
     ViewBag.Title = "NhaphangDon";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
+@*@section jsFooter{
+    <script src="~/Content/js/controller/cartController.js"></script>
+}*@
 
+<script>
+    $('#btnOK').on('click', function () {
+        //duyệt vòng lập each
+
+        var giatri = $('.TB_SL').val();
+        if (isNaN(giatri) == true || giatri < 0) {
+            alert("Số lượng không hợp lệ!");
+            return false;
+        }
+        var giatri = $('.txtTB_DG').val();
+        if (isNaN(giatri) == true || giatri < 0) {
+            alert("Đơn giá không hợp lệ!");
+            return false;
+        }
+    });
+</script>
 <legend>Nhập hàng cho sản phẩm: <b style="color:red;">@Model.ProductName</b></legend>
 <div class="row">
     <div class="col-md-3">
@@ -47,12 +66,13 @@
                     @Html.DropDownList("CompanyID", lstNCC, new { @class = "CompanyID" })
                 </td>
                 <td>
-                    @Html.TextBox("SoLuongNhap")
-                    <span class="TB_SL"></span>
+                    @Html.TextBox("SoLuongNhap", null, new { @class = "TB_SL" })
+
+
                 </td>
                 <td>
-                    @Html.TextBox("DonGiaNhap")
-                    <span class="TB_DG"></span>
+                    @Html.TextBox("DonGiaNhap", null, new { @class = "txtTB_DG" })
+
                 </td>
             </tr>
         </table>
@@ -62,29 +82,6 @@
         <input type="submit" value="Đặt hàng" class="btn btn-success" id="btnOk">
     </div>
 }
-<script>
-    $("#btnOK").click(function () {
-        var bl = true;
-        //duyệt vòng lập each
-        $(".TB_SL").each(function () {
-            var giatri = $(this).val();
-            if (isNaN(giatri) == true || giatri < 0) {
-                alert("Số lượng không hợp lệ!");
-                bl = false;
-                return bl;
-            }
 
-        });
-        $(".txtTB_DG").each(function () {
-            var giatri = $(this).val();
-            if (isNaN(giatri) == true || giatri < 0) {
-                alert("Đơn giá không hợp lệ!");
-                bl = false;
-                return bl;
-            }
-
-        });
-        return bl;
-</script>
 
 

@@ -142,15 +142,13 @@
       <PropertyRef Name="userID" />
     </Key>
     <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="userName" Type="nvarchar(max)" />
     <Property Name="passWord" Type="nvarchar(max)" />
     <Property Name="Phone" Type="nchar" MaxLength="10" />
     <Property Name="Address" Type="nvarchar(max)" />
-    <Property Name="role" Type="int" />
     <Property Name="email" Type="nvarchar(max)" />
-    <Property Name="UserPic" Type="nvarchar(max)" />
     <Property Name="HoTen" Type="nvarchar(max)" />
     <Property Name="MaLoaiTV" Type="int" />
+    <Property Name="ResetPassWordCode" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
     <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
@@ -166,8 +164,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Customer_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+  <Association Name="FK_Customer_Users1">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -203,7 +203,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_LoaiTV_Quyen_LoaiThanhVien">
-    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="1" />
+    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="LoaiTV_Quyen" Type="Self.LoaiTV_Quyen" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LoaiThanhVien">
@@ -303,7 +305,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Users_LoaiThanhVien">
-    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1" />
+    <End Role="LoaiThanhVien" Type="Self.LoaiThanhVien" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Users" Type="Self.Users" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LoaiThanhVien">
@@ -333,7 +337,7 @@
       <End Role="SanPham" EntitySet="SanPham" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK_Customer_Users" Association="Self.FK_Customer_Users">
+    <AssociationSet Name="FK_Customer_Users1" Association="Self.FK_Customer_Users1">
       <End Role="Users" EntitySet="Users" />
       <End Role="Customer" EntitySet="Customer" />
     </AssociationSet>

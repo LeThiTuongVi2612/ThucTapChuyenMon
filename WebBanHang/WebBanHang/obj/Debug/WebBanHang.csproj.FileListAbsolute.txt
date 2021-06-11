@@ -159,7 +159,6 @@ C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.WebP
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Newtonsoft.Json.xml
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Antlr3.Runtime.pdb
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csprojAssemblyReference.cache
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CoreCompileInputs.cache
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csproj.CopyComplete
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
@@ -269,3 +268,4 @@ C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.dll
 C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\xunit.abstractions.dll
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\xunit.abstractions.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csprojAssemblyReference.cache

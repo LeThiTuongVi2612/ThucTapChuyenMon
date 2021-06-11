@@ -8,6 +8,7 @@ using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
 {
+    [Authorize(Roles = "Quản trị")]
     public class PhanQuyenController : Controller
     {
         QuanLyBanHang db = new QuanLyBanHang()

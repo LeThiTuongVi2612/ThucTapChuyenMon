@@ -153,15 +153,13 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="ResetPassWordCode" ColumnName="ResetPassWordCode" />
           <ScalarProperty Name="MaLoaiTV" ColumnName="MaLoaiTV" />
           <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="UserPic" ColumnName="UserPic" />
           <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="passWord" ColumnName="passWord" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="userID" ColumnName="userID" />
         </MappingFragment>
       </EntityTypeMapping>

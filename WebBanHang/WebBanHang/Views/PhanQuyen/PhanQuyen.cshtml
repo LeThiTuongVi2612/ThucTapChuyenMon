@@ -26,7 +26,7 @@
                     int k = 0;//tạo biến k làm biến đếm để duyệt vòng lập của bảng quyền
                     for (int j = 0; j < lstTV_Quyen.Count(); j++)
                     {
-                        if (lstQuyen.ElementAt(i).MaQuyen == lstQuyen.ElementAt(j).MaQuyen)
+                        if (lstQuyen.ElementAt(i).MaQuyen == lstTV_Quyen.ElementAt(j).MaQuyen)
                         {
                             k++;
                             break;
@@ -75,8 +75,6 @@
                 $(this).attr("name", "[" + i + "].MaQuyen");
                 i++;
             }
-            
-            
         })
     })
 </script>

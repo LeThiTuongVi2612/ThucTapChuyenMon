@@ -27,7 +27,7 @@
       <End Role="Company" EntitySet="Company" />
       <End Role="PhieuNhapHang" EntitySet="PhieuNhapHang" />
     </AssociationSet>
-    <AssociationSet Name="FK_Customer_Users" Association="QuanLyBanHangOnlModel.FK_Customer_Users">
+    <AssociationSet Name="FK_Customer_Users1" Association="QuanLyBanHangOnlModel.FK_Customer_Users1">
       <End Role="Users" EntitySet="Users" />
       <End Role="Customer" EntitySet="Customer" />
     </AssociationSet>
@@ -104,7 +104,7 @@
     <Property Name="SoDienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Users" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Customer" ToRole="Users" />
+    <NavigationProperty Name="Users" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users1" FromRole="Customer" ToRole="Users" />
     <NavigationProperty Name="Order" Relationship="QuanLyBanHangOnlModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
   </EntityType>
   <EntityType Name="ChiTietDonDangHang">
@@ -234,16 +234,14 @@
       <PropertyRef Name="userID" />
     </Key>
     <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="userName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="passWord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="role" Type="Int32" />
     <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UserPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="MaLoaiTV" Type="Int32" />
-    <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users" FromRole="Users" ToRole="Customer" />
+    <Property Name="ResetPassWordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users1" FromRole="Users" ToRole="Customer" />
     <NavigationProperty Name="LoaiThanhVien" Relationship="QuanLyBanHangOnlModel.FK_Users_LoaiThanhVien" FromRole="Users" ToRole="LoaiThanhVien" />
   </EntityType>
   <Association Name="FK_Cart_Product1">
@@ -284,8 +282,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Customer_Users">
-    <End Type="QuanLyBanHangOnlModel.Users" Role="Users" Multiplicity="0..1" />
+  <Association Name="FK_Customer_Users1">
+    <End Type="QuanLyBanHangOnlModel.Users" Role="Users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.Customer" Role="Customer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Users">
@@ -347,7 +347,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_LoaiTV_Quyen_LoaiThanhVien">
-    <End Type="QuanLyBanHangOnlModel.LoaiThanhVien" Role="LoaiThanhVien" Multiplicity="1" />
+    <End Type="QuanLyBanHangOnlModel.LoaiThanhVien" Role="LoaiThanhVien" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.LoaiTV_Quyen" Role="LoaiTV_Quyen" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LoaiThanhVien">
@@ -371,7 +373,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Users_LoaiThanhVien">
-    <End Type="QuanLyBanHangOnlModel.LoaiThanhVien" Role="LoaiThanhVien" Multiplicity="0..1" />
+    <End Type="QuanLyBanHangOnlModel.LoaiThanhVien" Role="LoaiThanhVien" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="QuanLyBanHangOnlModel.Users" Role="Users" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LoaiThanhVien">

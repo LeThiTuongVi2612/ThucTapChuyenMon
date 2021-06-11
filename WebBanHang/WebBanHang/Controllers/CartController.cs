@@ -209,6 +209,7 @@ namespace WebBanHang.Controllers
                 //Với khách hàng là thành viên
                 Users user = Session["userName"] as Users;
                 khach = kh;
+                khach.Email = user.email;
                 khach.HoTen = users.HoTen;
                 khach.userID = users.userID;
                 db.Customer.Add(khach);
@@ -245,9 +246,44 @@ namespace WebBanHang.Controllers
             Session["GioHang"] = null;
             return RedirectToAction("XemGioHang");
         }
-       public ActionResult ThongBaoGioHang()
+
+        public ActionResult ThemGioHangAjax(int productID, string strURL)
         {
-            return View();
+            //Kiểm tr ẩn phẩm có tồn tại trong CSDL hay không 
+            SanPham product = db.SanPham.SingleOrDefault(n => n.ProductID == productID);
+            if (product == null)
+            {
+                //trang đường dẫn không hợp lệ
+                Response.StatusCode = 404;
+                return null;
+            }
+            //lấy giỏ hàng
+            List<ItemCart> lsGioHang = LayGioHang();
+            //Trường hợp 1 nếu sản phẩm đã tồn tại trong giỏ hàng
+            ItemCart spCheck = lsGioHang.SingleOrDefault(n => n.productID == productID);
+            if (spCheck != null)
+            {
+                //Kiểm tra số lượng tồn trướ khi cho khách hàng mua
+                if (product.SoLuongTon < spCheck.soLuong)
+                {
+                    return Content("<script> alert(\"Sản phẩm hết hàng!\")</script>");
+                }
+                spCheck.soLuong++;
+                spCheck.thanhTien = spCheck.soLuong * spCheck.Gia;
+                ViewBag.TongSoLuong = TinhTongSoLuong();
+                ViewBag.TongTien = TinhTongtien();
+                return PartialView("XemGioHangPartial");
+            }
+            ItemCart itemGH = new ItemCart(productID);
+            if (product.SoLuongTon < itemGH.soLuong)
+            {
+                return Content("<script> alert(\"Sản phẩm hết hàng!\")</script>");
+            }
+            lsGioHang.Add(itemGH);
+
+            ViewBag.TongSoLuong = TinhTongSoLuong();
+            ViewBag.TongTien = TinhTongtien();
+            return PartialView("XemGioHangPartial");
         }
 
         protected override void Dispose(bool disposing)

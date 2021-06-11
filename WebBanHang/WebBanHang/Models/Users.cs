@@ -21,15 +21,13 @@ namespace WebBanHang.Models
         }
     
         public int userID { get; set; }
-        public string userName { get; set; }
         public string passWord { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public Nullable<int> role { get; set; }
         public string email { get; set; }
-        public string UserPic { get; set; }
         public string HoTen { get; set; }
         public Nullable<int> MaLoaiTV { get; set; }
+        public string ResetPassWordCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customer { get; set; }

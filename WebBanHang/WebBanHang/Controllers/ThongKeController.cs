@@ -7,6 +7,7 @@ using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
 {
+    [Authorize(Roles = "Quản trị, Thống kê")]
     public class ThongKeController : Controller
     {
         QuanLyBanHang db = new QuanLyBanHang();

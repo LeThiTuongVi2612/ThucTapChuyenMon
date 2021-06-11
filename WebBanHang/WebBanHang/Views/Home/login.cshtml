@@ -11,8 +11,8 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
-                    <h3 class="mb-4 text-center">Login</h3>
-                    @using (Ajax.BeginForm("DangNhap", "Home", new AjaxOptions
+                    <h3 class="mb-4 text-center">Đăng nhập</h3>
+                    @using (Ajax.BeginForm("login", "Home", new AjaxOptions
                     {
                         InsertionMode = InsertionMode.Replace,
                         UpdateTargetId = "ThongBao"
@@ -21,37 +21,30 @@
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, null, new { @class = "signin-form" })
                         <div class="form-group">
-                            <input type="text" class="form-control" name="txtUserName" placeholder="Username" required>
-
-                            @*@Html.TextBoxFor(model => model.userName, new { @class = "form-control", @placeholder = "Username", @required = "required", @name = "txtUserName" })*@
-
+                            <input type="text" class="form-control" name="txtUserName" placeholder="Email" required>
                         </div>
                         <div class="form-group">
                             <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Password" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                            @*@Html.PasswordFor(model => model.passWord, new { @class = "form-control", @name = "txtPassWord", @placeholder = "PassWord", @id = "password-field", @required = "required" })
-                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
                         </div>
-
                         <div class="form-group">
-                            <button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Đăng nhập</button>
                         </div>
                         <h4 id="ThongBao" style="color:red;"></h4>
                         <div class="form-group d-md-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary">
-                                    <a href="~/Home/index" style="color: #fff">Cancel</a>
+                                    <a href="~/Home/index" style="color: #fff">Thoát</a>
                                 </label>
                             </div>
                             <div class="w-50 text-md-right">
-                                <a href="~/Home/ForGotPassWord" style="color: #fff">Forgot Password</a>
+                                <a href="~/Home/ForGotPassWord" style="color: #fff">Quên mật khẩu?</a>
                             </div>
                         </div>
                     }
-                    <p class="w-100 text-center">&mdash; Or &mdash;</p>
+                    <p class="w-100 text-center">&mdash; Hoặc &mdash;</p>
                     <div class="social d-flex text-center">
-                        <a href="~/Home/Add_Account" class="px-2 py-2 mr-md-1 rounded">Create New Account</a>
-
+                        <a href="~/Home/Add_Account" class="px-2 py-2 mr-md-1 rounded">Đăng kí</a>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,9 @@ using CaptchaMvc;
 
 using WebBanHang.code;
 using System.Web.Security;
+using System.Net.Mail;
+using System.Web.Helpers;
+using System.Net;
 
 namespace WebBanHang.Controllers
 {
@@ -41,29 +44,9 @@ namespace WebBanHang.Controllers
         {
             return View();
         }
-        public ActionResult DN()
-        {
-            return View();
-        }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult login(LoginModel login)
-        //{
-        //    var result = new AccountModel().Login(login.userName, login.passWord);
-        //    if(result && ModelState.IsValid)
-        //    {
-        //        SessionHelper.SetSession(new UserSession() { userName = login.userName });
-        //        return RedirectToAction("index", "Home");
-        //    }
-        //else
-        //{
-        //    ModelState.AddModelError("", "Tên tài khoản hoặc mật khẩu không đúng!");
-
-        //}
-        //return View(login);
-        //}
+        
         [HttpPost]
-        public ActionResult DangNhap(FormCollection f)
+        public ActionResult login(FormCollection f)
         {
             string sUserName = f["txtUserName"].ToString();
             string sPassWord = f["txtPassWord"].ToString();
@@ -75,7 +58,7 @@ namespace WebBanHang.Controllers
             //    return RedirectToAction("index");
             //} 
             //return Content("Tài khoản hoặc mật khẩu không đúng");
-            Users tv = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
+            Users tv = db.Users.SingleOrDefault(n => n.email == sUserName && n.passWord == sPassWord);
             if(tv != null)
             {
                 //Truy cập lấy ra tất cả các quyền của thành viên đó
@@ -87,11 +70,11 @@ namespace WebBanHang.Controllers
                     //lấy quyền trong bảng chi tiết quyền và loại thành viên
                 }
                 Quyen = Quyen.Substring(0, Quyen.Length - 1);//cắt đi dấu phẩy cuối cùng của chuỗi
-                PhanQuyen(tv.userName.ToString(), Quyen);
+                PhanQuyen(tv.email.ToString(), Quyen);
                 Session["userName"] = tv;
                 return RedirectToAction("index", "Home");
             }
-            return Content("Tài khoản hoặc mật khẩu không đúng");
+            return Content("<script>alert(\"Tài khoản hoặc mật khẩu không đúng! Vui lòng load lại trang để đăng nhập!\")</script>");
         }
 
         public void PhanQuyen(string TaiKhoan, string Quyen)
@@ -137,15 +120,120 @@ namespace WebBanHang.Controllers
             ViewBag.ThongBao = "Sai mã captcha";
             return View();
         }
+        [HttpGet]
         public ActionResult ForGotPassWord()
         {
             return View();
         }
-        public ActionResult PassWord()
+        [HttpPost]
+        public ActionResult ForGotPassWord(string email)
         {
+            string message = "";
+            bool status = false;
+            var tv = db.Users.Where(n => n.email == email).FirstOrDefault();
+            if(tv != null)
+            {
+                string resetCode = Guid.NewGuid().ToString();
+                 SendLinkEmail(tv.email, resetCode, "PassWord");
+                tv.ResetPassWordCode = resetCode;
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                message = "Bạn vui lòng check mail ấn vào link để tiếp tục!!! ";
+            }
+            else
+            {
+                message = "Acount not found";
+            }
+            ViewBag.ms = message;
             return View();
         }
-        public ActionResult Cart()
+        [NonAction]
+        public void SendLinkEmail(string email, string actionvationCode, string EmailFor = "VerifyAccount")
+        {
+            string verifyUrl = "/Home/" + EmailFor + "/" + actionvationCode;
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
+            var FromEmail = new MailAddress("CoffeeCafe2600@gmail.com", "CoffeCafe");
+            var ToEmail = new MailAddress(email);
+            var FromEmailPass = "lethituongvi00";
+            string subject = "";
+            string body = "";
+            if (EmailFor == "VerifyAccount")
+            {
+                subject = "You account successfully created";
+                body = "<br/><br/> We are excited to tell you that your CoffeeCafe account is " +
+                    "successfully create. Please click on below link to verify your account " +
+                    "<br/><br/><a href =" + link + ">" + link + "</a>";
+            }
+            else if (EmailFor == "PassWord")
+            {
+                subject = "ResetPassword";
+                body = "Hi, <br/><br/>We got request for reset your account password. Please click on below link reset password!" +
+                    "<br/><br/>< a href =" + link +" >  Reset Password  </ a > ";
+            }
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials =false,
+                Credentials = new NetworkCredential(FromEmail.Address, FromEmailPass)
+            };
+            using (var message = new MailMessage(FromEmail, ToEmail)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+
+            })
+            smtp.Send(message);
+        }
+
+        
+
+        [HttpGet]
+        public ActionResult PassWord(string id)
+        {
+            var user = db.Users.Where(n => n.ResetPassWordCode == id).FirstOrDefault();
+            if(user != null)
+            {
+                ResetPasswordModel model = new ResetPasswordModel();
+                model.ResetCode = id;
+                return View(model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PassWord(ResetPasswordModel model)
+        {
+            var message = "";
+            if (ModelState.IsValid)
+            {
+               var user = db.Users.Where(n => n.ResetPassWordCode == model.ResetCode).FirstOrDefault();
+                if(user != null)
+                {
+                    
+                    user.passWord = model.NewPassWord;
+                    user.ResetPassWordCode = "";
+                    db.Configuration.ValidateOnSaveEnabled = false;
+                    db.SaveChanges();
+                    message = "Cập nhật password thành công";
+                }
+                
+            }
+            else
+            {
+                message = "Không hợp lệ";
+            }
+            ViewBag.Message = message;
+            return View(model);
+        }
+            public ActionResult Cart()
         {
             return View();
         }

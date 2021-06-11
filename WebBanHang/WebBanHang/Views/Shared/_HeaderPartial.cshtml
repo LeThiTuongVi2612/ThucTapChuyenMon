@@ -1,0 +1,123 @@
+﻿@section jsFooter{
+    <script src="~/Content/js/controller/cartController.js"></script>
+}
+<header id="site-header" class="fixed-top">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg stroke px-0 pt-lg-0">
+            <h1>
+                <a class="navbar-brand" href="~/Home/index">
+                    <span class="fa fa-coffee"></span> Coffee Cafe
+                </a>
+            </h1>
+            <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mx-lg-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Home/index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/OurCoffee">Our Coffee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/Contact">Contact</a>
+                    </li>
+                    @if (Session["userName"] != null && Session["userName"].ToString() != "")
+                    {
+                        @Html.ActionLink("Log out", "DangXuat", "Home", null, new { @class = "nav-link" })
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="btnDangNhap">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Home/Add_Account">Registration</a>
+                        </li>
+                    }
+                </ul>
+                <div class="search-right">
+                    <a href="#search" title="search"><span class="fa fa-search" aria-hidden="true"></span></a>
+                    <!-- search popup -->
+                    <div id="search" class="pop-overlay">
+                        <div class="popup">
+                            @using (Html.BeginForm("LayTuKhoaTimKiem", "TimKiem"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, null, new { @class = "search-box", @method = "GET", @action = "error.html" })
+                                <div style="width:700px; height:120px;">
+                                    <input type="search" placeholder="Enter Keyword" name="sTuKhoa" required="required" autofocus="">
+                                    <br />
+                                    <button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
+                                </div>
+                            }
+                        </div>
+                        <a class="close" href="#close">×</a>
+                    </div>
+                    <!-- /search popup -->
+                </div>
+                @if (Session["userName"] == null)
+                {
+                    @Html.ActionLink("Giỏ hàng", "login", "Home", null, new { @class = "btn btn-style btn-primary" })
+                }
+                else
+                {
+                    @Html.Action("XemGioHangPartial", "Cart")
+                }
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 col-lg-4" style=" background-image: url(../../images/login.jpg);" id="popup_login">
+            <div class="login-wrap p-0">
+                <div class="form-group" style="width:10%; float:right; padding-bottom:5px;" id="close">
+                    <input type="submit" class="form-control btn btn-primary submit px-3" value="x" />
+                </div>
+                <h3 class="mb-4 text-center">Login</h3>
+                @using (Ajax.BeginForm("login", "Home", new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "ThongBao"
+                }))
+                {
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="txtUserName" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Mật khẩu" required>
+                        <span toggle="#password-field"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary submit px-3">Đăng nhập</button>
+                    </div>
+                    <h4 id="ThongBao" style="color:red;"></h4>
+                    <div class="form-group d-md-flex">
+                        <div class="w-50">
+                            <label class="checkbox-wrap checkbox-primary">
+
+                            </label>
+                        </div>
+                        <div class="w-50 text-md-right">
+                            <a href="~/Home/ForGotPassWord" style="color: #666;">Quên mật khẩu?</a>
+                        </div>
+                    </div>
+                }
+                <p class="w-100 text-center">&mdash; Hoặc &mdash;</p>
+                <div class="form-group" style="width:70%; margin:auto; padding-bottom:5px;">
+                    <a href="~/Home/Add_Account" class="form-control btn btn-primary submit px-3">Đăng kí</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,15 +8,17 @@ using WebBanHang.Models;
 
 namespace WebBanHang.Controllers
 {
+    [Authorize(Roles = "Quản trị, Quản lý danh mục sản phẩm")]
     public class QuanLyDanhMucSanPhamController : Controller
     {
         QuanLyBanHang db = new QuanLyBanHang();
         // GET: QuanLyDanhMucSanPham
+        [Authorize(Roles = "Quản trị, Quản lý danh mục sản phẩm")]
         public ActionResult Index()
         {
             return View(db.GroupProduct.Where(n => n.Status == false).OrderByDescending(n => n.GroupProductID));
         }
-
+        [Authorize(Roles = "Quản trị, Quản lý danh mục sản phẩm")]
         [HttpGet]
         public ActionResult TaoMoi()
         {
@@ -51,7 +53,7 @@ namespace WebBanHang.Controllers
             db.SaveChanges();
             return RedirectToAction("index");
         }
-
+        [Authorize(Roles = "Quản trị")]
         [HttpGet]
         public ActionResult ChinhSua(int? id)
         {
@@ -104,7 +106,7 @@ namespace WebBanHang.Controllers
 
 
         }
-
+        [Authorize(Roles = "Quản trị")]
         [HttpGet]
         public ActionResult Xoa(int? id)
         {

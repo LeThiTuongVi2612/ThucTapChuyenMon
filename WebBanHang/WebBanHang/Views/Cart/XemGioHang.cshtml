@@ -60,79 +60,78 @@ else
     using (Html.BeginForm("DatHang", "Cart"))
     {
 
-        <div>
-                <table style="color:white;">
-                    <tr>
-                        <td colspan="2" style="text-align:center;">Thông tin khách hàng</td>
+<div >
 
-                    </tr>
-                    
-                    <tr>
-                        <td>Số điện thoại:</td>
-                        <td>@Html.TextBox("SoDienThoai")</td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ:</td>
-                        <td>@Html.TextBox("DiaChi")</td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td>@Html.TextBox("Email")</td>
-                    </tr>
 
-                </table>
-            </div>
-        <div class="divDatHang" style="text-align: right; margin-right:50px; margin-bottom:10px;">
-            <input type="submit" value="Đặt hàng"  id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
-            @Html.ActionLink("Mua tiếp", "index", "Home")
+    <h3 style="text-align:center;">Thông tin khách hàng</h3>
+    <div style="margin:auto; width:350px;">
+
+
+        <label>Số điện thoại:</label>
+        <div class="col-md-12">
+
+            @Html.TextBox("SoDienThoai", null, new { @class = "form-control", @placeholder = "Số điêhn thoại", @required = "required" })
         </div>
+        <label>Địa chỉ:</label>
+        <div class="col-md-12">
+
+            @Html.TextBox("DiaChi", null, new { @class = "form-control", @placeholder = "Địa chỉ", @required = "required" })
+        </div>
+
+
+        </div>
+    </div>
+    <div class="divDatHang" style="text-align: right; margin-right:50px; margin-bottom:10px;">
+        <input type="submit" value="Đặt hàng" id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
+        @Html.ActionLink("Mua tiếp", "index", "Home")
+    </div>
     }
 
 
-}
-@*Kiểm tra validate thông qua jquery*@
+    }
+    @*Kiểm tra validate thông qua jquery*@
 
 
-@*<script>
-    $(function () {
-        $("#btnDatHang").click(function () {
-            var loi = 0;
-            if ($("userName").val() == "") {
-                $("#TB_TenKH").text("Tên tài khoản không được bỏ trống");
-                loi++;
-            }
-            else {
-                $("#TB_TenKH").text("");
-            }
-
-            if ($("Phone").val() == "") {
-                $("#TB_Phone").text("Số điện thoại không được bỏ trống");
-                loi++;
-            }
-            else {
-                $("#TB_Phone").text("");
-            }
-
-            if ($("Address").val() == "") {
-                $("#TB_Address").text("Số điện thoại không được bỏ trống");
-                loi++;
-            }
-            else {
-                $("#TB_Address").text("");
-            }
-
-            dinhang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@*@[\w\d.]+\.\w{2,4}$/;
-                KTemail = dinhang.text($("email").val());
-                if (!KTemail) {
-                    $("#TB_Email").text("Email không hợp lệ");
+    @*<script>
+        $(function () {
+            $("#btnDatHang").click(function () {
+                var loi = 0;
+                if ($("userName").val() == "") {
+                    $("#TB_TenKH").text("Tên tài khoản không được bỏ trống");
                     loi++;
                 }
-                if (loi != 0) {
-                    //Ngăn sự kiện submit đến server
-                    return false
+                else {
+                    $("#TB_TenKH").text("");
                 }
-            });
-        });
 
-    </script>*@
+                if ($("Phone").val() == "") {
+                    $("#TB_Phone").text("Số điện thoại không được bỏ trống");
+                    loi++;
+                }
+                else {
+                    $("#TB_Phone").text("");
+                }
+
+                if ($("Address").val() == "") {
+                    $("#TB_Address").text("Số điện thoại không được bỏ trống");
+                    loi++;
+                }
+                else {
+                    $("#TB_Address").text("");
+                }
+
+                dinhang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@*@[\w\d.]+\.\w{2,4}$/;
+                    KTemail = dinhang.text($("email").val());
+                    if (!KTemail) {
+                        $("#TB_Email").text("Email không hợp lệ");
+                        loi++;
+                    }
+                    if (loi != 0) {
+                        //Ngăn sự kiện submit đến server
+                        return false
+                    }
+                });
+            });
+
+        </script>*@
 
