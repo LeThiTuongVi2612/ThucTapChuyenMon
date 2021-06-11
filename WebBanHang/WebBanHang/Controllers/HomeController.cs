@@ -61,6 +61,7 @@ namespace WebBanHang.Controllers
             Users tv = db.Users.SingleOrDefault(n => n.email == sUserName && n.passWord == sPassWord);
             if(tv != null)
             {
+                
                 //Truy cập lấy ra tất cả các quyền của thành viên đó
                 var lstQuyen = db.LoaiTV_Quyen.Where(n => n.MaLoaiTV == tv.MaLoaiTV);
                 string Quyen = "";
@@ -72,7 +73,15 @@ namespace WebBanHang.Controllers
                 Quyen = Quyen.Substring(0, Quyen.Length - 1);//cắt đi dấu phẩy cuối cùng của chuỗi
                 PhanQuyen(tv.email.ToString(), Quyen);
                 Session["userName"] = tv;
-                return RedirectToAction("index", "Home");
+                if (tv.MaLoaiTV == 1 || tv.MaLoaiTV == 2)
+                {
+                    return RedirectToAction("Admin", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("index", "Home");
+                }
+                
             }
             return Content("<script>alert(\"Tài khoản hoặc mật khẩu không đúng! Vui lòng load lại trang để đăng nhập!\")</script>");
         }

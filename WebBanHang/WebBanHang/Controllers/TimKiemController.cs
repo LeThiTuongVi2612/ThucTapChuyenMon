@@ -25,6 +25,8 @@ namespace WebBanHang.Controllers
 
             return RedirectToAction("KQTimKiem", new { @sTuKhoa = sTuKhoa });
         }
+
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
