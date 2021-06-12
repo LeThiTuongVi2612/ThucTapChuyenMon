@@ -1,5 +1,6 @@
-﻿@using WebBanHang.Models;
-@model LoginModel
+﻿@*@using WebBanHang.Models;
+@model LoginModel.*@
+@model WebBanHang.Models.Users
 @{
     ViewBag.Title = "login";
     Layout = "~/Views/Shared/LoginStart.cshtml";
@@ -20,12 +21,15 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, null, new { @class = "signin-form" })
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.email, "", new { @required = "", @class = "form-control", @placeholder = "Email" })
+                    @*<input type="text" class="form-control" name="txtUserName" placeholder="Email" required>*@
+                </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="txtUserName" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Password" required>
-                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            
+                            @Html.PasswordFor(m => m.passWord, new { @required = "", @class = "form-control", @placeholder = "Mật khẩu" })
+                            @*<input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Password" required>*@
+                            @*<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>*@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="form-control btn btn-primary submit px-3">Đăng nhập</button>

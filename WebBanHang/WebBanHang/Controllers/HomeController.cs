@@ -12,6 +12,7 @@ using System.Web.Security;
 using System.Net.Mail;
 using System.Web.Helpers;
 using System.Net;
+using System.Security.Cryptography;
 
 namespace WebBanHang.Controllers
 {
@@ -46,11 +47,11 @@ namespace WebBanHang.Controllers
         }
         
         [HttpPost]
-        public ActionResult login(FormCollection f)
+        public ActionResult login(Users f)
         {
-            string sUserName = f["txtUserName"].ToString();
-            string sPassWord = f["txtPassWord"].ToString();
-
+            //string sUserName = f["txtUserName"].ToString();
+            //string sPassWord = f["txtPassWord"].ToString();
+            string a = MaHoaMD5.MD5Hash(f.passWord);
             //Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
             //if (user != null)
             //{
@@ -58,7 +59,8 @@ namespace WebBanHang.Controllers
             //    return RedirectToAction("index");
             //} 
             //return Content("Tài khoản hoặc mật khẩu không đúng");
-            Users tv = db.Users.SingleOrDefault(n => n.email == sUserName && n.passWord == sPassWord);
+            //Users tv = db.Users.SingleOrDefault(n => n.email == sUserName && n.passWord == a);
+            var tv = (from c in db.Users where c.email == f.email && c.passWord == f.passWord select c).FirstOrDefault();
             if(tv != null)
             {
                 
@@ -86,6 +88,21 @@ namespace WebBanHang.Controllers
             return Content("<script>alert(\"Tài khoản hoặc mật khẩu không đúng! Vui lòng load lại trang để đăng nhập!\")</script>");
         }
 
+        public string GetMD5(string chuoi)
+        {
+            string str_md5 = "";
+            byte[] mang = System.Text.Encoding.UTF8.GetBytes(chuoi);
+
+            MD5CryptoServiceProvider my_md5 = new MD5CryptoServiceProvider();
+            mang = my_md5.ComputeHash(mang);
+
+            foreach (byte b in mang)
+            {
+                str_md5 += b.ToString("X2");
+            }
+
+            return str_md5;
+        }
         public void PhanQuyen(string TaiKhoan, string Quyen)
         {
             FormsAuthentication.Initialize();

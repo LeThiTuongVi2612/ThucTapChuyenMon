@@ -192,6 +192,7 @@
       <DependentUpon>QuanlyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MaHoaMD5.cs" />
     <Compile Include="Models\Metadata\Company.cs" />
     <Compile Include="Models\Metadata\GroupProduct.cs" />
     <Compile Include="Models\Metadata\SanPham.cs" />
