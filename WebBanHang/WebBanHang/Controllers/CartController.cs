@@ -232,7 +232,8 @@ namespace WebBanHang.Controllers
 
             //Thêm chhi tiết đơn đặt hàng
             List<ItemCart> lsGH = LayGioHang();
-            foreach(var item in lsGH)
+            SanPham sp;
+            foreach (var item in lsGH)
             {
                 OrderDetail cthd = new OrderDetail();
                 cthd.OrderID = ddh.OrderID;
@@ -240,6 +241,8 @@ namespace WebBanHang.Controllers
                 cthd.ProductName = item.productName;
                 cthd.soLuong = item.soLuong;
                 cthd.Gia = item.Gia;
+                sp = db.SanPham.SingleOrDefault(n => n.ProductID == cthd.ProductID);
+                sp.SoLuongTon -= item.soLuong;
                 db.OrderDetail.Add(cthd);
             }
             db.SaveChanges();

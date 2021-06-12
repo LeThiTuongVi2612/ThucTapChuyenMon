@@ -41,11 +41,11 @@ Giảng viên: Thầy Nguyễn Lê Minh. 
 	+ Xóa quền
 	+ Phân quyền cho loại tài khoản
 12. Tạo cơ sở dữ liệu hoàn chỉnh
-
+13. Mã hóa mật khẩu bằng MD5
 ## Phần 3: Các chức năng chưa hoàn thành:
 1. Đăng nhập bằng facebook
-2. Mã hóa mật khẩu
-3. Thanh toán online
+2. Thanh toán online
+3. 
 
 ## Hướng dẫn sử dụng:
 

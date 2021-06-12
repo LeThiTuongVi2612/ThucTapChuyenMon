@@ -47,11 +47,12 @@ namespace WebBanHang.Controllers
         }
         
         [HttpPost]
-        public ActionResult login(Users f)
+        public ActionResult login(FormCollection f)
         {
-            //string sUserName = f["txtUserName"].ToString();
-            //string sPassWord = f["txtPassWord"].ToString();
-            string a = MaHoaMD5.MD5Hash(f.passWord);
+            string sUserName = f["txtUserName"].ToString();
+            string sPassWord = f["txtPassWord"].ToString();
+            var a = GetMD5(sPassWord).ToString();
+            //var a = GetMD5(f.passWord).ToString();
             //Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
             //if (user != null)
             //{
@@ -60,7 +61,7 @@ namespace WebBanHang.Controllers
             //} 
             //return Content("Tài khoản hoặc mật khẩu không đúng");
             //Users tv = db.Users.SingleOrDefault(n => n.email == sUserName && n.passWord == a);
-            var tv = (from c in db.Users where c.email == f.email && c.passWord == f.passWord select c).FirstOrDefault();
+            var tv = (from c in db.Users where c.email == sUserName && c.passWord == a select c).FirstOrDefault();
             if(tv != null)
             {
                 
@@ -103,6 +104,7 @@ namespace WebBanHang.Controllers
 
             return str_md5;
         }
+
         public void PhanQuyen(string TaiKhoan, string Quyen)
         {
             FormsAuthentication.Initialize();
@@ -131,7 +133,8 @@ namespace WebBanHang.Controllers
                 if (ModelState.IsValid)
                 {
                     ViewBag.ThongBao = "Thêm thành công";
-                    
+                    var a = GetMD5(user.passWord).ToString();
+                    user.passWord = a;
                     user.MaLoaiTV = 3;
                     db.Users.Add(user);
                     db.SaveChanges();
@@ -243,8 +246,8 @@ namespace WebBanHang.Controllers
                var user = db.Users.Where(n => n.ResetPassWordCode == model.ResetCode).FirstOrDefault();
                 if(user != null)
                 {
-                    
-                    user.passWord = model.NewPassWord;
+                    var a = GetMD5(model.NewPassWord).ToString();
+                    user.passWord = a;
                     user.ResetPassWordCode = "";
                     db.Configuration.ValidateOnSaveEnabled = false;
                     db.SaveChanges();
