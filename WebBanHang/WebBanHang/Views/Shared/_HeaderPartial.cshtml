@@ -36,9 +36,9 @@
                     }
                     else
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" id="btnDangNhap">Sign in</a>
-                        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/login">Sign in</a>@*id="btnDangNhap"*@
+                </li>
                         <li class="nav-item">
                             <a class="nav-link" href="~/Home/Add_Account">Registration</a>
                         </li>
@@ -80,7 +80,7 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-md-6 col-lg-4" style=" background-image: url(../../images/login.jpg);" id="popup_login">
+        <div class="col-md-6 col-lg-4" style=" background-image: url(../../Content/images/banner.jpg);" id="popup_login">
             <div class="login-wrap p-0">
                 <div class="form-group" style="width:10%; float:right; padding-bottom:5px;" id="close">
                     <input type="submit" class="form-control btn btn-primary submit px-3" value="x" />
@@ -110,13 +110,22 @@
                             </label>
                         </div>
                         <div class="w-50 text-md-right">
-                            <a href="~/Home/ForGotPassWord" style="color: #666;">Quên mật khẩu?</a>
+                            <a href="~/Home/ForGotPassWord" style="color: black;">Quên mật khẩu?</a>
                         </div>
                     </div>
                 }
-                <p class="w-100 text-center">&mdash; Hoặc &mdash;</p>
-                <div class="form-group" style="width:70%; margin:auto; padding-bottom:5px;">
-                    <a href="~/Home/Add_Account" class="form-control btn btn-primary submit px-3">Đăng kí</a>
+                <p class="w-100 text-center" style="color:black;">&mdash; Hoặc &mdash;</p>
+                <div class="form-group d-md-flex">
+                    <div class="w-50" style="padding:20px;">
+                        <a href="~/Home/Add_Account" class="form-control btn btn-primary submit px-3" style="background-color:blue;border-color:blue;"><i class="fa fa-facebook-official" style="padding-right:3px;"></i>Facebook</a>
+                    </div>
+                    <div class="w-50 text-md-right" style="padding:20px;">
+                        <a href="~/Home/Add_Account" class="form-control btn btn-primary submit px-3" style="background-color:red;border-color:red;"><i class="fa fa-google-plus-official" aria-hidden="true" style="padding-right:3px;"></i>Google +</a>
+                    </div>
+                </div>
+                <div class="form-group" style="width:70%; margin:auto; padding-bottom:10px ;color:black">
+                    Bạn mới biết đến CoffeeCafe?
+                    <a href="~/Home/Add_Account" style="color:black;"><u>Đăng kí</u></a>
                 </div>
             </div>
         </div>
