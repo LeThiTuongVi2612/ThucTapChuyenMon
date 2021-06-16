@@ -1,19 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="QuanLyBanHangOnlModelStoreContainer" CdmEntityContainer="QuanLyBanHang">
-    <EntitySetMapping Name="Cart">
-      <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Cart">
-        <MappingFragment StoreEntitySet="Cart">
-          <ScalarProperty Name="Anh" ColumnName="Anh" />
-          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
-          <ScalarProperty Name="Gia" ColumnName="Gia" />
-          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-          <ScalarProperty Name="cartID" ColumnName="cartID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Company">
       <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Company">
         <MappingFragment StoreEntitySet="Company">

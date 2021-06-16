@@ -28,6 +28,17 @@ namespace WebBanHang.Controllers
             return View();
         }
         
+        public decimal ThongKeDoanhThuThang(int thang, int nam)
+        {
+            //list ra những đơn hàng có tháng năm tuong ứng
+            var listDDH = db.Order.Where(n => n.NgayDat.Value.Month == thang && n.NgayDat.Value.Year == nam);
+            decimal tongtien = 0;
+            foreach(var item in listDDH)
+            {
+                tongtien += decimal.Parse(item.OrderDetail.Sum(n => n.soLuong * n.Gia).Value.ToString());
+            }
+            return tongtien;
+        }
 
             public decimal ThongKeTongDT()
         {

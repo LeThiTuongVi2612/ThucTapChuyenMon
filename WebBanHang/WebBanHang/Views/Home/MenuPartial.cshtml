@@ -8,7 +8,7 @@
    
     @foreach (var item in Model)
     {
-        <li class="nav-item">
+        <li class="nav-item" style="padding:1px;">
             <a class="nav-link active" id="pills-team1-tab" href="~/Product/ProductPartial/@item.GroupProductID" role="tab" aria-selected="true">
             <img src=@Url.Content("~/Content/images/"+item.Pic) class="aimg-fluid" alt="" /><h4  class="groupProduct">@item.TenDanhMuc</h4></a>
             

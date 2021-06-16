@@ -269,3 +269,11 @@ C:\WebBanHang\WebBanHang\obj\Debug\WebBanHang.pdb
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\xunit.abstractions.dll
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\xunit.abstractions.xml
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\obj\Debug\WebBanHang.csprojAssemblyReference.cache
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Facebook.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\Facebook.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Net.Http.Formatting.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http.WebHost.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Net.Http.Formatting.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http.WebHost.xml

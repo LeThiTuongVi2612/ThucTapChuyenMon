@@ -25,7 +25,6 @@ namespace WebBanHang.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<ChiTietDonDangHang> ChiTietDonDangHang { get; set; }

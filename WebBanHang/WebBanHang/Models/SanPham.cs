@@ -17,7 +17,6 @@ namespace WebBanHang.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SanPham()
         {
-            this.Cart = new HashSet<Cart>();
             this.ChiTietDonDangHang = new HashSet<ChiTietDonDangHang>();
             this.OrderDetail = new HashSet<OrderDetail>();
         }
@@ -33,8 +32,6 @@ namespace WebBanHang.Models
         public Nullable<decimal> Price { get; set; }
         public Nullable<System.DateTime> NgayCapNhat { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Cart { get; set; }
         public virtual Company Company { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonDangHang> ChiTietDonDangHang { get; set; }

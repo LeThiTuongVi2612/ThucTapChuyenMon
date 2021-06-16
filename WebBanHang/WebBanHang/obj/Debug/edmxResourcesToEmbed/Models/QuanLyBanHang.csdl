@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QuanLyBanHangOnlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="QuanLyBanHang" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Cart" EntityType="QuanLyBanHangOnlModel.Cart" />
     <EntitySet Name="Company" EntityType="QuanLyBanHangOnlModel.Company" />
     <EntitySet Name="Customer" EntityType="QuanLyBanHangOnlModel.Customer" />
     <EntitySet Name="ChiTietDonDangHang" EntityType="QuanLyBanHangOnlModel.ChiTietDonDangHang" />
@@ -15,10 +14,6 @@
     <EntitySet Name="SanPham" EntityType="QuanLyBanHangOnlModel.SanPham" />
     <EntitySet Name="sysdiagrams" EntityType="QuanLyBanHangOnlModel.sysdiagrams" />
     <EntitySet Name="Users" EntityType="QuanLyBanHangOnlModel.Users" />
-    <AssociationSet Name="FK_Cart_Product1" Association="QuanLyBanHangOnlModel.FK_Cart_Product1">
-      <End Role="SanPham" EntitySet="SanPham" />
-      <End Role="Cart" EntitySet="Cart" />
-    </AssociationSet>
     <AssociationSet Name="FK_Product_Company1" Association="QuanLyBanHangOnlModel.FK_Product_Company1">
       <End Role="Company" EntitySet="Company" />
       <End Role="SanPham" EntitySet="SanPham" />
@@ -68,19 +63,6 @@
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Cart">
-    <Key>
-      <PropertyRef Name="cartID" />
-    </Key>
-    <Property Name="cartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProductID" Type="Int32" />
-    <Property Name="SoLuong" Type="Int32" />
-    <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="Cart" ToRole="SanPham" />
-  </EntityType>
   <EntityType Name="Company">
     <Key>
       <PropertyRef Name="CompanyID" />
@@ -213,7 +195,6 @@
     <Property Name="Status" Type="Boolean" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Cart" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="SanPham" ToRole="Cart" />
     <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_Product_Company1" FromRole="SanPham" ToRole="Company" />
     <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product" FromRole="SanPham" ToRole="ChiTietDonDangHang" />
     <NavigationProperty Name="GroupProduct" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="SanPham" ToRole="GroupProduct" />
@@ -244,20 +225,6 @@
     <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users1" FromRole="Users" ToRole="Customer" />
     <NavigationProperty Name="LoaiThanhVien" Relationship="QuanLyBanHangOnlModel.FK_Users_LoaiThanhVien" FromRole="Users" ToRole="LoaiThanhVien" />
   </EntityType>
-  <Association Name="FK_Cart_Product1">
-    <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="QuanLyBanHangOnlModel.Cart" Role="Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SanPham">
-        <PropertyRef Name="ProductID" />
-      </Principal>
-      <Dependent Role="Cart">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Product_Company1">
     <End Type="QuanLyBanHangOnlModel.Company" Role="Company" Multiplicity="0..1" />
     <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="*" />

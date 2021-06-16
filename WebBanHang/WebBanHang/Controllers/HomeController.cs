@@ -13,6 +13,8 @@ using System.Net.Mail;
 using System.Web.Helpers;
 using System.Net;
 using System.Security.Cryptography;
+using Facebook;
+using System.Configuration;
 
 namespace WebBanHang.Controllers
 {
@@ -41,6 +43,99 @@ namespace WebBanHang.Controllers
             return View();
         }
 
+        public Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
+
+        public ActionResult loginFacebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppID"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                respone_type = "code",
+                scope = "email",
+            }) ;
+
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+
+        public long InsertLoginFacebook(Users enty)
+        {
+            var user = db.Users.SingleOrDefault(n => n.email == enty.email);
+            if(user == null)
+            {
+                db.Users.Add(enty);
+                db.SaveChanges();
+                return enty.userID;
+            }
+            
+                return user.userID;
+            
+        }
+
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppID"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            }) ;
+
+            var accessToken = result.access_token;
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                fb.AccessToken = accessToken;
+                dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+                string email = me.email;
+                string firstname = me.first_name;
+                string lastname = me.last_name;
+                string middlename = me.middle_name;
+
+                var user = new Users();
+                user.email = email;
+                var a = GetMD5(email).ToString();
+                user.passWord = a;
+                user.MaLoaiTV = 3;
+                user.HoTen = firstname + " " + middlename + " " + lastname;
+                var resultInsert = int.Parse(InsertLoginFacebook(user).ToString());
+                if(resultInsert > 0)
+                {
+                    var tv = (from c in db.Users where c.email == user.email && c.passWord == a select c).FirstOrDefault();
+                    if (tv != null)
+                    {
+
+                        //Truy cập lấy ra tất cả các quyền của thành viên đó
+                        var lstQuyen = db.LoaiTV_Quyen.Where(n => n.MaLoaiTV == tv.MaLoaiTV);
+                        string Quyen = "";
+                        foreach (var item in lstQuyen)
+                        {
+                            Quyen += item.Quyen.TenQuyen + ",";
+                            //lấy quyền trong bảng chi tiết quyền và loại thành viên
+                        }
+                        Quyen = Quyen.Substring(0, Quyen.Length - 1);//cắt đi dấu phẩy cuối cùng của chuỗi
+                        PhanQuyen(tv.email.ToString(), Quyen);
+                        Session["userName"] = tv;
+                        return RedirectToAction("index", "Home");
+                    }
+                }
+            }
+            return Content("<script>alert(\"Tài khoản hoặc mật khẩu không đúng! Vui lòng load lại trang để đăng nhập!\")</script>");
+        }
+
         public ActionResult login()
         {
             return View();
@@ -52,15 +147,7 @@ namespace WebBanHang.Controllers
             string sUserName = f["txtUserName"].ToString();
             string sPassWord = f["txtPassWord"].ToString();
             var a = GetMD5(sPassWord).ToString();
-            //var a = GetMD5(f.passWord).ToString();
-            //Users user = db.Users.SingleOrDefault(n => n.userName == sUserName && n.passWord == sPassWord);
-            //if (user != null)
-            //{
-            //    Session["userName"] = user;
-            //    return RedirectToAction("index");
-            //} 
-            //return Content("Tài khoản hoặc mật khẩu không đúng");
-            //Users tv = db.Users.SingleOrDefault(n => n.email == sUserName && n.passWord == a);
+            
             var tv = (from c in db.Users where c.email == sUserName && c.passWord == a select c).FirstOrDefault();
             if(tv != null)
             {
@@ -218,8 +305,6 @@ namespace WebBanHang.Controllers
             smtp.Send(message);
         }
 
-        
-
         [HttpGet]
         public ActionResult PassWord(string id)
         {
@@ -293,6 +378,11 @@ namespace WebBanHang.Controllers
         }
 
         public ActionResult LoiPhanQuyen()
+        {
+            return View();
+        }
+
+        public ActionResult CTSP()
         {
             return View();
         }

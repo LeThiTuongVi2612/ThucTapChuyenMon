@@ -5,18 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="QuanLyBanHangOnlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="cartID" />
-          </Key>
-          <Property Name="cartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductID" Type="int" />
-          <Property Name="SoLuong" Type="int" />
-          <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="ProductName" Type="nvarchar(max)" />
-          <Property Name="Anh" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -155,20 +143,6 @@
           <Property Name="MaLoaiTV" Type="int" />
           <Property Name="ResetPassWordCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <Association Name="FK_Cart_Product1">
-          <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Customer_Users1">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -324,7 +298,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="QuanLyBanHangOnlModelStoreContainer">
-          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChiTietDonDangHang" EntityType="Self.ChiTietDonDangHang" Schema="dbo" store:Type="Tables" />
@@ -338,10 +311,6 @@
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cart_Product1" Association="Self.FK_Cart_Product1">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="Cart" EntitySet="Cart" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customer_Users1" Association="Self.FK_Customer_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Customer" EntitySet="Customer" />
@@ -396,7 +365,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyBanHangOnlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QuanLyBanHang" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cart" EntityType="QuanLyBanHangOnlModel.Cart" />
           <EntitySet Name="Company" EntityType="QuanLyBanHangOnlModel.Company" />
           <EntitySet Name="Customer" EntityType="QuanLyBanHangOnlModel.Customer" />
           <EntitySet Name="ChiTietDonDangHang" EntityType="QuanLyBanHangOnlModel.ChiTietDonDangHang" />
@@ -410,10 +378,6 @@
           <EntitySet Name="SanPham" EntityType="QuanLyBanHangOnlModel.SanPham" />
           <EntitySet Name="sysdiagrams" EntityType="QuanLyBanHangOnlModel.sysdiagrams" />
           <EntitySet Name="Users" EntityType="QuanLyBanHangOnlModel.Users" />
-          <AssociationSet Name="FK_Cart_Product1" Association="QuanLyBanHangOnlModel.FK_Cart_Product1">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="Cart" EntitySet="Cart" />
-          </AssociationSet>
           <AssociationSet Name="FK_Product_Company1" Association="QuanLyBanHangOnlModel.FK_Product_Company1">
             <End Role="Company" EntitySet="Company" />
             <End Role="SanPham" EntitySet="SanPham" />
@@ -463,19 +427,6 @@
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="cartID" />
-          </Key>
-          <Property Name="cartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Anh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SanPham" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="Cart" ToRole="SanPham" />
-        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyID" />
@@ -608,7 +559,6 @@
           <Property Name="Status" Type="Boolean" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="NgayCapNhat" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cart" Relationship="QuanLyBanHangOnlModel.FK_Cart_Product1" FromRole="SanPham" ToRole="Cart" />
           <NavigationProperty Name="Company" Relationship="QuanLyBanHangOnlModel.FK_Product_Company1" FromRole="SanPham" ToRole="Company" />
           <NavigationProperty Name="ChiTietDonDangHang" Relationship="QuanLyBanHangOnlModel.FK_ChiTietDonDangHang_Product" FromRole="SanPham" ToRole="ChiTietDonDangHang" />
           <NavigationProperty Name="GroupProduct" Relationship="QuanLyBanHangOnlModel.FK_Product_GroupProduct1" FromRole="SanPham" ToRole="GroupProduct" />
@@ -639,20 +589,6 @@
           <NavigationProperty Name="Customer" Relationship="QuanLyBanHangOnlModel.FK_Customer_Users1" FromRole="Users" ToRole="Customer" />
           <NavigationProperty Name="LoaiThanhVien" Relationship="QuanLyBanHangOnlModel.FK_Users_LoaiThanhVien" FromRole="Users" ToRole="LoaiThanhVien" />
         </EntityType>
-        <Association Name="FK_Cart_Product1">
-          <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="QuanLyBanHangOnlModel.Cart" Role="Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SanPham">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Product_Company1">
           <End Type="QuanLyBanHangOnlModel.Company" Role="Company" Multiplicity="0..1" />
           <End Type="QuanLyBanHangOnlModel.SanPham" Role="SanPham" Multiplicity="*" />
@@ -813,19 +749,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QuanLyBanHangOnlModelStoreContainer" CdmEntityContainer="QuanLyBanHang">
-          <EntitySetMapping Name="Cart">
-            <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Cart">
-              <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="Anh" ColumnName="Anh" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="cartID" ColumnName="cartID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="QuanLyBanHangOnlModel.Company">
               <MappingFragment StoreEntitySet="Company">
