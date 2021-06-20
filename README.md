@@ -54,7 +54,7 @@ Giảng viên: Thầy Nguyễn Lê Minh. 
 
 ## Hướng dẫn sử dụng:
 Vào link: lethituongvi-001-site1.etempurl.com 
-Dùng tài khoản 5951071119@st.utc2.edu.com, password: tuongvi123 để mua hàng. 
+Dùng tài khoản 5951071119@st.utc2.edu.vn, password: tuongvi123 để mua hàng. 
 Dùng tài khoản: CoffeeCafe2600@gmail.com, password: cafe2600 để vào admin
 
 Xin cám ơn!
