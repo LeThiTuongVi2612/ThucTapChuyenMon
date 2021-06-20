@@ -277,3 +277,7 @@ C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Net.Http.Formatting.xml
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http.xml
 C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\System.Web.Http.WebHost.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\PagedList.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\PagedList.Mvc.dll
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\PagedList.xml
+C:\Users\asus\Desktop\ThucTapChuyenMon\WebBanHang\WebBanHang\bin\PagedList.Mvc.xml

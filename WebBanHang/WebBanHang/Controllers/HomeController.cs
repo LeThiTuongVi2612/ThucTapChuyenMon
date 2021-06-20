@@ -15,15 +15,24 @@ using System.Net;
 using System.Security.Cryptography;
 using Facebook;
 using System.Configuration;
+using PagedList;
 
 namespace WebBanHang.Controllers
 {
     public class HomeController : Controller
     {
         QuanLyBanHang db = new QuanLyBanHang();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View();
+            int PageSize = 3;
+            int PageNumber = (page ?? 1);
+            var listProduct1 = (from x in db.SanPham.Where(x => x.Status == false) select x).ToList();
+            var listSp = new QuanLyBanHang().GroupProduct.ToList();
+            ViewBag.listGroup = listSp;
+            ViewBag.ListSP = listProduct1;
+
+            return View(listProduct1.OrderBy(n => n.ProductID).ToPagedList(PageNumber, PageSize));
+
         }
 
         public ActionResult About()
@@ -38,8 +47,10 @@ namespace WebBanHang.Controllers
             ViewBag.ListSP = listProduct1;
             return View();
         }
+
         public ActionResult Contact()
         {
+            
             return View();
         }
 
@@ -117,7 +128,7 @@ namespace WebBanHang.Controllers
                     var tv = (from c in db.Users where c.email == user.email && c.passWord == a select c).FirstOrDefault();
                     if (tv != null)
                     {
-
+                        ViewBag.HoTen = (from c in db.Users where c.email == user.email && c.passWord == a select c.HoTen).FirstOrDefault();
                         //Truy cập lấy ra tất cả các quyền của thành viên đó
                         var lstQuyen = db.LoaiTV_Quyen.Where(n => n.MaLoaiTV == tv.MaLoaiTV);
                         string Quyen = "";
@@ -382,10 +393,31 @@ namespace WebBanHang.Controllers
             return View();
         }
 
-        public ActionResult CTSP()
+        public ActionResult CTSP(int? page)
+        {
+            int PageSize = 6;
+            int PageNumber = (page ?? 1);
+
+            var listProduct1 = (from x in db.SanPham.Where(x => x.Status == false) select x).ToList();
+            ViewBag.ListSP = listProduct1;
+
+            return View(listProduct1.OrderBy(n => n.ProductID).ToPagedList(PageNumber, PageSize));
+            
+        }
+         
+        public ActionResult SanPhamPartial()
         {
             return View();
+
         }
+        public ActionResult ProductPartial(int id)
+        {
+
+            var listSp = (from c in db.SanPham where c.GroupProductID == id select c).ToList();
+
+            return View(listSp);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

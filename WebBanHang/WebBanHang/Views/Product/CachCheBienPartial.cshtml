@@ -1,0 +1,60 @@
+﻿@using WebBanHang.Models;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ajaxFooter{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">Cách chế biến sản phẩm</h2>
+        </div>
+    </div>
+</section>
+<section class="w3l-servicesblock py-5" id="about">
+    @foreach (var item in Model)
+    {
+        <div class="container py-lg-5 py-md-4 py-2" id="@item.ProductID">
+
+            <div class="row">
+                <div class="col-lg-4 mt-lg-0 mt-5">
+                    <img src="@Url.Content("~/Content/images/"+item.Anh)" alt="" class="img-fluid radius-image">
+                </div>
+                <div class="col-lg-8 about-right-faq align-self">
+                    <span class="title-small mb-2"></span>
+                    <h3 class="title-big mx-0"> @item.ProductName</h3>
+                    <p class="mt-lg-4 mt-3">
+                        @item.GroupProduct.TenDanhMuc
+                    </p>
+                    <p class="mt-lg-4 mt-3">
+                        150 VND
+                    </p>
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="container py-lg-5 py-md-4 py-2">
+            <p class="mt-lg-4 mt-3">
+                @Html.Raw(item.Mota)
+            </p>
+            
+            @if (Session["userName"] == null)
+            {
+                @Html.ActionLink("Mua ngay", "login", "Home", null, new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
+            }
+            else
+            {
+                <div class="btn btn-style btn-primary mt-md-5 mt-4" style="background-color:aquamarine;">
+                    @Ajax.ActionLink("Thêm giỏ hàng", "ThemGioHangAjax", "Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString(), @class = "btn btn-style btn-primary mt-md-5 mt-4" }, new AjaxOptions
+              { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                </div>
+            }
+        </div>
+    }
+</section>

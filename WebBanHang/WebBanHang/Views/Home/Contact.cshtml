@@ -3,7 +3,47 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #map {
+        height: 500px;
+        width:100%;
+    }
 
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+@section ajaxFooter{
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src=" https://maps.googleapis.com/maps/api/js?key=AIzaSyD0jiCFTzxfjhPgdDxJe6WR5J40fh-tBRs&callback=initMap&libraries=geometry&v=weekly "
+            async></script>
+    <script>
+        function initMap() {
+            const uluru = { lat: 10.847348649328733, lng: 106.7926754814789 };
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 18,
+                center: uluru,
+            });
+            const contentString =
+                '<p>CoffeeCafe</p><p> B1/1, KP2, Tổ 14, đường 449, phường Tăng Nhơn Phú A, TP.Thủ Đức</p><p>0799062488</p>';
+            const infowindow = new google.maps.InfoWindow({
+                content: contentString,
+            });
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map,
+                title: "Uluru (Ayers Rock)",
+            });
+            marker.addListener("click", () => {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
+}
 <section class="w3l-about-breadcrumb">
     <div class="breadcrumb-bg breadcrumb-bg-about py-5">
         <div class="container py-lg-4 py-md-3">
@@ -35,13 +75,19 @@
                     <div class="text-box">
                         <h3 class="mb-3">Contact info</h3>
                         <p class=""><a href="tel:+(84) 079 906 2488">+(84) 079 906 2488</a></p>
-                        <p class=""> <a href="mailto:levi20001226@gmail.com">levi20001226@gmail.com</a></p>
+                        <p class=""> <a href="mailto:CoffeeCafe2600@gmail.com">CoffeeCafe2600@gmail.com</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        
-        
+        <div class="row mt-5">
+            
+                <div id="map">
+
+                </div>
+           
+        </div>
+
     </div>
 </div>
 

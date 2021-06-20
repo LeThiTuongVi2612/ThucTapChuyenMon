@@ -22,9 +22,9 @@ rowStyle: "gridRow",
 alternatingRowStyle: "gridAltRow",
 columns: grid.Columns(
    grid.Column("MaQuyen", "Mã quyền"),
-   grid.Column("TenQuyen", "Tên quyền")
+   grid.Column("TenQuyen", "Tên quyền"),
    //grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { id = p.MaQuyen })),
-   //grid.Column(format: p => @Html.ActionLink("Xóa", "Xoa", new { id = p.MaQuyen }))
+   grid.Column(format: p => @Html.ActionLink("Xóa", "Xoa", new { id = p.MaQuyen }))
    )
    )
 <style>

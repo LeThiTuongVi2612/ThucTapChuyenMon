@@ -30,12 +30,20 @@
                             <div class="float-lt feature-gd">
                                 <h3><a href="#url">@item.ProductName</a> </h3>
                                 <p> Price: @item.Price VND</p>
-                                <div class="btn btn-style btn-primary mt-md-5 mt-4" style="background-color:aquamarine;">
-                                    @Ajax.ActionLink("Thêm giỏ hàng", "ThemGioHangAjax", "Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString(), @class = "btn btn-style btn-primary mt-md-5 mt-4" }, new AjaxOptions
-                              { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
-                                </div>
+                                @if (Session["userName"] == null)
+                                {
+                                    @Html.ActionLink("Mua ngay", "login", "Home",null, new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
+                                }
+                                else
+                                {
+                                    <div class="btn btn-style btn-primary mt-md-5 mt-4" style="background-color:aquamarine;">
+                                        @Ajax.ActionLink("Thêm giỏ hàng", "ThemGioHangAjax", "Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString(), @class = "btn btn-style btn-primary mt-md-5 mt-4" }, new AjaxOptions
+                                  { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                                    </div>
+                                }
                             </div>
-                        </div>
+                            </div>
+                        
                     }
                 </div>
             </div>

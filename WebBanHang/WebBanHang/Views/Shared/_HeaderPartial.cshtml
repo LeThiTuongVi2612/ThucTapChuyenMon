@@ -32,7 +32,7 @@
                     </li>
                     @if (Session["userName"] != null && Session["userName"].ToString() != "")
                     {
-                        @Html.ActionLink("Log out", "DangXuat", "Home", null, new { @class = "nav-link" })
+                        @*@Html.ActionLink("Log out", "DangXuat", "Home", null, new { @class = "nav-link" })*@
                     }
                     else
                     {
@@ -66,17 +66,37 @@
                 </div>
                 @if (Session["userName"] == null)
                 {
-                    @Html.ActionLink("Giỏ hàng", "login", "Home", null, new { @class = "btn btn-style btn-primary" })
+                    @Html.ActionLink("Cart", "login", "Home", null, new { @class = "btn btn-style btn-primary" })
                 }
                 else
                 {
                     @Html.Action("XemGioHangPartial", "Cart")
                 }
-                <ul class="dropdown-menu drp-mnu">
-                    <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-                    <li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li>
-                    <li> <a href="~/Home/DangXuat"><i class="fa fa-sign-out"></i> Logout</a> </li>
-                </ul>
+                @if (Session["userName"] != null && Session["userName"].ToString() != "")
+                {
+                    
+                    <div class="mobile-position">
+                        <nav class="navigation">
+                            <div class="theme-switch-wrapper">
+                                <div class="dropdown show">
+                                    <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-user-circle" aria-hidden="true" style="color:white;"></i>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        @ViewBag.HoTen
+                                        @*<a class="dropdown-item" href="~/Home/Profile">Profile</a>*@
+                                        <a class="dropdown-item" href="~/Home/DangXuat">Đăng xuất</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+
+                }
+                else
+                {
+
+                }
             </div>
         </nav>
     </div>

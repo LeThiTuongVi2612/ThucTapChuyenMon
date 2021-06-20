@@ -11,36 +11,10 @@ namespace WebBanHang.Controllers
     {
         QuanLyBanHang db = new QuanLyBanHang();
         // GET: Product
-
-        public ActionResult Breakfast()
-        {
-            var listBreafast = db.SanPham.Where(x => x.GroupProductID == 2);
-            ViewBag.ListAS = listBreafast;
-            var listSp = new QuanLyBanHang().GroupProduct.ToList();
-            ViewBag.listGroup = listSp;
-
-            return View();
-        }
-
-        public ActionResult Lunch()
-        {
-            var listLuch = db.SanPham.Where(x => x.GroupProductID == 3);
-            ViewBag.ListAT = listLuch;
-            var listSp = new QuanLyBanHang().GroupProduct.ToList();
-            ViewBag.listGroup = listSp;
-
-            return View();
-        }
-        public ActionResult Product1()
-        {
-
-            var listSp = new QuanLyBanHang().GroupProduct.ToList();
-            ViewBag.listGroup = listSp;
-
-            var listProduct1 = db.SanPham.Where(x => x.GroupProductID == 1);
-            ViewBag.ListSP = listProduct1;
-
-            return View();
+        public ActionResult CachCheBienPartial(int id) {
+            var listSp = (from c in db.SanPham where c.ProductID == id select c).ToList();
+            
+            return View(listSp);
         }
         public ActionResult ProductPartial(int id)
         {
