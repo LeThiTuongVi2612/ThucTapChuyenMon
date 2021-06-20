@@ -1,0 +1,165 @@
+﻿@using WebBanHang.Models
+@model SanPham
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .row-one {
+        display: none;
+    }
+</style>
+<div class="row-one1">
+    <div class="col-md-4 widget" style="color:mediumorchid;">
+        <div class="stats-left ">
+            <h5>Customer</h5>
+            <h4>Online</h4>
+        </div>
+        <div class="stats-right">
+            <label> @ViewBag.SoNguoiDangOnl</label>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="col-md-4 widget states-mdl">
+        <div class="stats-left">
+            <h5>Customer</h5>
+            <h4>Visits</h4>
+        </div>
+        <div class="stats-right">
+            <label> @ViewBag.SoNguoiTruyCap</label>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="col-md-4 widget states-last">
+        <div class="stats-left">
+            <h5>Coffe cafe</h5>
+            <h4>User</h4>
+        </div>
+        <div class="stats-right">
+            <label>@ViewBag.NguoiDung</label>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+
+</div>
+
+<div class="row-one1" style="padding-top:50px;">
+    <div class="col-md-4 widget">
+        <div class="stats-left " style="width:100%;">
+            <h5>Doanh thu</h5>
+            <h4>@ViewBag.TongDanhThu.ToString("#,##")K</h4>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="col-md-4 widget states-mdl">
+        <div class="stats-left" style="width:100%;">
+            <h5>Đơn hàng</h5>
+            <h4> @ViewBag.DonHang.ToString("#,##")</h4>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="col-md-4 widget states-last">
+        <div class="stats-left" style="width:100%;">
+            <h5>Sản phẩm</h5>
+            <h4>@ViewBag.SanPhamTK.ToString("#,##")</h4>
+        </div>
+
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+
+<div class="row-one1" style="padding-top:50px;">
+    <div class="col-md-4 widget" style="color:mediumorchid;">
+        <div class="stats-left ">
+            <h5>Coffe cafe</h5>
+            <h4>Nhóm SP</h4>
+        </div>
+        <div class="stats-right">
+            <label> @ViewBag.NhoomSanPham</label>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="col-md-4 widget states-mdl">
+        <div class="stats-left">
+            <h5>Coffe cafe</h5>
+            <h4>Nhập hàng</h4>
+        </div>
+        <div class="stats-right">
+            <label> @ViewBag.PhieuNhap</label>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="col-md-4 widget states-last">
+        <div class="stats-left">
+            <h5>Coffe cafe</h5>
+            <h4>Nhà cung cấp</h4>
+        </div>
+        <div class="stats-right">
+            <label>@ViewBag.NCC</label>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    
+    <div class="clearfix"> </div>
+
+</div>
+
+<div class="charts">
+
+
+
+
+    <div class="col-md-4 charts-grids widget " style="width:100%">
+        <h4 class="title">BIỂU ĐỒ MUA VÀ BÁN</h4>
+        <canvas id="line" height="150" width="400"> </canvas>
+    </div>
+    <div>
+        Bán: <button style="background-color:#F2B33F; height:10px; width:10px"></button>
+    </div>
+    <div>
+        Mua: <button style="background-color:#6164C1; height:10px; width:10px"></button>
+    </div>
+
+    <div class="clearfix"> </div>
+    <script>
+
+        var lineChartData = {
+            labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [
+                {
+                    fillColor: "rgba(242, 179, 63, 1)",
+                    strokeColor: "#F2B33F",
+                    pointColor: "rgba(242, 179, 63, 1)",
+                    pointStrokeColor: "#fff",
+                    data: [@ViewBag.ThangMot, @ViewBag.ThangHai, @ViewBag.ThangBa, @ViewBag.ThangTu, @ViewBag.ThangNam, @ViewBag.ThangSau,
+                        @ViewBag.ThangBay, @ViewBag.ThangTam, @ViewBag.ThangChin, @ViewBag.ThangMuoi, @ViewBag.Thang11, @ViewBag.Thang12]
+
+                },
+                {
+                    fillColor: "rgba(97, 100, 193, 1)",
+                    strokeColor: "#6164C1",
+                    pointColor: "rgba(97, 100, 193,1)",
+                    pointStrokeColor: "#9358ac",
+                    data: [@ViewBag.Mua1, @ViewBag.Mua2, @ViewBag.Mua3, @ViewBag.Mua4, @ViewBag.Mua5, @ViewBag.Mua6,
+                        @ViewBag.Mua7, @ViewBag.Mua8, @ViewBag.Mua9, @ViewBag.Mua10, @ViewBag.Mua11, @ViewBag.Mua12]
+
+                }
+            ]
+
+        };
+
+
+
+
+        new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+        new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+
+
+    </script>
+
+</div>

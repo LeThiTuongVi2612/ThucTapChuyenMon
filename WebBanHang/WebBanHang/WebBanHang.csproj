@@ -188,23 +188,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTietDonDangHang.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GroupProduct.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemCart.cs" />
     <Compile Include="Models\LoaiThanhVien.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoaiTV_Quyen.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\MaHoaMD5.cs" />
@@ -213,41 +213,41 @@
     <Compile Include="Models\Metadata\SanPham.cs" />
     <Compile Include="Models\Metadata\Users.cs" />
     <Compile Include="Models\Order.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PhieuNhapHang.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanlyBanHang.Context.cs">
+    <Compile Include="Models\QuanLyBanHang.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanlyBanHang.Context.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanlyBanHang.cs">
+    <Compile Include="Models\QuanLyBanHang.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuanlyBanHang.Designer.cs">
+    <Compile Include="Models\QuanLyBanHang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Quyen.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\SanPham.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>QuanlyBanHang.tt</DependentUpon>
+      <DependentUpon>QuanLyBanHang.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -455,15 +455,15 @@
     <Content Include="images\bg.jpg" />
     <Content Include="images\cart.jpg" />
     <Content Include="images\login.jpg" />
-    <Content Include="Models\QuanlyBanHang.Context.tt">
+    <Content Include="Models\QuanLyBanHang.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
-      <LastGenOutput>QuanlyBanHang.Context.cs</LastGenOutput>
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanHang.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QuanlyBanHang.tt">
+    <Content Include="Models\QuanLyBanHang.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
-      <LastGenOutput>QuanlyBanHang.cs</LastGenOutput>
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+      <LastGenOutput>QuanLyBanHang.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -576,13 +576,6 @@
     <Content Include="Content\Admin\fonts\FontAwesome.otf" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Models\QuanlyBanHang.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QuanlyBanHang.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\QuanlyBanHang.edmx.diagram">
-      <DependentUpon>QuanlyBanHang.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\tinymce\CHANGELOG.md" />
     <Content Include="Content\tinymce\js\tinymce\langs\README.md" />
     <Content Include="Content\tinymce\js\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
@@ -620,6 +613,13 @@
     <Content Include="Content\Icon\scss\_screen-reader.scss" />
     <Content Include="Content\Icon\scss\_stacked.scss" />
     <Content Include="Content\Icon\scss\_variables.scss" />
+    <EntityDeploy Include="Models\QuanLyBanHang.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyBanHang.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QuanLyBanHang.edmx.diagram">
+      <DependentUpon>QuanLyBanHang.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

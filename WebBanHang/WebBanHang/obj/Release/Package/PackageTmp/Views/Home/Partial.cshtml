@@ -1,0 +1,42 @@
+﻿@using WebBanHang.Models
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+@section ajaxFooter{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+<h1 class="name-product">Our Product</h1>
+<div class="tab-content" id="pills-tabContent1">
+    <div class="tab-pane fade show active" id="pills-team1" role="tabpanel" aria-labelledby="pills-team1-tab">
+        <div class="fea-gd-vv text-center row">
+            @foreach (var item in Model)
+            {
+
+                <div class="float-top col-lg-4 col-md-6" id="@item.GroupProductID" style="padding:5px;">
+                    <a href="#url"><img src="@Url.Content("~/Content/images/"+item.Anh)" class="img-responsive" alt=""></a>
+                    <div class="float-lt feature-gd">
+                        <h3><a href="#url">@item.ProductName</a> </h3>
+                        <p> Price: @item.Price VND</p>
+                        @if (Session["userName"] == null)
+                        {
+                            @Html.ActionLink("Mua ngay", "login", "Home", new { @class = "btn btn-style btn-primary mt-md-5 mt-4" })
+                        }
+                        else
+                        {
+                    <div class="btn btn-style btn-primary mt-md-5 mt-4" style="background-color:aquamarine;">
+                        @Ajax.ActionLink("Thêm giỏ hàng", "ThemGioHangAjax", "Cart", new { @productID = item.ProductID, @strURL = Request.Url.ToString(), @class = "btn btn-style btn-primary mt-md-5 mt-4" }, new AjaxOptions
+                  { HttpMethod = "GET", UpdateTargetId = "divGioHang", InsertionMode = InsertionMode.Replace }, null)
+                    </div>
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

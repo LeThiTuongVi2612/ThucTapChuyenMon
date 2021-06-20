@@ -1,0 +1,102 @@
+﻿@using WebBanHang.Models
+@model  Order
+@{
+    ViewBag.Title = "DuyetDonHang";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Thông tin đơn hàng: <span style="color:red;">@Model.Customer.HoTen</span></h2>
+<br />
+<br />
+@using (Html.BeginForm("DuyetDonHang", "QuanLyDonHang", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="ChiTietDonHang table">
+
+        <table class="table" id="table">
+            @*Phần thông tin đơn hàng*@
+            <tr>
+                <td colspan="4">Tên khách hàng: <input type="text" name="tenKH" value="@Model.Customer.HoTen" style="display:none;" /><span style="color:red;">@Model.Customer.HoTen</span></td>
+            </tr>
+            <tr>
+                <td colspan="4">Tên số điện thoại:<input type="text" name="sdt" value="@Model.Customer.SoDienThoai" style="display:none;" /> <span style="color:red;">@Model.Customer.SoDienThoai</span></td>
+            </tr>
+            <tr>
+                <td colspan="4">Địa chỉ:<input type="text" name="diachi" value="@Model.Customer.DiaChi" style="display:none;" /><span style="color:red;"> @Model.Customer.DiaChi</span></td>
+                
+            </tr>
+            <tr>
+                <td colspan="6"><input type="text" name="gmail" value="@Model.Customer.Email" style="display:none;" /></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>Mã đơn hàng:<input type="text" name="madonhang" value="@Model.OrderID" style="display:none;" /> <b style="color:red;">@Model.OrderID @Html.Hidden("OrderID", Model.OrderID)</b></td>
+                            <td>Mã khách hàng: <b style="color:red;">@Model.Customer.CustomerID</b></td>
+                            <td>Tên khách hàng: <b style="color:red;">@Model.Customer.HoTen</b></td>
+                            <td>Ngày đặt:<input type="text" name="ngaydat" value="@Model.NgayDat" style="display:none;" /> @Model.NgayDat.Value.ToString("dd/MM/yyy")</td>
+
+                        </tr>
+                        
+                            <tr>
+                                <td>Duyệt đơn: @Html.EditorFor(model => model.Daduyet)</td>
+                                <td>Thanh toán:@Html.EditorFor(model => model.DaThanhToan)</td>
+                                <td>Giao hàng: @Html.EditorFor(model => model.TinhTrangGiaoHang)</td>
+                            </tr>
+                        
+                        </table>
+</td>
+            </tr>
+            @*Thông tin chi tiết đơn hàng*@
+            <tr>
+                <td>Sản phẩm</td>
+                <td>Hình ảnh</td>
+                <td>Số lượng đặt</td>
+                <td>Đơn giá đặt</td>
+            </tr>
+
+            @{ IEnumerable<OrderDetail> lstChiTiet = (IEnumerable<OrderDetail>)ViewBag.ListCTHD;}
+            @foreach (var item in lstChiTiet)
+            {
+                <tr>
+                    <td><input type="text" name="tenSP" value="@item.SanPham.ProductName" style="display:none;" />@item.SanPham.ProductName</td>
+                    <td><img width="150" height="50" src="@Url.Content("~/Content/images/" + item.SanPham.Anh)" /></td>
+                    <td><input type="text" name="soluong" value="@item.soLuong" style="display:none;" />@item.soLuong</td>
+                    <td><input type="text" name="gia" value="@item.Gia" style="display:none;" />@item.Gia</td>
+                </tr>
+            }
+
+            <tr>
+                <td align="right" colspan="4"><input type="text" name="tongsoluong" value="@Model.OrderDetail.Sum(n => n.soLuong)" style="display:none;" />Tổng số lượng: @Model.OrderDetail.Sum(n => n.soLuong)</td>
+            </tr>
+            <tr>
+                <td align="right" colspan="4"><input type="text" name="tongtien" value=" @Model.OrderDetail.Sum(n => n.SanPham.Price)" style="display:none;" />Tổng tiền: @Model.OrderDetail.Sum(n => n.SanPham.Price)</td>
+            </tr>
+
+        </table>
+        <input value="In đơn hàng" type="button" id="btnInDonHang" />
+        <input value="Lưu đơn hàng" type="submit" id="btnInDonHang" />
+    </div>
+}<div>
+    @Html.ActionLink("Back to List", "ChuaThanhToan")
+</div>
+
+
+<script>
+    $("#btnInDonHang").click(function () {
+        var content = '<table>' + $("#table").html() + '</table>';
+        InDonHang(content);
+    });
+
+    //Phương thức in
+    function InDonHang(content) {
+        var printWindow = window.open('', '', 'height = 400, width = 800');
+        printWindow.document.write('<html><head><title>Đơn hàng</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(content);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
+
+    }
+</script>

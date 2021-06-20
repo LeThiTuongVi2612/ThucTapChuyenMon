@@ -1,0 +1,80 @@
+﻿@using WebBanHang.Models;
+@model ItemCart
+@{
+    ViewBag.Title = "SuaGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+    <script src="~/Content/js/controller/cartController.js"></script>
+}
+@{
+    List<ItemCart> lsGioHang = ViewBag.GioHang as List<ItemCart>;
+
+}
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">MY CART</h2>
+        </div>
+    </div>
+</section>
+<table class="table">
+    <tr>
+        <td class="giohang">Mã SP</td>
+        <td class="giohang">Tên SP</td>
+        <td class="giohang">Hình Ảnh</td>
+        <td class="giohang">Số lượng</td>
+        <td class="giohang">Đơn giá</td>
+        <td class="giohang">Thành tiền</td>
+        <td></td>
+    </tr>
+    @foreach (var item in lsGioHang)
+    {
+        //Sản phẩm có mã sản phẩm được chỉnh gửi từ tham số bên trang xem giỏ hàng
+        if (Model.productID == item.productID)
+        {
+            using (Html.BeginForm("CapNhatGioHang", "Cart"))
+            {
+
+                <tr>
+                    <td class="giohang">@item.productID @Html.Hidden("productID", item.productID)</td>
+                    <td class="giohang">@item.productName</td>
+                    <td class="giohang"><img src="@Url.Content("~/Content/images/" + item.anh)" width="50" height="50" /></td>
+
+                    <td class="giohang">
+                        @Html.TextBox("soLuong", item.soLuong, new { @class = "SoLuongThayDoi" })
+                        <p id="TB_SoLuongThayDoi"></p>
+                    </td>
+
+                    <td class="giohang">@item.Gia.ToString("#,##") VNĐ</td>
+                    <td class="giohang">@item.thanhTien.ToString("#,##") VNĐ</td>
+                    <td>
+                        @*<input type="submit" value="Cập nhật" id="btnCapNhatGH" />*@
+                        <input type="submit" value="Cập nhật" id="btnCapNhatGH"/>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { @productID = item.productID })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td class="giohang">@item.productID </td>
+                <td class="giohang">@item.productName</td>
+                <td class="giohang"><img src="@Url.Content("~/Content/images/" + item.anh)" width="50" height="50" /></td>
+                <td class="giohang">@item.soLuong</td>
+                <td class="giohang">@item.Gia.ToString("#,##") VNĐ</td>
+                <td class="giohang">@item.thanhTien.ToString("#,##") VNĐ</td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaGioHang", new { @productID = item.productID })
+                </td>
+                <td>
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @productID = item.productID })
+                </td>
+            </tr>
+        }
+    }
+</table>
+

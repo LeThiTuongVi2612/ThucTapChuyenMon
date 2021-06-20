@@ -1,0 +1,37 @@
+﻿@using WebBanHang.Models;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section ajaxFooter{
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+<section class="w3l-features-8" id="products">
+    <!-- /features -->
+    <div class="features py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <h5 class="title-small text-center">Our Services</h5>
+            <h3 class="title-big text-center mb-md-5 mb-4">Our Products</h3>
+            <div class="fea-gd-vv text-center row">
+                @foreach (var item in Model)
+                {
+                    <div class="float-top col-lg-4 col-md-6" style="padding-bottom:30px;" id="@item.GroupProductID">
+                        <a href="#url"><img src="@Url.Content("~/Content/images/"+item.Anh)" class="img-responsive" alt="" style="width:100%;"></a>
+                        <div class="float-lt feature-gd">
+                            <h3><a href="#url" style="text-align:center;">@item.ProductName</a> </h3>
+                            <h6 style="float:right;"><a href="~/Product/CachCheBienPartial/@item.ProductID"><u>Xem thêm ...</u></a></h6>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="dlink">
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- //features -->
+</section>

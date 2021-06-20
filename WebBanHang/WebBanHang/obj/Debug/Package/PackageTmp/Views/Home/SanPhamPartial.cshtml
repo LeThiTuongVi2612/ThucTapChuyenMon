@@ -1,0 +1,42 @@
+﻿@using WebBanHang.Models
+@model IEnumerable<GroupProduct>
+@foreach (var item in Model)
+{
+<div class="col-md-4 col-6 left-wthree-img mt-lg-0 mt-5" style="padding-bottom:30px">
+    
+    <a href="~/Home/ProductPartial/@item.GroupProductID" class="hovertext" title="@item.TenDanhMuc">
+        
+        <img src="@Url.Content("~/Content/images/"+item.Pic)" alt="" class="img-fluid radius-image" style="width:260px; height:160px">
+    </a>
+</div>
+<style type="text/css">
+
+    a.hovertext {
+        position: relative;
+        width: 240px;
+        text-decoration: none !important;
+        text-align: center;
+    }
+
+        a.hovertext::after {
+            content: attr(title);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            padding: 0.5em 20px;
+            width: 237px;
+            background: rgba(0,0,0,0.8);
+            text-decoration: none !important;
+            color: #fff;
+            opacity: 0;
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -o-transition: 0.5s;
+            -ms-transition: 0.5s;
+        }
+
+        a.hovertext:hover::after, a.hovertext:focus::after {
+            opacity: 1.0;
+        }
+</style>
+}

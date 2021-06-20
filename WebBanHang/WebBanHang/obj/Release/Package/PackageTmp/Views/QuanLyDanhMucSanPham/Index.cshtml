@@ -1,0 +1,72 @@
+﻿
+@using WebBanHang.Models;
+@model IEnumerable<GroupProduct>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    //Khởi tạo control webGrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
+}
+
+<div style="padding: 10px;">
+    <a href="@Url.Content("~/QuanLyDanhMucSanPham/TaoMoi")" class="btn btn-success">Thêm mới danh mục sản phẩm</a>
+
+</div>
+@*Thể hiện dữ liệu thông qua control webGrid *@
+@grid.GetHtml(
+tableStyle: "gridTable",
+headerStyle: "gridHear",
+footerStyle: "gridFooter",
+rowStyle: "gridRow",
+alternatingRowStyle: "gridAltRow",
+columns: grid.Columns(
+   grid.Column("GroupProductID", "Mã danh mục sản phảm"),
+   grid.Column("TenDanhMuc", "Tên danh mục sản phảm"),
+   grid.Column("Pic", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height = \"150\" src =\"../Content/images/" + p.Pic + "\">")),
+   
+   grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { id = p.GroupProductID })),
+   grid.Column(format: p => @Html.ActionLink("Xóa", "Xoa", new { id = p.GroupProductID }))
+   )
+   )
+<style>
+    .gridTable {
+        width: 100%;
+        border: 1px solid #999999;
+    }
+
+        .gridTable td {
+        }
+
+    .gridHear {
+        background-color: forestgreen;
+    }
+
+        .gridHear > th > a {
+            color: #fff;
+        }
+
+    .gridFooter {
+        font-weight: bold;
+    }
+
+    .gridRow {
+        padding: 10px;
+        border: 1px solid #999999;
+    }
+
+    .gridAltRow {
+        padding: 10px;
+        border: 1px solid #999999;
+    }
+</style>
+
+<style>
+    .charts {
+        display: none;
+    }
+
+    
+</style>
+
+
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebBanHang.Models.Order>
+@{
+    ViewBag.Title = "ChuaThanhToan";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    //Khởi tạo control webGrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 20);
+}
+<h2>Quản lý đơn hàng (Danh sách đơn hàng chưa thanh toán)</h2>
+@*Dùng bootstrap tạo 1 tap control với các liên kiết đến các view*@
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="@Url.Action("ChuaThanhToan/QuanLyDonHang")">Chưa duyệt</a></li>
+    <li role="presentation"><a href="@Url.Action("DaDuyet/QuanLyDonHang")">Đã duyệt & Chưa giao</a></li>
+    <li role="presentation"><a href="@Url.Action("ChuaGiao","QuanLyDonHang")">Chưa giao & Đã thanh toán</a></li>
+    <li role="presentation"><a href="@Url.Action("DaGiaoDaThanhToan/QuanLyDonHang")">Đã giao & đã thanh toán</a></li>
+</ul>
+@*Thể hiện dữ liệu thông qua control webGrid *@
+@grid.GetHtml(
+tableStyle: "gridTable",
+headerStyle: "gridHear",
+footerStyle: "gridFooter",
+rowStyle: "gridRow",
+alternatingRowStyle: "gridAltRow",
+columns: grid.Columns(
+   grid.Column("OrderID",header: "Mã đơn hàng"),
+   grid.Column("CustomerID", header: "Họ tên KH", format: p => p.CustomerID !=null ? p.Customer.HoTen: ""),
+   grid.Column("NgayDat",header: "Ngày đặt"),
+   grid.Column("NgayGiao", header: "Ngày Giao"),
+   grid.Column("TinhTrangGiaoHang", header: "Tình trạng giao hàng"),
+   grid.Column("DaThanhToan", header: "Đã thanh toán"),
+   grid.Column("Daduyet", header: "Duyệt đơn"),
+   grid.Column(format: p => @Html.ActionLink("Duyệt đơn hàng", "DuyetDonHang", new { id = p.OrderID }))
+  
+   )
+   )
+<style>
+    .gridTable {
+        width: 100%;
+        border: 1px solid #999999;
+    }
+
+        .gridTable td {
+        }
+
+    .gridHear {
+        background-color: forestgreen;
+    }
+
+        .gridHear > th > a {
+            color: #fff;
+        }
+
+    .gridFooter {
+        font-weight: bold;
+    }
+
+    .gridRow {
+        padding: 10px;
+        border: 1px solid #999999;
+    }
+
+    .gridAltRow {
+        padding: 10px;
+        border: 1px solid #999999;
+    }
+</style>
+
+<style>
+    .charts {
+        display: none;
+    }
+
+    .widget-shadow {
+        display: none;
+    }
+</style>
+
+

@@ -1,0 +1,137 @@
+﻿@using WebBanHang.Models;
+@model List<ItemCart>
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="container py-lg-4 py-md-3">
+            <h2 class="title">MY CART</h2>
+        </div>
+    </div>
+</section>
+@if (Model == null || Model.Count == 0)
+{
+    <h3 style="text-align:center">Giỏ hàng rỗng......</h3>
+    <a href="@Url.Content("~/Home/index")" style="background-color:orangered;color:black;"><img src="https://img.icons8.com/small/16/000000/exit-sign.png" />Tiếp tục mua sắm!!!</a>
+
+}
+else
+{
+    
+    <table class="table">
+
+        <tr>
+            <td class="giohang">Mã SP</td>
+            <td class="giohang">Tên SP</td>
+            <td class="giohang">Hình Ảnh</td>
+            <td class="giohang">Số lượng</td>
+            <td class="giohang">Đơn giá</td>
+            <td class="giohang">Thành tiền</td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="giohang">@item.productID</td>
+                <td class="giohang">@item.productName</td>
+                <td class="giohang"><img src="@Url.Content("~/Content/images/" + item.anh)" width="50" height="50" /></td>
+
+                <td class="giohang">@item.soLuong</td>
+                <td class="giohang">@item.Gia.ToString("#,##") VNĐ</td>
+                <td class="giohang">@item.thanhTien.ToString("#,##") VNĐ</td>
+                <td>
+                    @Html.ActionLink("Sửa", "SuaGioHang", new { @productID = item.productID })
+
+                </td>
+                <td>
+                    @Html.ActionLink("Xóa", "XoaGioHang", new { @productID = item.productID })
+                </td>
+            </tr>
+            
+        }
+    </table>
+
+
+
+    using (Html.BeginForm("DatHang", "Cart"))
+    {
+
+<div >
+
+
+    <h3 style="text-align:center;">Thông tin khách hàng</h3>
+    <div style="margin:auto; width:350px;">
+
+
+        <label>Số điện thoại:</label>
+        <div class="col-md-12">
+
+            @Html.TextBox("SoDienThoai", null, new { @class = "form-control", @placeholder = "Số điện thoại", @required = "required" })
+        </div>
+        <label>Địa chỉ:</label>
+        <div class="col-md-12">
+
+            @Html.TextBox("DiaChi", null, new { @class = "form-control", @placeholder = "Địa chỉ", @required = "required" })
+        </div>
+
+
+        </div>
+    </div>
+    <div class="divDatHang" style="text-align: right; margin-right:50px; margin-bottom:10px;">
+        <input type="submit" value="Đặt hàng" id="btnDatHang" class="DatHang" style="background-color:forestgreen; margin-right:20px;" />
+        @Html.ActionLink("Mua tiếp", "index", "Home")
+    </div>
+    }
+
+
+    }
+    @*Kiểm tra validate thông qua jquery*@
+
+
+    @*<script>
+        $(function () {
+            $("#btnDatHang").click(function () {
+                var loi = 0;
+                if ($("userName").val() == "") {
+                    $("#TB_TenKH").text("Tên tài khoản không được bỏ trống");
+                    loi++;
+                }
+                else {
+                    $("#TB_TenKH").text("");
+                }
+
+                if ($("Phone").val() == "") {
+                    $("#TB_Phone").text("Số điện thoại không được bỏ trống");
+                    loi++;
+                }
+                else {
+                    $("#TB_Phone").text("");
+                }
+
+                if ($("Address").val() == "") {
+                    $("#TB_Address").text("Số điện thoại không được bỏ trống");
+                    loi++;
+                }
+                else {
+                    $("#TB_Address").text("");
+                }
+
+                dinhang = /^[0-9A-Za-z]+[0-9A-Za-z_]*@@*@[\w\d.]+\.\w{2,4}$/;
+                    KTemail = dinhang.text($("email").val());
+                    if (!KTemail) {
+                        $("#TB_Email").text("Email không hợp lệ");
+                        loi++;
+                    }
+                    if (loi != 0) {
+                        //Ngăn sự kiện submit đến server
+                        return false
+                    }
+                });
+            });
+
+        </script>*@
+

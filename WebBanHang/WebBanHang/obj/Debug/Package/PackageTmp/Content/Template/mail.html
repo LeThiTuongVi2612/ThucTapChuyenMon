@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Thông tin đơn hàng từ khách hàng: {{HoTen}}</title>
+</head>
+<body>
+    <table class="table" id="table">
+        @*Phần thông tin đơn hàng*@
+        <tr>
+            <td colspan="4">Tên khách hàng: {{HoTen}}</td>
+        </tr>
+        <tr>
+            <td colspan="4">Địa chỉ:{{DiaChi}}</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>Mã đơn hàng: {{orderID}}</td>
+                        <td>Tên khách hàng: {{HoTen}}</td>
+                        <td>Ngày đặt: {{NgayDat}}</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Duyệt đơn: {{Daduyet}}</td>
+                        <td>Thanh toán:{{DaThanhToan}}</td>
+                        <td>Giao hàng:{{TinhTrangGiaoHang}}</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="4">Tổng số lượng:{{TognSoLuong}}</td>
+        </tr>
+        <tr>
+            <td align="right" colspan="4">Tổng tiền: {{TongTien}}</td>
+        </tr>
+        
+    </table>
+</body>
+</html>

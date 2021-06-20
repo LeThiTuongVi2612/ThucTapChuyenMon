@@ -1,0 +1,81 @@
+﻿@using WebBanHang.Models;
+@model LoaiThanhVien
+@{
+    ViewBag.Title = "PhanQuyen";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Phân quyền</h2>
+<h3>Loại thành viên: <span style="color:red;">@Model.TenLoaiTV</span></h3>
+<br />
+@{
+    //lấy ra danh sách quyền
+    IEnumerable<Quyen> lstQuyen = (IEnumerable<Quyen>)ViewBag.Quyens;
+    IEnumerable<LoaiTV_Quyen> lstTV_Quyen = (IEnumerable<LoaiTV_Quyen>)ViewBag.loaiTVQuyen;
+}
+
+        @using (Html.BeginForm("PhanQuyens", "PhanQuyen"))
+        {
+            //mã loại thành viên
+            @Html.Hidden("MaLoaiTV", Model.MaLoaiTV)
+            if (lstTV_Quyen != null)
+            {
+                //đối với thaành iên đã phân quyền rồi
+                for (int i = 0; i < lstQuyen.Count(); i++)
+                {
+                    int k = 0;//tạo biến k làm biến đếm để duyệt vòng lập của bảng quyền
+                    for (int j = 0; j < lstTV_Quyen.Count(); j++)
+                    {
+                        if (lstQuyen.ElementAt(i).MaQuyen == lstTV_Quyen.ElementAt(j).MaQuyen)
+                        {
+                            k++;
+                            break;
+                        }
+                    }
+                    if (k != 0)
+                    {
+                        <div class="col-md-4">
+
+                            <input type="checkbox" class="ckb_click" checked="checked" width="20" height="20" name="@Url.Content("["+i+"].MaQuyen")" value="@lstQuyen.ElementAt(i).MaQuyen" />@lstQuyen.ElementAt(i).TenQuyen
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-4">
+                            <input type="checkbox" class="ckb_click" width="20" height="20" name="@Url.Content("["+i+"].MaQuyen")" value="@lstQuyen.ElementAt(i).MaQuyen" />@lstQuyen.ElementAt(i).TenQuyen
+                        </div>
+                    }
+                    
+                }
+            }
+            else
+            {
+                //đối với trường hợp loại thành viên chưa phân quyền
+                for (int i = 0; i < lstQuyen.Count(); i++)
+                {
+                    <div class="col-md-4">
+                        <input type="checkbox" class="ckb_click" width="20" height="20" name="@Url.Content("["+i+"].MaQuyen")" value="@lstQuyen.ElementAt(i).MaQuyen" />@lstQuyen.ElementAt(i).TenQuyen
+                    </div>
+                }
+            }
+            <div class="clearfix" style="padding:20px;"></div>
+            
+            <input value="Thực hiện" type="submit"class="btn btn-success" />
+        }
+    
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@*duyệt lại checkbox khi check*@
+<script>
+    $('.ckb_click').click(function () {
+        i = 0;
+        $('.ckb_click').each(function () {
+            if ($(this).is(':checked')) {
+                $(this).attr("name", "[" + i + "].MaQuyen");
+                i++;
+            }
+        })
+    })
+</script>
+

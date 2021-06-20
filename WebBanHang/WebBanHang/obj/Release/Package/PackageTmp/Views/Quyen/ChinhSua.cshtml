@@ -1,0 +1,37 @@
+﻿@model WebBanHang.Models.Quyen
+@{
+    ViewBag.Title = "ChinhSua";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@using (Html.BeginForm("ChinhSua","Quyen"))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("MaQuyen", Model.MaQuyen)
+    <div class="form-horizontal">
+
+        <hr />
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenQuyen, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.TenQuyen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenQuyen, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Cập nhật" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

@@ -1,0 +1,64 @@
+﻿@*@using WebBanHang.Models;
+@model LoginModel.*@
+@model WebBanHang.Models.Users
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/LoginStart.cshtml";
+}
+
+<section class="ftco-section">
+    <div class="container">
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+                    <h3 class="mb-4 text-center">Đăng nhập</h3>
+                    @using (Ajax.BeginForm("login", "Home", new AjaxOptions
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "ThongBao"
+                    }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, null, new { @class = "signin-form" })
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="txtUserName" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input id="password-field" type="password" name="txtPassWord" class="form-control" placeholder="Password" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-primary submit px-3">Đăng nhập</button>
+                        </div>
+                        <h4 id="ThongBao" style="color:red;"></h4>
+                        <div class="form-group d-md-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">
+                                    <a href="~/Home/index" style="color: #fff">Thoát</a>
+                                </label>
+                            </div>
+                            <div class="w-50 text-md-right">
+                                <a href="~/Home/ForGotPassWord" style="color: #fff">Quên mật khẩu?</a>
+                            </div>
+                        </div>
+                    }
+                    <p class="w-100 text-center">&mdash; Hoặc &mdash;</p>
+                    <div class="form-group d-md-flex">
+                        <div class="w-50" style="padding:20px;">
+                            <a href="~/Home/loginFacebook" class="form-control submit px-3" style="background-color:blue;border-color:blue; text-align:center"><i class="fa fa-facebook-official" style="padding-right:3px;"></i>Facebook</a>
+                        </div>
+                        <div class="w-50 text-md-right" style="padding:20px;">
+                            <a href="~/Home/Add_Account" class="form-control submit px-3" style="background-color:red;border-color:red; text-align:center"><i class="fa fa-google-plus-official" style="padding-right:3px;"></i>Google +</a>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width:77%; margin:auto; padding-bottom:10px">
+                        Bạn mới biết đến CoffeeCafe?
+                        <a href="~/Home/Add_Account" style="color:#fff;"><u>Đăng kí</u></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
