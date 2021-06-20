@@ -9,7 +9,7 @@ Giảng viên: Thầy Nguyễn Lê Minh. 
 ## Phần 1: Công nghệ sử dụng:
 1. Visual Studio 2019
 2. Microsoft SQL Server
-3. HTML, Javascript, Ajax, Css, Bootstrap
+3. HTML, Javascript, Ajax, Css
   
 
 ## Phần 2: Các chức năng đã hoàn thành:
