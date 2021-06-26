@@ -21,6 +21,7 @@ columns: grid.Columns(
    grid.Column("ProductName", "Tên sản phảm"),
    grid.Column("Anh", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height = \"150\" src =\"../Content/images/" + p.Anh + "\">")),
    grid.Column("Price", "Giá bán"),
+   grid.Column("SoLuongTon", "Số lượng"),
    grid.Column(format: p => @Html.ActionLink("Nhập hàng", "NhapHangDon", new { id = p.ProductID }, new { @target = "_blank" }))
    )
    )

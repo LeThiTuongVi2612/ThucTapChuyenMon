@@ -159,6 +159,30 @@ namespace WebBanHang.Controllers
             db.SaveChanges();
             return RedirectToAction("Admin");
         }
+
+        [HttpGet]
+        public ActionResult TimKiemSPQL(string txtTuKhoa)
+        {
+            //Tìm kiếm theo tên
+            var lstSP = db.SanPham.Where(n => n.ProductName.Contains(txtTuKhoa));
+            return View(lstSP.OrderByDescending(n => n.ProductID));
+        }
+        [HttpPost]
+        public ActionResult LayTuTimKiem(string txtTuKhoa)
+        {
+            //Tìm kiếm theo tên
+
+            return RedirectToAction("TimKiemSPQL", new { @txtTuKhoa = txtTuKhoa });
+        }
+
+        public ActionResult TimKiemSPQLPartial(string txtTuKhoa)
+        {
+            //Tìm kiếm theo tên
+
+            var lstSP = db.SanPham.Where(n => n.ProductName.Contains(txtTuKhoa));
+            return View(lstSP.OrderByDescending(n => n.ProductID));
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

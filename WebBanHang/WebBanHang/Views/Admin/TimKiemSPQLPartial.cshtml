@@ -1,0 +1,87 @@
+﻿@using WebBanHang.Models;
+@model IEnumerable<SanPham>
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+    //Khởi tạo control webGrid
+    WebGrid grid = new WebGrid(source: Model, rowsPerPage: 5);
+}
+<div class="search-box" style="width:100%;">
+    <div style="padding-right:30px">
+        @using (Ajax.BeginForm("TimKiemSPQLPartial", "Admin", new AjaxOptions { @UpdateTargetId = "KQTimKiem", InsertionMode = InsertionMode.Replace }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, null, new { @class = "input", @method = "GET", @action = "error.html" })
+            <div style="width:400px; height:150px;float:right">
+                <input class="sb-search-input input__field--madoka" style="width:310px; float:left" placeholder="Search..." type="search" name="txtTuKhoa" />
+                <button type="submit" class="btn btn-success" style="float:left">Tìm kiếm</button>
+            </div>
+        }
+    </div>
+</div>
+<div id="KQTimKiem">
+    <div style="padding: 10px;">
+        <a href="@Url.Content("~/Admin/TaoMoi")" class="btn btn-success">Thêm mới sản phẩm</a>
+
+    </div>
+    @*Thể hiện dữ liệu thông qua control webGrid *@
+    @grid.GetHtml(
+    tableStyle: "gridTable",
+    headerStyle: "gridHear",
+    footerStyle: "gridFooter",
+    rowStyle: "gridRow",
+    alternatingRowStyle: "gridAltRow",
+    columns: grid.Columns(
+       grid.Column("ProductID", "Mã sản phảm"),
+       grid.Column("ProductName", "Tên sản phảm"),
+       grid.Column("Anh", "Hình ảnh", format: p => @Html.Raw("<img width=\"150\" height = \"150\" src =\"../Content/images/" + p.Anh + "\">")),
+       grid.Column("Price", "Giá bán"),
+       grid.Column("SoLuongTon", "Số lượng"),
+       grid.Column(format: p => @Html.ActionLink("Chỉnh sửa", "ChinhSua", new { id = p.ProductID })),
+       grid.Column(format: p => @Html.ActionLink("Xóa", "Xoa", new { id = p.ProductID }))
+       )
+       )
+</div>
+<style>
+    .gridTable {
+        width: 100%;
+        border: 1px solid #999999;
+    }
+
+        .gridTable td {
+        }
+
+    .gridHear {
+        background-color: forestgreen;
+    }
+
+        .gridHear > th > a {
+            color: #fff;
+        }
+
+    .gridFooter {
+        font-weight: bold;
+    }
+
+    .gridRow {
+        padding: 10px;
+        border: 1px solid #999999;
+    }
+
+    .gridAltRow {
+        padding: 10px;
+        border: 1px solid #999999;
+    }
+</style>
+
+<style>
+    .charts {
+        display: none;
+    }
+
+    .widget-shadow {
+        display: none;
+    }
+</style>
+
+

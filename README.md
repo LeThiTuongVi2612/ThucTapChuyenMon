@@ -7,10 +7,9 @@ Họ và tên: Lê Thị Tường Vi - 59591071119
 Giảng viên: Thầy Nguyễn Lê Minh. 
 
 ## Phần 1: Công nghệ sử dụng:
-1. Visual Studio 2019
-2. Microsoft SQL Server
-3. HTML, Javascript, Ajax, Css
-  
+1. Microsoft SQL Server
+2. HTML, Javascript, Ajax, Css
+3. ASP.Net MVC
 
 ## Phần 2: Các chức năng đã hoàn thành:
 1. Đăng nhập, đăng kí, quên mật khẩu tài khoản khách hàng
@@ -46,14 +45,18 @@ Giảng viên: Thầy Nguyễn Lê Minh. 
 15. Hiển thị danh sách sản phẩm theo danh mục.
 16. In đơn đơn hàng
 17. Phân trang
-
+18. Upload web lên host
 ## Phần 3: Các chức năng chưa hoàn thành:
 1. Thanh toán online
 2. Đăng nhập bằng google
 3. 
 
 ## Hướng dẫn sử dụng:
-Vào link: lethituongvi-001-site1.etempurl.com 
+1. Tải về:
+ + Sau khi tải về mở folder chạy file WebBanHang.sln bằng Visual Studio
+ + Sau đó, mở file BanHangOnl.sql bằng SQL Server → tạo database cùng tên với database trong file BanHangOnl,sql → lưu dữ liệu có trong file BanHangOnl.sql vào trong SQL Server.
+ + Kết nối lại database với Visual Studio.
+2. Vào link: lethituongvi-001-site1.etempurl.com 
 Dùng tài khoản 5951071119@st.utc2.edu.vn, password: tuongvi123 để mua hàng. 
 Dùng tài khoản: CoffeeCafe2600@gmail.com, password: cafe2600 để vào admin
 

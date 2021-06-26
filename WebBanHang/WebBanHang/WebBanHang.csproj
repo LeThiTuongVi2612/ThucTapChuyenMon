@@ -704,6 +704,7 @@
     <Content Include="Views\Home\SanPhamPartial.cshtml" />
     <Content Include="Views\Product\CachCheBienPartial.cshtml" />
     <Content Include="Views\Home\ProductPartial.cshtml" />
+    <Content Include="Views\Admin\TimKiemSPQLPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

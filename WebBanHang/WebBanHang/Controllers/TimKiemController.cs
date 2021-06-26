@@ -16,7 +16,7 @@ namespace WebBanHang.Controllers
         {
             //Tìm kiếm theo tên
             var lstSP = db.SanPham.Where(n => n.ProductName.Contains(sTuKhoa));
-            return View(lstSP.OrderBy(n => n.ProductName));
+            return View(lstSP.OrderByDescending(n => n.ProductID));
         }
         [HttpPost]
         public ActionResult LayTuKhoaTimKiem(string sTuKhoa)
@@ -26,7 +26,7 @@ namespace WebBanHang.Controllers
             return RedirectToAction("KQTimKiem", new { @sTuKhoa = sTuKhoa });
         }
 
-        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

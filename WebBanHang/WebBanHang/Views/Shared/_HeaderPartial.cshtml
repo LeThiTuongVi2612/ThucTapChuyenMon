@@ -53,9 +53,9 @@
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary(true, null, new { @class = "search-box", @method = "GET", @action = "error.html" })
-                                <div style="width:700px; height:120px;">
-                                    <input type="search" placeholder="Enter Keyword" name="sTuKhoa" required="required" autofocus="">
-                                    <br />
+                                <div style="width:600px; height:120px;">
+                                    <input type="search" placeholder="Enter Keyword" name="sTuKhoa" required="required" autofocus="" style="width:540px; float:left">
+                                   
                                     <button type="submit" class="btn"><span class="fa fa-search" aria-hidden="true"></span></button>
                                 </div>
                             }
